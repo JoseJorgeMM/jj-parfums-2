@@ -1,7 +1,6 @@
 /**
  * J.J PARFUMS - Catálogo Exclusivo
  * Lógica de Filtrado, Búsqueda en Vivo, Navegación y Modal Informativo
- * (Solo Consulta / Sin elementos de pedido o compra)
  */
 
 // --- Global Functions (Outside DOMContentLoaded for body onload) ---
@@ -17,13 +16,10 @@ function initBackgroundGlow() {
     window.addEventListener("mousemove", (e) => {
         const x = e.clientX;
         const y = e.clientY;
-
-        // Move the glow element
         glow.style.left = `${x}px`;
         glow.style.top = `${y}px`;
     });
 
-    // Mobile optimization: slow pulse instead of mouse follow
     if (window.innerWidth < 768) {
         let angle = 0;
         setInterval(() => {
@@ -33,7 +29,6 @@ function initBackgroundGlow() {
             const radius = 300;
             const x = centerX + Math.cos(angle) * radius;
             const y = centerY + Math.sin(angle) * radius;
-
             glow.style.left = `${x}px`;
             glow.style.top = `${y}px`;
         }, 30);
@@ -47,9 +42,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const container = document.getElementById("catalogContainer");
         if (container) {
             container.innerHTML = `<div class="no-results-box">
-        <h3 class="no-results-title">Error al cargar el catálogo</h3>
-        <p class="no-results-text">No se pudo cargar la base de datos de fragancias. Verifique que data.js esté en la misma carpeta.</p>
-      </div>`;
+                <h3 class="no-results-title">Error al cargar el catálogo</h3>
+                <p class="no-results-text">No se pudo cargar la base de datos de fragancias. Verifique que data.js esté en la misma carpeta.</p>
+            </div>`;
         }
         return;
     }
@@ -71,7 +66,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const controlsSection = document.getElementById("controlsSection");
     const controlsToggle = document.getElementById("controlsToggle");
 
-    // Elementos del Modal
     const perfumeModal = document.getElementById("perfumeModal");
     const modalCloseBtn = document.getElementById("modalCloseBtn");
     const modalFooterCloseBtn = document.getElementById("modalFooterCloseBtn");
@@ -84,7 +78,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const modalBottleStage = document.getElementById("modalBottleStage");
     const modalBottleImg = document.getElementById("modalBottleImg");
 
-    // Elementos de métricas del encabezado
     const totalFragrancesCount = document.getElementById("totalFragrancesCount");
     const totalHousesCount = document.getElementById("totalHousesCount");
     const countAll = document.getElementById("countAll");
@@ -97,26 +90,20 @@ document.addEventListener("DOMContentLoaded", () => {
     let activeGenders = new Set(["all"]);
     let activeHouse = "all";
     let activeNote = "all";
-    let activeView = "grid"; // 'grid' | 'list'
+    let favoritesOnly = false;
+    let activeView = "grid";
 
-    // Favoritos State
     let favorites = JSON.parse(localStorage.getItem("jj_favorites") || "[]");
 
-    // Función utilitaria para normalizar texto (sin acentos, minúsculas)
     function normalize(str) {
         if (!str) return "";
-        return str
-            .toLowerCase()
-            .normalize("NFD")
-            .replace(/[̀-ͯ]/g, "")
-            .trim();
+        return str.toLowerCase().normalize("NFD").replace(/[\\u0300-\\u036f]/g, "").trim();
     }
 
-    // 4. Inicializar Métricas y Contadores
+    // 4. Inicializar Métricas
     function initMetrics() {
         const total = catalogData.length;
         const uniqueHouses = [...new Set(catalogData.map(p => p.house))];
-
         if (totalFragrancesCount) totalFragrancesCount.textContent = total;
         if (totalHousesCount) totalHousesCount.textContent = uniqueHouses.length;
 
@@ -127,20 +114,18 @@ document.addEventListener("DOMContentLoaded", () => {
             else if (g.includes("mujer")) m++;
             else if (g.includes("unisex")) u++;
         });
-
         if (countAll) countAll.textContent = total;
         if (countHombre) countHombre.textContent = h;
         if (countMujer) countMujer.textContent = m;
         if (countUnisex) countUnisex.textContent = u;
     }
 
-    // 5. Poblar el Selector de Casas Perfumistas
+    // 5. Poblar el Selector de Casas
     function populateHouseSelect() {
         if (!houseSelect) return;
         const uniqueHouses = [...new Set(catalogData.map(p => p.house))].sort((a, b) =>
             a.localeCompare(b, "es", { sensitivity: "base" })
         );
-
         houseSelect.innerHTML = `<option value="all">Todas las Casas Perfumistas (${uniqueHouses.length})</option>`;
         uniqueHouses.forEach(house => {
             const count = catalogData.filter(p => p.house === house).length;
@@ -151,159 +136,108 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 6. Generar el Índice Alfabético Rápido
+    // 6. Generar Índice Alfabético
     function generateAlphabetIndex() {
         if (!alphabetIndex) return;
         alphabetIndex.innerHTML = "";
-
         const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
         const houses = [...new Set(catalogData.map(p => p.house))];
-
         alphabet.forEach(letter => {
             const hasHouses = houses.some(h => normalize(h).startsWith(letter.toLowerCase()));
             const btn = document.createElement("button");
             btn.className = `alpha-btn ${hasHouses ? "" : "disabled"}`;
             btn.textContent = letter;
-            btn.setAttribute("aria-label", `Ir a casas con letra ${letter}`);
-
             if (hasHouses) {
-                btn.addEventListener("click", () => {
-                    jumpToLetter(letter);
-                });
+                btn.addEventListener("click", () => jumpToLetter(letter));
             }
-
             alphabetIndex.appendChild(btn);
         });
     }
 
-    // Salto suave a la primera casa con la letra seleccionada
     function jumpToLetter(letter) {
         const normLetter = letter.toLowerCase();
         const houseHeaders = document.querySelectorAll(".house-group");
-
         for (const group of houseHeaders) {
             const titleEl = group.querySelector(".house-title");
-            if (titleEl) {
-                const houseTitle = normalize(titleEl.textContent);
-                if (houseTitle.startsWith(normLetter)) {
-                    group.scrollIntoView({ behavior: "smooth", block: "start" });
-                    return;
-                }
+            if (titleEl && normalize(titleEl.textContent).startsWith(normLetter)) {
+                group.scrollIntoView({ behavior: "smooth", block: "start" });
+                return;
             }
         }
     }
 
-    // 7. Resaltar término de búsqueda en texto
     function highlightMatch(text, query) {
         if (!query) return text;
         const normText = normalize(text);
         const normQuery = normalize(query);
         const idx = normText.indexOf(normQuery);
-
         if (idx === -1) return text;
-
         const originalMatch = text.substr(idx, query.length);
-        const before = text.substring(0, idx);
-        const after = text.substring(idx + query.length);
-
-        return `${before}<mark class="search-highlight">${originalMatch}</mark>${after}`;
+        return `${text.substring(0, idx)}<mark class="search-highlight">${originalMatch}</mark>${text.substring(idx + query.length)}`;
     }
 
     // 8. Renderizado del Catálogo
     function renderCatalog() {
+        if (!container) return;
         container.innerHTML = "";
-
         const normSearch = normalize(searchTerm);
         const normNote = normalize(activeNote);
 
-        // Filtrar dataset
         const filtered = catalogData.filter(item => {
-            // Filtro Género (Soporta selección múltiple)
             let matchesGender = true;
             if (activeGenders.size > 1 || !activeGenders.has("all")) {
                 const gender = item.gender.toLowerCase();
-                matchesGender =
-                    activeGenders.has("Hombre") && gender.includes("hombre") ||
-                    activeGenders.has("Mujer") && gender.includes("mujer") ||
-                    activeGenders.has("Unisex") && gender.includes("unisex");
+                matchesGender = (activeGenders.has("Hombre") && gender.includes("hombre")) ||
+                                (activeGenders.has("Mujer") && gender.includes("mujer")) ||
+                                (activeGenders.has("Unisex") && gender.includes("unisex"));
             }
-
-            // Filtro Casa
             const matchesHouse = activeHouse === "all" || item.house === activeHouse;
-
-            // Filtro Acorde Olfativo (Chips)
+            let matchesFavorites = true;
+            if (favoritesOnly) {
+                matchesFavorites = favorites.some(f => f.name === item.name && f.house === item.house);
+            }
             let matchesNoteChip = true;
             if (activeNote !== "all") {
-                const normItemNotes = normalize(item.notes);
-                matchesNoteChip = normItemNotes.includes(normNote);
+                matchesNoteChip = normalize(item.notes).includes(normNote);
             }
-
-            // Filtro Búsqueda en Vivo
             let matchesSearch = true;
             if (normSearch) {
-                const normName = normalize(item.name);
-                const normItemHouse = normalize(item.house);
-                const normNotes = normalize(item.notes);
-
-                matchesSearch =
-                    normName.includes(normSearch) ||
-                    normItemHouse.includes(normSearch) ||
-                    normNotes.includes(normSearch);
+                matchesSearch = normalize(item.name).includes(normSearch) ||
+                                normalize(item.house).includes(normSearch) ||
+                                normalize(item.notes).includes(normSearch);
             }
-
-            return matchesGender && matchesHouse && matchesNoteChip && matchesSearch;
+            return matchesGender && matchesHouse && matchesNoteChip && matchesSearch && matchesFavorites;
         });
 
-        // Actualizar Contador y Resumen
         updateSummaryBar(filtered.length);
 
-        // Si no hay resultados
         if (filtered.length === 0) {
-            container.innerHTML = `
-        <div class="no-results-box">
-          <svg class="no-results-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M10 2h4m-2 0v4m-5 4v10a2 2 0 002 2h6a2 2 0 002-2V10a2 2 0 00-2-2H9a2 2 0 00-2 2z"/>
-            <line x1="8" y1="14" x2="16" y2="14"/>
-          </svg>
-          <h3 class="no-results-title">No se encontraron fragancias</h3>
-          <p class="no-results-text">
-            No encontramos coincidencias para los criterios seleccionados.
-            Intente con otro nombre, casa o nota aromática.
-          </p>
-          <button type="button" class="no-results-btn" id="emptyStateResetBtn">
-            Ver Todo el Catálogo
-          </button>
-        </div>
-      `;
+            container.innerHTML = `<div class="no-results-box">
+                <h3 class="no-results-title">No se encontraron fragancias</h3>
+                <p class="no-results-text">No encontramos coincidencias. Intente con otro nombre o casa.</p>
+                <button type="button" class="no-results-btn" id="emptyStateResetBtn">Ver Todo el Catálogo</button>
+            </div>`;
             const emptyBtn = document.getElementById("emptyStateResetBtn");
             if (emptyBtn) emptyBtn.addEventListener("click", resetAllFilters);
             return;
         }
 
-        // Agrupar por Casa respetando orden alfabético
         const grouped = {};
-        filtered.forEach(perfume => {
-            if (!grouped[perfume.house]) {
-                grouped[perfume.house] = [];
-            }
-            grouped[perfume.house].push(perfume);
+        filtered.forEach(p => {
+            if (!grouped[p.house]) grouped[p.house] = [];
+            grouped[p.house].push(p);
         });
 
         const fragment = document.createDocumentFragment();
-
-        Object.keys(grouped).forEach(houseName => {
+        Object.keys(grouped).sort().forEach(houseName => {
             const perfumesInHouse = grouped[houseName];
             const houseGroup = document.createElement("section");
             houseGroup.className = "house-group";
             houseGroup.id = `house-${normalize(houseName).replace(/[^a-z0-9]/g, "-")}`;
-
-            const headerDiv = document.createElement("div");
-            headerDiv.className = "house-header";
-            headerDiv.innerHTML = `
-        <h2 class="house-title">${highlightMatch(houseName, searchTerm)}</h2>
-        <span class="house-count">${perfumesInHouse.length} ${perfumesInHouse.length === 1 ? 'fragancia' : 'fragancias'}</span>
-      `;
-            houseGroup.appendChild(headerDiv);
+            houseGroup.innerHTML = `<div class="house-header">
+                <h2 class="house-title">${highlightMatch(houseName, searchTerm)}</h2>
+                <span class="house-count">${perfumesInHouse.length} ${perfumesInHouse.length === 1 ? 'fragancia' : 'fragancias'}</span>
+            </div>`;
 
             const gridDiv = document.createElement("div");
             gridDiv.className = "perfumes-grid";
@@ -313,159 +247,95 @@ document.addEventListener("DOMContentLoaded", () => {
                 card.className = "perfume-card" + (perfume.image ? " has-image" : "");
                 card.tabIndex = 0;
                 card.setAttribute("role", "button");
-                card.setAttribute("aria-label", `Ver notas de ${perfume.name} de ${perfume.house}`);
 
-                const displayName = highlightMatch(perfume.name, searchTerm);
-                const displayNotes = highlightMatch(perfume.notes, searchTerm);
-
-                const imageHtml = perfume.image ? `
-          <div class="card-image-box">
-            <img src="${perfume.image}" alt="Frasco de ${perfume.name} - ${perfume.house}" class="card-bottle-img" loading="lazy" />
-          </div>
-        ` : '';
-
-                // Lógica de Favorito en tarjeta
                 const isFav = favorites.some(f => f.name === perfume.name && f.house === perfume.house);
-                const favBtnHtml = `
-                    <button class="favorite-btn ${isFav ? 'active' : ''}"
-                            data-name="${perfume.name}"
-                            data-house="${perfume.house}"
-                            title="Agregar a favoritos">
+                card.innerHTML = `
+                    ${perfume.image ? `<div class="card-image-box"><img src="${perfume.image}" class="card-bottle-img" loading="lazy" /></div>` : ''}
+                    <button class="favorite-btn ${isFav ? 'active' : ''}" data-name="${perfume.name}" data-house="${perfume.house}">
                         <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
                     </button>
+                    <div class="card-top">
+                        <div class="card-header-left">
+                            <span class="card-house-micro">${perfume.house}</span>
+                            <h3 class="perfume-name">${highlightMatch(perfume.name, searchTerm)}</h3>
+                        </div>
+                        <span class="gender-badge badge-${perfume.gender}">${perfume.gender}</span>
+                    </div>
+                    <p class="card-notes">${highlightMatch(perfume.notes, searchTerm)}</p>
+                    <div class="card-footer">
+                        <span class="card-extract-label">Extracto Concentrado</span>
+                        <span class="card-view-notes-btn">Ver Ficha &rarr;</span>
+                    </div>
                 `;
 
-                card.innerHTML = `
-          ${imageHtml}
-          ${favBtnHtml}
-          <div class="card-top">
-            <div class="card-header-left">
-              <span class="card-house-micro">${perfume.house}</span>
-              <h3 class="perfume-name">${displayName}</h3>
-            </div>
-            <span class="gender-badge badge-${perfume.gender}">${perfume.gender}</span>
-          </div>
-          <p class="card-notes">${displayNotes}</p>
-          <div class="card-footer">
-            <span class="card-extract-label">Extracto Concentrado</span>
-            <span class="card-view-notes-btn">Ver Ficha &rarr;</span>
-          </div>
-        `;
-
-                // Evitar que el clic en el botón de favorito abra el modal
-                const favBtn = card.querySelector(".favorite-btn");
-                if (favBtn) {
-                    favBtn.addEventListener("click", (e) => {
-                        e.stopPropagation();
-                        toggleFavorite(perfume);
-                    });
-                }
-
-                // Abrir modal con detalles de la fragancia al hacer clic o presionar Enter
-                card.addEventListener("click", () => openPerfumeModal(perfume));
-                card.addEventListener("keydown", (e) => {
-                    if (e.key === "Enter" || e.key === " ") {
-                        e.preventDefault();
-                        openPerfumeModal(perfume);
-                    }
+                card.querySelector(".favorite-btn").addEventListener("click", (e) => {
+                    e.stopPropagation();
+                    toggleFavorite(perfume);
                 });
-
+                card.addEventListener("click", () => openPerfumeModal(perfume));
                 gridDiv.appendChild(card);
             });
-
             houseGroup.appendChild(gridDiv);
             fragment.appendChild(houseGroup);
         });
-
         container.appendChild(fragment);
+        observeCards();
     }
 
-    // 9. Actualizar Barra de Resumen y Filtros Activos
     function updateSummaryBar(matchCount) {
         if (!resultsCounter) return;
+        resultsCounter.textContent = matchCount === catalogData.length ?
+            `Mostrando catálogo completo (${matchCount} fragancias)` :
+            `Mostrando ${matchCount} de ${catalogData.length} fragancias`;
 
-        const total = catalogData.length;
-        if (matchCount === total) {
-            resultsCounter.textContent = `Mostrando catálogo completo (${total} fragancias)`;
-        } else {
-            resultsCounter.textContent = `Mostrando ${matchCount} de ${total} fragancias`;
-        }
-
-        // Renderizar tags de filtros activos
         activeFiltersContainer.innerHTML = "";
         let hasFilters = false;
-
         if (searchTerm) {
             hasFilters = true;
             addActiveFilterTag(`Búsqueda: "${searchTerm}"`, () => {
-                searchTerm = "";
-                searchInput.value = "";
-                clearSearchBtn.classList.remove("visible");
-                renderCatalog();
+                searchTerm = ""; searchInput.value = ""; clearSearchBtn.classList.remove("visible"); renderCatalog();
             });
         }
-
         if (activeGenders.size > 1 || !activeGenders.has("all")) {
             hasFilters = true;
-            const selected = Array.from(activeGenders).filter(g => g !== "all");
-            addActiveFilterTag(`Géneros: ${selected.join(", ")}`, () => {
-                setGenderFilter("all");
-            });
+            addActiveFilterTag(`Géneros: ${Array.from(activeGenders).filter(g => g !== "all").join(", ")}`, () => setGenderFilter("all"));
         }
-
         if (activeHouse !== "all") {
             hasFilters = true;
             addActiveFilterTag(`Casa: ${activeHouse}`, () => {
-                activeHouse = "all";
-                houseSelect.value = "all";
-                renderCatalog();
+                activeHouse = "all"; houseSelect.value = "all"; renderCatalog();
             });
         }
-
         if (activeNote !== "all") {
             hasFilters = true;
-            addActiveFilterTag(`Acorde: ${activeNote}`, () => {
-                setNoteChip("all");
-            });
+            addActiveFilterTag(`Acorde: ${activeNote}`, () => setNoteChip("all"));
         }
-
-        if (resetFiltersBtn) {
-            resetFiltersBtn.style.display = hasFilters ? "inline-block" : "none";
-        }
+        if (resetFiltersBtn) resetFiltersBtn.style.display = hasFilters ? "inline-block" : "none";
     }
 
-    function addActiveFilterTag(label, removeCallback) {
+    function addActiveFilterTag(label, callback) {
         const tag = document.createElement("span");
         tag.className = "active-tag";
-        tag.innerHTML = `${label} <span style="cursor:pointer;margin-left:4px;" title="Quitar">&times;</span>`;
-        tag.addEventListener("click", removeCallback);
+        tag.innerHTML = `${label} <span style="cursor:pointer;margin-left:4px;">&times;</span>`;
+        tag.addEventListener("click", callback);
         activeFiltersContainer.appendChild(tag);
     }
 
     function setGenderFilter(gender) {
         if (gender === "all") {
-            activeGenders.clear();
-            activeGenders.add("all");
+            activeGenders.clear(); activeGenders.add("all");
         } else {
-            if (activeGenders.has("all")) {
-                activeGenders.delete("all");
-            }
+            if (activeGenders.has("all")) activeGenders.delete("all");
             if (activeGenders.has(gender)) {
                 activeGenders.delete(gender);
-                if (activeGenders.size === 0) {
-                    activeGenders.add("all");
-                }
+                if (activeGenders.size === 0) activeGenders.add("all");
             } else {
                 activeGenders.add(gender);
             }
         }
-
         genderFilterBtns.forEach(btn => {
-            const btnGender = btn.getAttribute("data-gender");
-            const isActive = (btnGender === "all")
-                ? activeGenders.size === 1 && activeGenders.has("all")
-                : activeGenders.has(btnGender);
-            btn.classList.toggle("active", isActive);
+            const g = btn.getAttribute("data-gender");
+            btn.classList.toggle("active", g === "all" ? (activeGenders.size === 1) : activeGenders.has(g));
         });
         renderCatalog();
     }
@@ -479,238 +349,184 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function resetAllFilters() {
-        searchTerm = "";
-        activeGenders.clear();
-        activeGenders.add("all");
-        activeHouse = "all";
-        activeNote = "all";
-
+        searchTerm = ""; activeGenders.clear(); activeGenders.add("all");
+        activeHouse = "all"; activeNote = "all"; favoritesOnly = false;
         if (searchInput) searchInput.value = "";
         if (clearSearchBtn) clearSearchBtn.classList.remove("visible");
         if (houseSelect) houseSelect.value = "all";
-
-        genderFilterBtns.forEach(btn => {
-            btn.classList.toggle("active", btn.getAttribute("data-gender") === "all");
-        });
-
-        olfactoryChips.forEach(chip => {
-            chip.classList.toggle("active", chip.getAttribute("data-note") === "all");
-        });
-
+        genderFilterBtns.forEach(btn => btn.classList.toggle("active", btn.getAttribute("data-gender") === "all"));
+        if (document.getElementById("favoritesFilterBtn")) document.getElementById("favoritesFilterBtn").classList.remove("active");
+        olfactoryChips.forEach(chip => chip.classList.toggle("active", chip.getAttribute("data-note") === "all"));
         renderCatalog();
     }
 
-    // 10. Modal Informativo de Ficha Técnica Olfativa (Solo Consulta)
+    function initLightbox() {
+        document.body.insertAdjacentHTML('beforeend', `
+            <div id="imageLightbox" class="lightbox" aria-hidden="true" role="dialog">
+                <img src="" alt="Vista detallada" />
+                <span class="lightbox-close">&times;</span>
+            </div>
+        `);
+        const lb = document.getElementById("imageLightbox");
+        const lbImg = lb.querySelector("img");
+        lb.addEventListener("click", (e) => {
+            if (e.target === lb || e.target.classList.contains("lightbox-close")) {
+                lb.classList.remove("active");
+                lb.setAttribute("aria-hidden", "true");
+                document.body.style.overflow = "";
+            }
+        });
+        return {
+            open: (src) => {
+                lbImg.src = src;
+                lb.classList.add("active");
+                lb.setAttribute("aria-hidden", "false");
+                document.body.style.overflow = "hidden";
+            }
+        };
+    }
+
+    const lightbox = initLightbox();
+
     function openPerfumeModal(perfume) {
         if (!perfumeModal) return;
-
         modalHouse.textContent = perfume.house;
         modalPerfumeName.textContent = perfume.name;
         modalGender.textContent = perfume.gender;
         modalGender.className = `gender-badge badge-${perfume.gender}`;
         modalNotes.textContent = perfume.notes;
-
-        // Mostrar u ocultar imagen del frasco en el modal
         if (perfume.image) {
             if (modalCard) modalCard.classList.add("has-image");
             if (modalBottleStage) modalBottleStage.style.display = "flex";
             if (modalBottleImg) {
                 modalBottleImg.src = perfume.image;
-                modalBottleImg.alt = `Frasco oficial de ${perfume.name} - ${perfume.house}`;
+                modalBottleImg.onclick = () => lightbox.open(perfume.image);
             }
         } else {
             if (modalCard) modalCard.classList.remove("has-image");
             if (modalBottleStage) modalBottleStage.style.display = "none";
-            if (modalBottleImg) {
-                modalBottleImg.src = "";
-                modalBottleImg.alt = "";
-            }
         }
-
-        // Desglosar notas en etiquetas visuales
         modalTagsContainer.innerHTML = "";
-        const rawParts = perfume.notes.split(/[,.;]/).map(s => s.trim()).filter(Boolean);
-        const tags = [...new Set(rawParts.slice(0, 8))];
-
-        tags.forEach(tag => {
+        perfume.notes.split(/[,.;]/).map(s => s.trim()).filter(Boolean).slice(0, 8).forEach(tag => {
             const span = document.createElement("span");
             span.className = "modal-tag";
             span.textContent = tag;
             modalTagsContainer.appendChild(span);
         });
-
         perfumeModal.classList.add("active");
         perfumeModal.setAttribute("aria-hidden", "false");
-        document.body.style.overflow = "hidden"; // Bloquear scroll de fondo
+        document.body.style.overflow = "hidden";
     }
 
     function closePerfumeModal() {
-        if (!perfumeModal) return;
-        perfumeModal.classList.remove("active");
-        perfumeModal.setAttribute("aria-hidden", "true");
-        document.body.style.overflow = "";
+        if (perfumeModal) {
+            perfumeModal.classList.remove("active");
+            perfumeModal.setAttribute("aria-hidden", "true");
+            document.body.style.overflow = "";
+        }
     }
 
-    // 11. Escuchadores de Eventos
-
-    // Buscador con debounce ligero
-    let searchTimeout;
+    // Events
     searchInput.addEventListener("input", (e) => {
         searchTerm = e.target.value.trim();
-        if (searchTerm.length > 0) {
-            clearSearchBtn.classList.add("visible");
-        } else {
-            clearSearchBtn.classList.remove("visible");
-        }
-
-        clearTimeout(searchTimeout);
-        searchTimeout = setTimeout(() => {
-            renderCatalog();
-        }, 150);
+        clearSearchBtn.classList.toggle("visible", searchTerm.length > 0);
+        renderCatalog();
     });
 
     clearSearchBtn.addEventListener("click", () => {
-        searchInput.value = "";
-        searchTerm = "";
-        clearSearchBtn.classList.remove("visible");
-        searchInput.focus();
-        renderCatalog();
+        searchInput.value = ""; searchTerm = ""; clearSearchBtn.classList.remove("visible"); renderCatalog();
     });
 
-    // Selector de Casa
     houseSelect.addEventListener("change", (e) => {
-        activeHouse = e.target.value;
-        renderCatalog();
+        activeHouse = e.target.value; renderCatalog();
     });
 
-    // Botones de Género
     genderFilterBtns.forEach(btn => {
-        btn.addEventListener("click", () => {
-            setGenderFilter(btn.getAttribute("data-gender"));
-        });
+        if (btn.id === "favoritesFilterBtn") return;
+        btn.addEventListener("click", () => setGenderFilter(btn.getAttribute("data-gender")));
     });
 
-    // Chips Olfativos
-    olfactoryChips.forEach(chip => {
-        chip.addEventListener("click", () => {
-            setNoteChip(chip.getAttribute("data-note"));
+    const favFilterBtn = document.getElementById("favoritesFilterBtn");
+    if (favFilterBtn) {
+        favFilterBtn.addEventListener("click", () => {
+            favoritesOnly = !favoritesOnly;
+            favFilterBtn.classList.toggle("active", favoritesOnly);
+            renderCatalog();
         });
-    });
-
-    // Botón Restablecer Filtros
-    if (resetFiltersBtn) {
-        resetFiltersBtn.addEventListener("click", resetAllFilters);
     }
 
-    // Alternador de Vista (Cuadrícula / Lista)
+    olfactoryChips.forEach(chip => {
+        chip.addEventListener("click", () => setNoteChip(chip.getAttribute("data-note")));
+    });
+
+    if (resetFiltersBtn) resetFiltersBtn.addEventListener("click", resetAllFilters);
+
     if (viewGridBtn && viewListBtn) {
         viewGridBtn.addEventListener("click", () => {
-            activeView = "grid";
-            viewGridBtn.classList.add("active");
-            viewListBtn.classList.remove("active");
+            activeView = "grid"; viewGridBtn.classList.add("active"); viewListBtn.classList.remove("active");
             container.classList.remove("list-mode");
         });
-
         viewListBtn.addEventListener("click", () => {
-            activeView = "list";
-            viewListBtn.classList.add("active");
-            viewGridBtn.classList.remove("active");
+            activeView = "list"; viewListBtn.classList.add("active"); viewGridBtn.classList.remove("active");
             container.classList.add("list-mode");
         });
     }
 
-    // Modal Events
     if (modalCloseBtn) modalCloseBtn.addEventListener("click", closePerfumeModal);
     if (modalFooterCloseBtn) modalFooterCloseBtn.addEventListener("click", closePerfumeModal);
+    perfumeModal.addEventListener("click", (e) => { if (e.target === perfumeModal) closePerfumeModal(); });
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape") closePerfumeModal(); });
 
-    perfumeModal.addEventListener("click", (e) => {
-        if (e.target === perfumeModal) {
-            closePerfumeModal();
-        }
-    });
-
-    document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && perfumeModal.classList.contains("active")) {
-            closePerfumeModal();
-        }
-    });
-
-    // Toggle controls section (Minimize/Expand)
-    if (controlsToggle && controlsSection) {
-        controlsToggle.addEventListener("click", (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            controlsSection.classList.toggle("minimized");
-            console.log("Controls toggle clicked. Minimized state:", controlsSection.classList.contains("minimized"));
-        });
+    if (controlsToggle) {
+        controlsToggle.addEventListener("click", () => controlsSection.classList.toggle("minimized"));
     }
 
-    // Botón Volver Arriba
     window.addEventListener("scroll", () => {
-        if (window.scrollY > 350) {
-            backToTopBtn.classList.add("visible");
-        } else {
-            backToTopBtn.classList.remove("visible");
-        }
+        if (backToTopBtn) backToTopBtn.classList.toggle("visible", window.scrollY > 350);
     }, { passive: true });
+    if (backToTopBtn) backToTopBtn.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
 
-    backToTopBtn.addEventListener("click", () => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-    });
-
-    // 12. Inicializar todo
-    initMetrics();
-    populateHouseSelect();
-    generateAlphabetIndex();
-    renderCatalog();
-
-    // Observer para revelado progresivo de tarjetas
+    // --- Animation Logic ---
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-            }
+            if (entry.isIntersecting) entry.target.classList.add('active');
         });
     }, { threshold: 0.1 });
 
-    // Aplicar observer a las tarjetas después de renderizar
-    const observeCards = () => {
+    function observeCards() {
         document.querySelectorAll('.perfume-card').forEach(card => {
             card.classList.add('reveal');
             revealObserver.observe(card);
         });
-    };
+    }
 
-    // Modificar renderCatalog para llamar a observeCards
-    const originalRenderCatalog = renderCatalog;
-    renderCatalog = () => {
-        originalRenderCatalog();
-        observeCards();
-    };
+    // Final Initialization
+    try {
+        initMetrics();
+        populateHouseSelect();
+        generateAlphabetIndex();
+        renderCatalog();
+        console.log("Catalog initialized successfully.");
+    } catch (error) {
+        console.error("Initialization error:", error);
+    }
 });
 
-/**
- * Lógica de Favoritos
- */
 function toggleFavorite(perfume) {
+    let favorites = JSON.parse(localStorage.getItem("jj_favorites") || "[]");
     const index = favorites.findIndex(f => f.name === perfume.name && f.house === perfume.house);
-
     if (index === -1) {
         favorites.push({ name: perfume.name, house: perfume.house });
     } else {
         favorites.splice(index, 1);
     }
-
     localStorage.setItem("jj_favorites", JSON.stringify(favorites));
-
-    // Actualizar UI de las tarjetas sin renderizar todo el catálogo para evitar saltos
     document.querySelectorAll(".perfume-card").forEach(card => {
         const favBtn = card.querySelector(".favorite-btn");
         if (favBtn) {
             const name = favBtn.getAttribute("data-name");
             const house = favBtn.getAttribute("data-house");
-            const isActive = favorites.some(f => f.name === name && f.house === house);
-            favBtn.classList.toggle("active", isActive);
+            favBtn.classList.toggle("active", favorites.some(f => f.name === name && f.house === house));
         }
     });
 }

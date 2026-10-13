@@ -19,7 +19,7 @@ if sys.platform == "win32":
     sys.stdout = codecs.getwriter("utf-8")(sys.stdout.detach())
 
 # --- CONFIGURATION ---
-DATA_FILE = "data.js"
+DATA_FILE = "assets/js/data.js"
 MANIFEST_FILE = "img/perfumes_manifest.json"
 RAW_DIR = "img/raw_downloads"
 FINAL_DIR = "img/perfumes"

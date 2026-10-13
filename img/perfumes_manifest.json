@@ -379,7 +379,8 @@
   "armaf-club-de-nuit-milestone": {
     "house": "Armaf",
     "name": "Club de Nuit Milestone",
-    "status": "failed"
+    "status": "completed",
+    "source_url": "https://armaf.com/cdn/shop/files/Armaf_Black_Logo-removebg-preview_1.png?v=1765219631&width=500"
   },
   "armaf-mandarin-sky-elixir": {
     "house": "Armaf",
@@ -404,7 +405,8 @@
   "armaf-odyssey-marshmallow": {
     "house": "Armaf",
     "name": "Odyssey Marshmallow",
-    "status": "failed"
+    "status": "completed",
+    "source_url": "https://armaf.com/cdn/shop/files/Armaf_Black_Logo-removebg-preview_1.png?v=1765219631&width=500"
   },
   "armaf-club-de-nuit-bling": {
     "house": "Armaf",
@@ -424,7 +426,8 @@
   "azzaro-azzaro-pour-homme": {
     "house": "Azzaro",
     "name": "Azzaro pour Homme",
-    "status": "failed"
+    "status": "completed",
+    "source_url": "https://res.cloudinary.com/azzaro-parfums/image/upload/products/57179f6093604_aph-100ml-face.png"
   },
   "azzaro-cockpit": {
     "house": "Azzaro",
