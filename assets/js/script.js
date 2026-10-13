@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 3. Estado de la aplicación
     let searchTerm = "";
-    let activeGender = "all";
+    let activeGenders = new Set(["all"]);
     let activeHouse = "all";
     let activeNote = "all";
     let activeView = "grid"; // 'grid' | 'list'
@@ -218,10 +218,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Filtrar dataset
         const filtered = catalogData.filter(item => {
-            // Filtro Género
+            // Filtro Género (Soporta selección múltiple)
             let matchesGender = true;
-            if (activeGender !== "all") {
-                matchesGender = item.gender.toLowerCase() === activeGender.toLowerCase();
+            if (activeGenders.size > 1 || !activeGenders.has("all")) {
+                const gender = item.gender.toLowerCase();
+                matchesGender =
+                    activeGenders.has("Hombre") && gender.includes("hombre") ||
+                    activeGenders.has("Mujer") && gender.includes("mujer") ||
+                    activeGenders.has("Unisex") && gender.includes("unisex");
             }
 
             // Filtro Casa
@@ -401,9 +405,10 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
-        if (activeGender !== "all") {
+        if (activeGenders.size > 1 || !activeGenders.has("all")) {
             hasFilters = true;
-            addActiveFilterTag(`Género: ${activeGender}`, () => {
+            const selected = Array.from(activeGenders).filter(g => g !== "all");
+            addActiveFilterTag(`Géneros: ${selected.join(", ")}`, () => {
                 setGenderFilter("all");
             });
         }
@@ -438,9 +443,29 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function setGenderFilter(gender) {
-        activeGender = gender;
+        if (gender === "all") {
+            activeGenders.clear();
+            activeGenders.add("all");
+        } else {
+            if (activeGenders.has("all")) {
+                activeGenders.delete("all");
+            }
+            if (activeGenders.has(gender)) {
+                activeGenders.delete(gender);
+                if (activeGenders.size === 0) {
+                    activeGenders.add("all");
+                }
+            } else {
+                activeGenders.add(gender);
+            }
+        }
+
         genderFilterBtns.forEach(btn => {
-            btn.classList.toggle("active", btn.getAttribute("data-gender") === gender);
+            const btnGender = btn.getAttribute("data-gender");
+            const isActive = (btnGender === "all")
+                ? activeGenders.size === 1 && activeGenders.has("all")
+                : activeGenders.has(btnGender);
+            btn.classList.toggle("active", isActive);
         });
         renderCatalog();
     }
@@ -455,7 +480,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function resetAllFilters() {
         searchTerm = "";
-        activeGender = "all";
+        activeGenders.clear();
+        activeGenders.add("all");
         activeHouse = "all";
         activeNote = "all";
 

@@ -1598,8 +1598,32 @@ mark.search-highlight {
         border-radius: 24px 24px 0 0;
         transform: translateY(100%);
         transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-        padding: 20px;
+        padding: 25px 20px;
         margin: 0;
+        display: flex;
+        flex-direction: column;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+
+    .modal-content-wrapper {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .modal-bottle-stage {
+        flex: none;
+        width: 100%;
+        height: 250px;
+        margin-bottom: 10px;
+    }
+
+    .modal-bottle-img {
+        max-height: 220px;
+    }
+
+    .modal-details-col {
+        width: 100%;
     }
 
     .modal-overlay.active .modal-card {
@@ -1609,6 +1633,7 @@ mark.search-highlight {
     .modal-close-btn {
         top: 15px;
         right: 15px;
+        z-index: 10;
     }
 }
 
