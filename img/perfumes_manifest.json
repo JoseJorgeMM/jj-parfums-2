@@ -1,0 +1,4910 @@
+{
+  "abercrombie-fitch-fierce": {
+    "house": "Abercrombie & Fitch",
+    "name": "Fierce",
+    "gender": "Hombre",
+    "expected_filename": "abercrombie-fitch-fierce.png",
+    "status": "completed",
+    "source_url": null,
+    "attempts": 0,
+    "last_updated": null
+  },
+  "abercrombie-fitch-authentic-man": {
+    "house": "Abercrombie & Fitch",
+    "name": "Authentic Man",
+    "gender": "Hombre",
+    "expected_filename": "abercrombie-fitch-authentic-man.png",
+    "status": "completed",
+    "source_url": null,
+    "attempts": 0,
+    "last_updated": null
+  },
+  "abercrombie-fitch-first-instinct-blue": {
+    "house": "Abercrombie & Fitch",
+    "name": "First Instinct Blue",
+    "gender": "Hombre",
+    "expected_filename": "abercrombie-fitch-first-instinct-blue.png",
+    "status": "completed",
+    "source_url": null,
+    "attempts": 0,
+    "last_updated": null
+  },
+  "acqua-di-parma-magnolia-nobile": {
+    "house": "Acqua di Parma",
+    "name": "Magnolia Nobile",
+    "status": "failed"
+  },
+  "adidas-deep-energy": {
+    "house": "Adidas",
+    "name": "Deep Energy",
+    "gender": "Hombre",
+    "expected_filename": "adidas-deep-energy.png",
+    "status": "completed",
+    "source_url": null,
+    "attempts": 0,
+    "last_updated": null
+  },
+  "adidas-fresh-impact": {
+    "house": "Adidas",
+    "name": "Fresh Impact",
+    "gender": "Hombre",
+    "expected_filename": "adidas-fresh-impact.png",
+    "status": "completed",
+    "source_url": null,
+    "attempts": 0,
+    "last_updated": null
+  },
+  "adolfo-dominguez-bambu-for-her": {
+    "house": "Adolfo Dominguez",
+    "name": "Bambú for Her",
+    "gender": "Mujer",
+    "expected_filename": "adolfo-dominguez-bambu-for-her.png",
+    "status": "completed",
+    "source_url": null,
+    "attempts": 0,
+    "last_updated": null
+  },
+  "afnan-perfumes-9-pm": {
+    "house": "Afnan Perfumes",
+    "name": "9 PM",
+    "status": "failed"
+  },
+  "afnan-perfumes-9-pm-pour-femme": {
+    "house": "Afnan Perfumes",
+    "name": "9 PM Pour Femme",
+    "status": "failed"
+  },
+  "afnan-perfumes-9-am-pour-femme": {
+    "house": "Afnan Perfumes",
+    "name": "9 AM Pour Femme",
+    "status": "failed"
+  },
+  "afnan-perfumes-9-pm-rebel": {
+    "house": "Afnan Perfumes",
+    "name": "9 PM Rebel",
+    "status": "failed"
+  },
+  "afnan-perfumes-9-am-dive": {
+    "house": "Afnan Perfumes",
+    "name": "9 AM Dive",
+    "status": "failed"
+  },
+  "agatha-ruiz-de-la-prada-love-love-love": {
+    "house": "Agatha Ruiz de la Prada",
+    "name": "Love Love Love",
+    "status": "failed"
+  },
+  "ahli-ahli-corvus": {
+    "house": "Ahli",
+    "name": "Ahli Corvus",
+    "status": "failed"
+  },
+  "ahli-ahli-vega": {
+    "house": "Ahli",
+    "name": "Ahli Vega",
+    "status": "failed"
+  },
+  "ahli-ahli-karpos": {
+    "house": "Ahli",
+    "name": "Ahli Karpos",
+    "status": "failed"
+  },
+  "ahli-pegasus": {
+    "house": "Ahli",
+    "name": "Pegasus",
+    "gender": "Unisex",
+    "expected_filename": "ahli-pegasus.png",
+    "status": "completed",
+    "source_url": null,
+    "attempts": 0,
+    "last_updated": null
+  },
+  "ajmal-song-of-oud": {
+    "house": "Ajmal",
+    "name": "Song of Oud",
+    "status": "failed"
+  },
+  "ajmal-musk-silk": {
+    "house": "Ajmal",
+    "name": "Musk Silk",
+    "status": "completed",
+    "source_url": "https://en-ae.ajmal.com/media/catalog/product/cache/74c1057f7991b4edb2bc7bdaa94de933/c/r/crystal_clear_box_botl_1_1__5_9.png?auto=webp&format=png&width=640&height=800&fit=cover"
+  },
+  "ajmal-amber-wood": {
+    "house": "Ajmal",
+    "name": "Amber Wood",
+    "status": "failed"
+  },
+  "al-haramain-amber-oud-gold-edition": {
+    "house": "Al Haramain",
+    "name": "Amber Oud Gold Edition",
+    "status": "failed"
+  },
+  "al-haramain-amber-rouge": {
+    "house": "Al Haramain",
+    "name": "Amber Rouge",
+    "status": "failed"
+  },
+  "al-haramain-sultan": {
+    "house": "Al Haramain",
+    "name": "Sultan",
+    "status": "failed"
+  },
+  "al-haramain-amber-oud-ultra-violet": {
+    "house": "Al Haramain",
+    "name": "Amber Oud Ultra Violet",
+    "status": "failed"
+  },
+  "al-haramain-laventure-ciel": {
+    "house": "Al Haramain",
+    "name": "L’Aventure Ciel",
+    "status": "failed"
+  },
+  "al-haramain-amber-oud-aqua-dubai": {
+    "house": "Al Haramain",
+    "name": "Amber Oud Aqua Dubai",
+    "status": "failed"
+  },
+  "al-haramain-amber-oud-dubai-night": {
+    "house": "Al Haramain",
+    "name": "Amber Oud Dubai Night",
+    "status": "failed"
+  },
+  "al-zaafaran-fakhar-al-oud": {
+    "house": "Al Zaafaran",
+    "name": "Fakhar Al Oud",
+    "status": "failed"
+  },
+  "alexandrej-rose-alba": {
+    "house": "Alexandre.J",
+    "name": "Rose Alba",
+    "status": "completed",
+    "source_url": "https://www.alexandre-j.com/cdn/shop/files/IMG_Menu_2.jpg?v=1755706345&width=2000"
+  },
+  "alexandrej-black-muscs": {
+    "house": "Alexandre.J",
+    "name": "Black Muscs",
+    "status": "failed"
+  },
+  "amouage-interlude-man": {
+    "house": "Amouage",
+    "name": "Interlude Man",
+    "status": "failed"
+  },
+  "animale-parfums-animale": {
+    "house": "Animale Parfums",
+    "name": "Animale",
+    "status": "failed"
+  },
+  "animale-parfums-animale-for-men": {
+    "house": "Animale Parfums",
+    "name": "Animale for Men",
+    "status": "failed"
+  },
+  "antonio-banderas-blue-seduction-for-women": {
+    "house": "Antonio Banderas",
+    "name": "Blue Seduction for Women",
+    "status": "failed"
+  },
+  "antonio-banderas-the-golden-secret": {
+    "house": "Antonio Banderas",
+    "name": "The Golden Secret",
+    "status": "failed"
+  },
+  "antonio-banderas-the-secret": {
+    "house": "Antonio Banderas",
+    "name": "The Secret",
+    "status": "failed"
+  },
+  "antonio-banderas-blue-seduction": {
+    "house": "Antonio Banderas",
+    "name": "Blue Seduction",
+    "status": "failed"
+  },
+  "antonio-banderas-king-of-seduction": {
+    "house": "Antonio Banderas",
+    "name": "King of Seduction",
+    "status": "failed"
+  },
+  "antonio-banderas-power-of-seduction": {
+    "house": "Antonio Banderas",
+    "name": "Power of Seduction",
+    "status": "failed"
+  },
+  "antonio-banderas-her-secret": {
+    "house": "Antonio Banderas",
+    "name": "Her Secret",
+    "status": "failed"
+  },
+  "ariana-grande-cloud": {
+    "house": "Ariana Grande",
+    "name": "Cloud",
+    "status": "failed"
+  },
+  "ariana-grande-ari": {
+    "house": "Ariana Grande",
+    "name": "Ari",
+    "status": "failed"
+  },
+  "ariana-grande-rem": {
+    "house": "Ariana Grande",
+    "name": "R.E.M.",
+    "status": "failed"
+  },
+  "ariana-grande-god-is-a-woman": {
+    "house": "Ariana Grande",
+    "name": "God is a Woman",
+    "status": "failed"
+  },
+  "ariana-grande-thank-u-next": {
+    "house": "Ariana Grande",
+    "name": "Thank U, Next",
+    "status": "failed"
+  },
+  "ariana-grande-sweet-like-candy": {
+    "house": "Ariana Grande",
+    "name": "Sweet Like Candy",
+    "status": "failed"
+  },
+  "ariana-grande-mod-vanilla": {
+    "house": "Ariana Grande",
+    "name": "Mod Vanilla",
+    "status": "failed"
+  },
+  "ariana-grande-cloud-pink": {
+    "house": "Ariana Grande",
+    "name": "Cloud Pink",
+    "status": "failed"
+  },
+  "ariana-grande-thank-u-next-20": {
+    "house": "Ariana Grande",
+    "name": "Thank U, Next 2.0",
+    "status": "failed"
+  },
+  "ariana-grande-cloud-intense": {
+    "house": "Ariana Grande",
+    "name": "Cloud Intense",
+    "status": "failed"
+  },
+  "ariana-grande-rem-cherry-eclipse": {
+    "house": "Ariana Grande",
+    "name": "R.E.M. Cherry Eclipse",
+    "status": "failed"
+  },
+  "ariana-grande-love-notes-pink-woods": {
+    "house": "Ariana Grande",
+    "name": "Love Notes - Pink Woods",
+    "gender": "Mujer",
+    "expected_filename": "ariana-grande-love-notes-pink-woods.png",
+    "status": "failed",
+    "source_url": null,
+    "attempts": 0,
+    "last_updated": null
+  },
+  "ariana-grande-wicked-for-good-elphaba-enchanted": {
+    "house": "Ariana Grande",
+    "name": "Wicked for Good Elphaba Enchanted",
+    "status": "failed"
+  },
+  "armaf-club-de-nuit-intense-man": {
+    "house": "Armaf",
+    "name": "Club de Nuit Intense Man",
+    "status": "failed"
+  },
+  "armaf-odyssey-mandarin-sky": {
+    "house": "Armaf",
+    "name": "Odyssey Mandarin Sky",
+    "status": "failed"
+  },
+  "armaf-odyssey-limoni": {
+    "house": "Armaf",
+    "name": "Odyssey Limoni",
+    "status": "failed"
+  },
+  "armaf-odyssey-aqua": {
+    "house": "Armaf",
+    "name": "Odyssey Aqua",
+    "status": "failed"
+  },
+  "armaf-odyssey-tyrant": {
+    "house": "Armaf",
+    "name": "Odyssey Tyrant",
+    "status": "failed"
+  },
+  "armaf-odyssey-mega-man": {
+    "house": "Armaf",
+    "name": "Odyssey Mega Man",
+    "status": "failed"
+  },
+  "armaf-odyssey-spectra": {
+    "house": "Armaf",
+    "name": "Odyssey Spectra",
+    "status": "failed"
+  },
+  "armaf-odyssey-wild-one-gold": {
+    "house": "Armaf",
+    "name": "Odyssey Wild One Gold",
+    "status": "failed"
+  },
+  "armaf-club-de-nuit-woman": {
+    "house": "Armaf",
+    "name": "Club de Nuit Woman",
+    "status": "failed"
+  },
+  "armaf-yum-yum": {
+    "house": "Armaf",
+    "name": "Yum Yum",
+    "status": "failed"
+  },
+  "armaf-island-bliss": {
+    "house": "Armaf",
+    "name": "Island Bliss",
+    "status": "failed"
+  },
+  "armaf-club-de-nuit-lionheart-man": {
+    "house": "Armaf",
+    "name": "Club de Nuit LionHeart Man",
+    "status": "failed"
+  },
+  "armaf-odyssey-candee": {
+    "house": "Armaf",
+    "name": "Odyssey Candee",
+    "status": "failed"
+  },
+  "armaf-odyssey-dubai-chocolat": {
+    "house": "Armaf",
+    "name": "Odyssey Dubai Chocolat",
+    "status": "failed"
+  },
+  "armaf-club-de-nuit-milestone": {
+    "house": "Armaf",
+    "name": "Club de Nuit Milestone",
+    "status": "failed"
+  },
+  "armaf-mandarin-sky-elixir": {
+    "house": "Armaf",
+    "name": "Mandarin Sky Elixir",
+    "status": "failed"
+  },
+  "armaf-club-de-nuit-maleka": {
+    "house": "Armaf",
+    "name": "Club de Nuit Maleka",
+    "status": "failed"
+  },
+  "armaf-odyssey-black-forest": {
+    "house": "Armaf",
+    "name": "Odyssey Black Forest",
+    "status": "failed"
+  },
+  "armaf-odyssey-go-mango": {
+    "house": "Armaf",
+    "name": "Odyssey Go Mango",
+    "status": "failed"
+  },
+  "armaf-odyssey-marshmallow": {
+    "house": "Armaf",
+    "name": "Odyssey Marshmallow",
+    "status": "failed"
+  },
+  "armaf-club-de-nuit-bling": {
+    "house": "Armaf",
+    "name": "Club de Nuit Bling",
+    "status": "failed"
+  },
+  "avon-far-away": {
+    "house": "Avon",
+    "name": "Far Away",
+    "status": "failed"
+  },
+  "avon-mesmerize": {
+    "house": "Avon",
+    "name": "Mesmerize",
+    "status": "failed"
+  },
+  "azzaro-azzaro-pour-homme": {
+    "house": "Azzaro",
+    "name": "Azzaro pour Homme",
+    "status": "failed"
+  },
+  "azzaro-cockpit": {
+    "house": "Azzaro",
+    "name": "Cockpit",
+    "status": "failed"
+  },
+  "bath-body-works-velvet-sugar": {
+    "house": "Bath & Body Works",
+    "name": "Velvet Sugar",
+    "status": "failed"
+  },
+  "bath-body-works-mad-about-you": {
+    "house": "Bath & Body Works",
+    "name": "Mad About You",
+    "status": "failed"
+  },
+  "bath-body-works-pink-chiffon": {
+    "house": "Bath & Body Works",
+    "name": "Pink Chiffon",
+    "status": "failed"
+  },
+  "bath-body-works-a-thousand-wishes": {
+    "house": "Bath & Body Works",
+    "name": "A Thousand Wishes",
+    "status": "failed"
+  },
+  "benetton-tribu": {
+    "house": "Benetton",
+    "name": "Tribu",
+    "status": "failed"
+  },
+  "bharara-king": {
+    "house": "Bharara",
+    "name": "King",
+    "status": "failed"
+  },
+  "bharara-bleu": {
+    "house": "Bharara",
+    "name": "Bleu",
+    "status": "failed"
+  },
+  "bharara-niche": {
+    "house": "Bharara",
+    "name": "Niche",
+    "status": "failed"
+  },
+  "bharara-rose": {
+    "house": "Bharara",
+    "name": "Rose",
+    "status": "failed"
+  },
+  "bharara-viking-cairo": {
+    "house": "Bharara",
+    "name": "Viking Cairo",
+    "status": "failed"
+  },
+  "bharara-pharaoh-ramesses-i": {
+    "house": "Bharara",
+    "name": "Pharaoh Ramesses I",
+    "status": "failed"
+  },
+  "billie-eilish-eilish-billie": {
+    "house": "Billie Eilish",
+    "name": "Eilish Billie",
+    "status": "failed"
+  },
+  "bond-no-9-dubai-jade": {
+    "house": "Bond No. 9",
+    "name": "Dubai Jade",
+    "status": "failed"
+  },
+  "bond-no-9-the-scent-of-peace": {
+    "house": "Bond No. 9",
+    "name": "The Scent of Peace",
+    "status": "failed"
+  },
+  "bond-no-9-bond-no-9": {
+    "house": "Bond No. 9",
+    "name": "Bond No. 9",
+    "status": "failed"
+  },
+  "bond-no-9-chez-bond": {
+    "house": "Bond No. 9",
+    "name": "Chez Bond",
+    "status": "failed"
+  },
+  "bond-no-9-dubai-amethyst": {
+    "house": "Bond No. 9",
+    "name": "Dubai Amethyst",
+    "status": "failed"
+  },
+  "bond-no-9-nolita": {
+    "house": "Bond No. 9",
+    "name": "Nolita",
+    "status": "failed"
+  },
+  "bond-no-9-new-york-oud": {
+    "house": "Bond No. 9",
+    "name": "New York Oud",
+    "status": "failed"
+  },
+  "bond-no-9-new-york-amber": {
+    "house": "Bond No. 9",
+    "name": "New York Amber",
+    "status": "failed"
+  },
+  "bond-no-9-new-haarlem": {
+    "house": "Bond No. 9",
+    "name": "New Haarlem",
+    "status": "failed"
+  },
+  "bond-no-9-harrods-amber": {
+    "house": "Bond No. 9",
+    "name": "Harrods Amber",
+    "status": "failed"
+  },
+  "bond-no-9-bleecker-street": {
+    "house": "Bond No. 9",
+    "name": "Bleecker Street",
+    "status": "failed"
+  },
+  "borntostandout-sugar-addict": {
+    "house": "Borntostandout",
+    "name": "Sugar Addict",
+    "status": "failed"
+  },
+  "britney-spears-fragrances-circus-fantasy": {
+    "house": "Britney Spears Fragrances",
+    "name": "Circus Fantasy",
+    "status": "failed"
+  },
+  "britney-spears-fragrances-fantasy-midnight": {
+    "house": "Britney Spears Fragrances",
+    "name": "Fantasy Midnight",
+    "status": "failed"
+  },
+  "britney-spears-fragrances-fantasy": {
+    "house": "Britney Spears Fragrances",
+    "name": "Fantasy",
+    "status": "failed"
+  },
+  "britney-spears-fragrances-prerogative": {
+    "house": "Britney Spears Fragrances",
+    "name": "Prerogative",
+    "status": "failed"
+  },
+  "burberry-burberry-classic": {
+    "house": "Burberry",
+    "name": "Burberry (Classic)",
+    "status": "failed"
+  },
+  "burberry-the-beat": {
+    "house": "Burberry",
+    "name": "The Beat",
+    "status": "failed"
+  },
+  "burberry-burberry-her": {
+    "house": "Burberry",
+    "name": "Burberry Her",
+    "status": "failed"
+  },
+  "burberry-burberry-sport-for-women": {
+    "house": "Burberry",
+    "name": "Burberry Sport for Women",
+    "status": "failed"
+  },
+  "burberry-london": {
+    "house": "Burberry",
+    "name": "London",
+    "status": "failed"
+  },
+  "burberry-burberry-body": {
+    "house": "Burberry",
+    "name": "Burberry Body",
+    "status": "failed"
+  },
+  "burberry-london-for-men": {
+    "house": "Burberry",
+    "name": "London for Men",
+    "status": "failed"
+  },
+  "burberry-burberry-weekend": {
+    "house": "Burberry",
+    "name": "Burberry Weekend",
+    "status": "failed"
+  },
+  "burberry-goddess": {
+    "house": "Burberry",
+    "name": "Goddess",
+    "status": "failed"
+  },
+  "bvlgari-omnia-amethyste": {
+    "house": "Bvlgari",
+    "name": "Omnia Amethyste",
+    "status": "failed"
+  },
+  "bvlgari-omnia-crystalline": {
+    "house": "Bvlgari",
+    "name": "Omnia Crystalline",
+    "status": "failed"
+  },
+  "bvlgari-omnia-coral": {
+    "house": "Bvlgari",
+    "name": "Omnia Coral",
+    "status": "failed"
+  },
+  "bvlgari-omnia-paraiba": {
+    "house": "Bvlgari",
+    "name": "Omnia Paraiba",
+    "status": "failed"
+  },
+  "bvlgari-omnia-golden-citrine": {
+    "house": "Bvlgari",
+    "name": "Omnia Golden Citrine",
+    "status": "failed"
+  },
+  "bvlgari-omnia-pink-sapphire": {
+    "house": "Bvlgari",
+    "name": "Omnia Pink Sapphire",
+    "status": "failed"
+  },
+  "bvlgari-omnia-green-jade": {
+    "house": "Bvlgari",
+    "name": "Omnia Green Jade",
+    "status": "failed"
+  },
+  "bvlgari-blv-pour-homme": {
+    "house": "Bvlgari",
+    "name": "BLV pour Homme",
+    "status": "failed"
+  },
+  "bvlgari-blv-pour-femme": {
+    "house": "Bvlgari",
+    "name": "BLV pour Femme",
+    "status": "failed"
+  },
+  "bvlgari-bvlgari-man-in-black": {
+    "house": "Bvlgari",
+    "name": "Bvlgari Man in Black",
+    "status": "failed"
+  },
+  "bvlgari-bvlgari-man": {
+    "house": "Bvlgari",
+    "name": "Bvlgari Man",
+    "status": "failed"
+  },
+  "bvlgari-bvlgari-man-extreme": {
+    "house": "Bvlgari",
+    "name": "Bvlgari Man Extreme",
+    "status": "failed"
+  },
+  "bvlgari-bvlgari-man-wood-essence": {
+    "house": "Bvlgari",
+    "name": "Bvlgari Man Wood Essence",
+    "status": "failed"
+  },
+  "bvlgari-bvlgari-pour-homme": {
+    "house": "Bvlgari",
+    "name": "Bvlgari pour Homme",
+    "status": "failed"
+  },
+  "bvlgari-bvlgari-pour-homme-soir": {
+    "house": "Bvlgari",
+    "name": "Bvlgari pour Homme Soir",
+    "status": "failed"
+  },
+  "bvlgari-aqva-pour-homme": {
+    "house": "Bvlgari",
+    "name": "Aqva pour Homme",
+    "status": "failed"
+  },
+  "bvlgari-aqva-marine": {
+    "house": "Bvlgari",
+    "name": "Aqva Marine",
+    "status": "failed"
+  },
+  "bvlgari-aqva-amara": {
+    "house": "Bvlgari",
+    "name": "Aqva Amara",
+    "status": "failed"
+  },
+  "bvlgari-aqva-divina": {
+    "house": "Bvlgari",
+    "name": "Aqva Divina",
+    "status": "failed"
+  },
+  "cacharel-anais-anais": {
+    "house": "Cacharel",
+    "name": "Anaïs Anaïs",
+    "status": "failed"
+  },
+  "cacharel-yes-i-am": {
+    "house": "Cacharel",
+    "name": "Yes I Am",
+    "status": "failed"
+  },
+  "cacharel-amor-amor-tentation": {
+    "house": "Cacharel",
+    "name": "Amor Amor Tentation",
+    "status": "failed"
+  },
+  "cacharel-scarlet": {
+    "house": "Cacharel",
+    "name": "Scarlet",
+    "status": "failed"
+  },
+  "cacharel-amor-amor": {
+    "house": "Cacharel",
+    "name": "Amor Amor",
+    "status": "failed"
+  },
+  "calvin-klein-ck-shock-for-her": {
+    "house": "Calvin Klein",
+    "name": "CK Shock for Her",
+    "status": "failed"
+  },
+  "calvin-klein-ck-one-red-edition-for-her": {
+    "house": "Calvin Klein",
+    "name": "CK One Red Edition for Her",
+    "status": "failed"
+  },
+  "calvin-klein-ck-everyone": {
+    "house": "Calvin Klein",
+    "name": "CK Everyone",
+    "status": "failed"
+  },
+  "calvin-klein-ck-one": {
+    "house": "Calvin Klein",
+    "name": "CK One",
+    "status": "failed"
+  },
+  "calvin-klein-ck-all": {
+    "house": "Calvin Klein",
+    "name": "CK All",
+    "status": "failed"
+  },
+  "calvin-klein-ck-be": {
+    "house": "Calvin Klein",
+    "name": "CK Be",
+    "status": "failed"
+  },
+  "calvin-klein-ck-shock": {
+    "house": "Calvin Klein",
+    "name": "CK Shock",
+    "status": "failed"
+  },
+  "calvin-klein-ck-in2u-him": {
+    "house": "Calvin Klein",
+    "name": "CK IN2U Him",
+    "status": "failed"
+  },
+  "calvin-klein-ck-in2u-her": {
+    "house": "Calvin Klein",
+    "name": "CK IN2U Her",
+    "status": "failed"
+  },
+  "calvin-klein-euphoria": {
+    "house": "Calvin Klein",
+    "name": "Euphoria",
+    "status": "failed"
+  },
+  "calvin-klein-euphoria-men": {
+    "house": "Calvin Klein",
+    "name": "Euphoria Men",
+    "status": "failed"
+  },
+  "calvin-klein-euphoria-men-intense": {
+    "house": "Calvin Klein",
+    "name": "Euphoria Men Intense",
+    "status": "failed"
+  },
+  "calvin-klein-secret-obsession": {
+    "house": "Calvin Klein",
+    "name": "Secret Obsession",
+    "status": "failed"
+  },
+  "calvin-klein-obsession": {
+    "house": "Calvin Klein",
+    "name": "Obsession",
+    "status": "failed"
+  },
+  "calvin-klein-obsession-for-men": {
+    "house": "Calvin Klein",
+    "name": "Obsession for Men",
+    "status": "failed"
+  },
+  "calvin-klein-man": {
+    "house": "Calvin Klein",
+    "name": "Man",
+    "status": "failed"
+  },
+  "calvin-klein-contradiction": {
+    "house": "Calvin Klein",
+    "name": "Contradiction",
+    "status": "failed"
+  },
+  "calvin-klein-escape": {
+    "house": "Calvin Klein",
+    "name": "Escape",
+    "status": "failed"
+  },
+  "calvin-klein-eternity-for-men": {
+    "house": "Calvin Klein",
+    "name": "Eternity for Men",
+    "status": "failed"
+  },
+  "calvin-klein-eternity-for-men-aqua": {
+    "house": "Calvin Klein",
+    "name": "Eternity for Men Aqua",
+    "status": "failed"
+  },
+  "calvin-klein-euphoria-intense": {
+    "house": "Calvin Klein",
+    "name": "Euphoria Intense",
+    "status": "failed"
+  },
+  "calvin-klein-ck-free": {
+    "house": "Calvin Klein",
+    "name": "CK Free",
+    "status": "failed"
+  },
+  "calvin-klein-eternity-flame": {
+    "house": "Calvin Klein",
+    "name": "Eternity Flame",
+    "status": "failed"
+  },
+  "carolina-herrera-212-vip-club-edition": {
+    "house": "Carolina Herrera",
+    "name": "212 VIP Club Edition",
+    "status": "failed"
+  },
+  "carolina-herrera-212-vip": {
+    "house": "Carolina Herrera",
+    "name": "212 VIP",
+    "status": "failed"
+  },
+  "carolina-herrera-212-vip-rose": {
+    "house": "Carolina Herrera",
+    "name": "212 VIP Rose",
+    "status": "failed"
+  },
+  "carolina-herrera-212-vip-rose-extra": {
+    "house": "Carolina Herrera",
+    "name": "212 VIP Rose Extra",
+    "status": "failed"
+  },
+  "carolina-herrera-212-vip-rose-red": {
+    "house": "Carolina Herrera",
+    "name": "212 VIP Rose Red",
+    "status": "failed"
+  },
+  "carolina-herrera-212-vip-wild-party": {
+    "house": "Carolina Herrera",
+    "name": "212 VIP Wild Party",
+    "status": "failed"
+  },
+  "carolina-herrera-212-vip-party-fever": {
+    "house": "Carolina Herrera",
+    "name": "212 VIP Party Fever",
+    "status": "failed"
+  },
+  "carolina-herrera-212-sexy-women": {
+    "house": "Carolina Herrera",
+    "name": "212 Sexy Women",
+    "status": "failed"
+  },
+  "carolina-herrera-carolina-herrera": {
+    "house": "Carolina Herrera",
+    "name": "Carolina Herrera",
+    "status": "failed"
+  },
+  "carolina-herrera-central-park": {
+    "house": "Carolina Herrera",
+    "name": "Central Park",
+    "status": "failed"
+  },
+  "carolina-herrera-men-wins": {
+    "house": "Carolina Herrera",
+    "name": "Men Wins",
+    "status": "failed"
+  },
+  "carolina-herrera-212-vip-wins-women": {
+    "house": "Carolina Herrera",
+    "name": "212 VIP Wins Women",
+    "status": "failed"
+  },
+  "carolina-herrera-ch-prive": {
+    "house": "Carolina Herrera",
+    "name": "CH Prive",
+    "status": "failed"
+  },
+  "carolina-herrera-ch-leau": {
+    "house": "Carolina Herrera",
+    "name": "CH L'Eau",
+    "status": "failed"
+  },
+  "carolina-herrera-ch": {
+    "house": "Carolina Herrera",
+    "name": "CH",
+    "status": "failed"
+  },
+  "carolina-herrera-chic": {
+    "house": "Carolina Herrera",
+    "name": "Chic",
+    "status": "failed"
+  },
+  "carolina-herrera-good-girl": {
+    "house": "Carolina Herrera",
+    "name": "Good Girl",
+    "status": "failed"
+  },
+  "carolina-herrera-good-girl-legere": {
+    "house": "Carolina Herrera",
+    "name": "Good Girl Legere",
+    "status": "failed"
+  },
+  "carolina-herrera-good-girl-supreme": {
+    "house": "Carolina Herrera",
+    "name": "Good Girl Supreme",
+    "status": "failed"
+  },
+  "carolina-herrera-good-girl-velvet-fatale": {
+    "house": "Carolina Herrera",
+    "name": "Good Girl Velvet Fatale",
+    "status": "failed"
+  },
+  "carolina-herrera-very-good-girl": {
+    "house": "Carolina Herrera",
+    "name": "Very Good Girl",
+    "status": "failed"
+  },
+  "carolina-herrera-very-good-girl-glam": {
+    "house": "Carolina Herrera",
+    "name": "Very Good Girl Glam",
+    "status": "failed"
+  },
+  "carolina-herrera-ch-queens": {
+    "house": "Carolina Herrera",
+    "name": "CH Queens",
+    "status": "failed"
+  },
+  "carolina-herrera-ch-africa": {
+    "house": "Carolina Herrera",
+    "name": "CH Africa",
+    "status": "failed"
+  },
+  "carolina-herrera-ch-beauties": {
+    "house": "Carolina Herrera",
+    "name": "CH Beauties",
+    "status": "failed"
+  },
+  "carolina-herrera-ch-sublime": {
+    "house": "Carolina Herrera",
+    "name": "CH Sublime",
+    "status": "failed"
+  },
+  "carolina-herrera-chic-for-men": {
+    "house": "Carolina Herrera",
+    "name": "Chic for Men",
+    "status": "failed"
+  },
+  "carolina-herrera-212-heroes-forever-young": {
+    "house": "Carolina Herrera",
+    "name": "212 Heroes Forever Young",
+    "status": "failed"
+  },
+  "carolina-herrera-hot-hot-hot": {
+    "house": "Carolina Herrera",
+    "name": "Hot Hot Hot",
+    "status": "failed"
+  },
+  "carolina-herrera-ch-privee": {
+    "house": "Carolina Herrera",
+    "name": "CH Privée",
+    "status": "failed"
+  },
+  "carolina-herrera-212-heroes": {
+    "house": "Carolina Herrera",
+    "name": "212 Heroes",
+    "status": "failed"
+  },
+  "carolina-herrera-212-vip-men": {
+    "house": "Carolina Herrera",
+    "name": "212 VIP Men",
+    "status": "failed"
+  },
+  "carolina-herrera-212-vip-black-red": {
+    "house": "Carolina Herrera",
+    "name": "212 VIP Black Red",
+    "status": "failed"
+  },
+  "carolina-herrera-212-vip-club-edition-man": {
+    "house": "Carolina Herrera",
+    "name": "212 VIP Club Edition Man",
+    "status": "failed"
+  },
+  "carolina-herrera-212-vip-men-party-fever": {
+    "house": "Carolina Herrera",
+    "name": "212 VIP Men Party Fever",
+    "status": "failed"
+  },
+  "carolina-herrera-212-men": {
+    "house": "Carolina Herrera",
+    "name": "212 Men",
+    "status": "failed"
+  },
+  "carolina-herrera-212-men-aqua": {
+    "house": "Carolina Herrera",
+    "name": "212 Men Aqua",
+    "status": "failed"
+  },
+  "carolina-herrera-212-sexy-men": {
+    "house": "Carolina Herrera",
+    "name": "212 Sexy Men",
+    "status": "failed"
+  },
+  "carolina-herrera-212-on-ice": {
+    "house": "Carolina Herrera",
+    "name": "212 On Ice",
+    "status": "failed"
+  },
+  "carolina-herrera-212-vip-black": {
+    "house": "Carolina Herrera",
+    "name": "212 VIP Black",
+    "status": "failed"
+  },
+  "carolina-herrera-herrera-for-men": {
+    "house": "Carolina Herrera",
+    "name": "Herrera for Men",
+    "status": "failed"
+  },
+  "carolina-herrera-ch-beast": {
+    "house": "Carolina Herrera",
+    "name": "CH Beast",
+    "status": "failed"
+  },
+  "carolina-herrera-ch-men": {
+    "house": "Carolina Herrera",
+    "name": "CH Men",
+    "status": "failed"
+  },
+  "carolina-herrera-ch-sport-men": {
+    "house": "Carolina Herrera",
+    "name": "CH Sport Men",
+    "status": "failed"
+  },
+  "carolina-herrera-ch-insignia-limited-edition": {
+    "house": "Carolina Herrera",
+    "name": "CH Insignia Limited Edition",
+    "status": "failed"
+  },
+  "carolina-herrera-ch-central-park": {
+    "house": "Carolina Herrera",
+    "name": "CH Central Park",
+    "status": "failed"
+  },
+  "carolina-herrera-kings": {
+    "house": "Carolina Herrera",
+    "name": "Kings",
+    "status": "failed"
+  },
+  "carolina-herrera-bad-boy-le-parfum": {
+    "house": "Carolina Herrera",
+    "name": "Bad Boy Le Parfum",
+    "status": "failed"
+  },
+  "carolina-herrera-bad-boy": {
+    "house": "Carolina Herrera",
+    "name": "Bad Boy",
+    "status": "failed"
+  },
+  "carolina-herrera-good-girl-blush": {
+    "house": "Carolina Herrera",
+    "name": "Good Girl Blush",
+    "status": "failed"
+  },
+  "carolina-herrera-212-vip-rose-i-love-ny": {
+    "house": "Carolina Herrera",
+    "name": "212 VIP Rose I Love NY",
+    "status": "failed"
+  },
+  "carolina-herrera-vip-black-i-love-ny": {
+    "house": "Carolina Herrera",
+    "name": "VIP Black I Love NY",
+    "status": "failed"
+  },
+  "carolina-herrera-212": {
+    "house": "Carolina Herrera",
+    "name": "212",
+    "status": "failed"
+  },
+  "carolina-herrera-la-bomba": {
+    "house": "Carolina Herrera",
+    "name": "La Bomba",
+    "status": "failed"
+  },
+  "cartier-must": {
+    "house": "Cartier",
+    "name": "Must",
+    "status": "failed"
+  },
+  "cartier-cartier-de-lune": {
+    "house": "Cartier",
+    "name": "Cartier de Lune",
+    "status": "failed"
+  },
+  "cartier-declaration": {
+    "house": "Cartier",
+    "name": "Declaration",
+    "status": "failed"
+  },
+  "cartier-eau-de-cartier": {
+    "house": "Cartier",
+    "name": "Eau de Cartier",
+    "status": "failed"
+  },
+  "cartier-santos": {
+    "house": "Cartier",
+    "name": "Santos",
+    "status": "failed"
+  },
+  "cartier-pasha": {
+    "house": "Cartier",
+    "name": "Pasha",
+    "status": "failed"
+  },
+  "cartier-la-panthere": {
+    "house": "Cartier",
+    "name": "La Panthere",
+    "status": "failed"
+  },
+  "chanel-allure-homme": {
+    "house": "Chanel",
+    "name": "Allure Homme",
+    "status": "failed"
+  },
+  "chanel-allure-homme-sport": {
+    "house": "Chanel",
+    "name": "Allure Homme Sport",
+    "status": "failed"
+  },
+  "chanel-bleu-de-chanel": {
+    "house": "Chanel",
+    "name": "Bleu de Chanel",
+    "status": "failed"
+  },
+  "chanel-channel-no-5": {
+    "house": "Chanel",
+    "name": "Channel NO. 5",
+    "status": "failed"
+  },
+  "chanel-chance": {
+    "house": "Chanel",
+    "name": "Chance",
+    "status": "failed"
+  },
+  "chanel-coco-mademoiselle": {
+    "house": "Chanel",
+    "name": "Coco Mademoiselle",
+    "status": "failed"
+  },
+  "chanel-gabrielle": {
+    "house": "Chanel",
+    "name": "Gabrielle",
+    "status": "failed"
+  },
+  "chanel-chance-tendre-chanel": {
+    "house": "Chanel",
+    "name": "Chance tendre chanel",
+    "status": "failed"
+  },
+  "chanel-coco-noir": {
+    "house": "Chanel",
+    "name": "Coco Noir",
+    "status": "failed"
+  },
+  "chanel-misia": {
+    "house": "Chanel",
+    "name": "Misia",
+    "status": "failed"
+  },
+  "chanel-coco-chanel": {
+    "house": "Chanel",
+    "name": "Coco Chanel",
+    "status": "failed"
+  },
+  "chanel-chance-eau-frainche": {
+    "house": "Chanel",
+    "name": "Chance Eau Frainche",
+    "status": "failed"
+  },
+  "chanel-chance-eau-splendide": {
+    "house": "Chanel",
+    "name": "Chance eau splendide",
+    "status": "failed"
+  },
+  "chloe-narcise": {
+    "house": "Chloe",
+    "name": "Narcise",
+    "status": "failed"
+  },
+  "christian-audigier-ed-hardy-hearts-daggers": {
+    "house": "Christian Audigier",
+    "name": "Ed Hardy Hearts & Daggers",
+    "status": "failed"
+  },
+  "christian-dior-fahrenheit": {
+    "house": "Christian Dior",
+    "name": "Fahrenheit",
+    "status": "failed"
+  },
+  "christian-dior-sauvage": {
+    "house": "Christian Dior",
+    "name": "Sauvage",
+    "status": "failed"
+  },
+  "christian-dior-sauvage-eau-de-parfum": {
+    "house": "Christian Dior",
+    "name": "Sauvage Eau de Parfum",
+    "status": "failed"
+  },
+  "christian-dior-miss-dior-bloming-bouquet": {
+    "house": "Christian Dior",
+    "name": "Miss Dior Bloming Bouquet",
+    "status": "failed"
+  },
+  "christian-dior-joy": {
+    "house": "Christian Dior",
+    "name": "Joy",
+    "status": "failed"
+  },
+  "christian-dior-jadore": {
+    "house": "Christian Dior",
+    "name": "J’Adore",
+    "status": "failed"
+  },
+  "christian-dior-dior-homme-sport": {
+    "house": "Christian Dior",
+    "name": "Dior Homme sport",
+    "status": "failed"
+  },
+  "christian-dior-miss-dior-eau-de-parfum": {
+    "house": "Christian Dior",
+    "name": "Miss Dior Eau De parfum",
+    "status": "failed"
+  },
+  "christian-dior-sauvage-elixir": {
+    "house": "Christian Dior",
+    "name": "Sauvage Elixir",
+    "status": "failed"
+  },
+  "christian-dior-poison": {
+    "house": "Christian Dior",
+    "name": "Poison",
+    "status": "failed"
+  },
+  "christian-dior-dior-homme-intense": {
+    "house": "Christian Dior",
+    "name": "Dior Homme Intense",
+    "status": "failed"
+  },
+  "christian-dior-poison-girl": {
+    "house": "Christian Dior",
+    "name": "Poison Girl",
+    "status": "failed"
+  },
+  "clinique-happy": {
+    "house": "Clinique",
+    "name": "Happy",
+    "status": "failed"
+  },
+  "clinique-aromatics-elixir": {
+    "house": "Clinique",
+    "name": "Aromatics Elixir",
+    "status": "failed"
+  },
+  "clinique-happy-for-men": {
+    "house": "Clinique",
+    "name": "Happy for Men",
+    "status": "failed"
+  },
+  "clinique-happy-to-be": {
+    "house": "Clinique",
+    "name": "Happy to Be",
+    "status": "failed"
+  },
+  "coach-open-road-coach": {
+    "house": "Coach",
+    "name": "Open Road Coach",
+    "status": "failed"
+  },
+  "converse-all-black": {
+    "house": "Converse",
+    "name": "All Black",
+    "status": "failed"
+  },
+  "creed-original-vetiver": {
+    "house": "Creed",
+    "name": "Original Vetiver",
+    "status": "failed"
+  },
+  "creed-spring-flower": {
+    "house": "Creed",
+    "name": "Spring Flower",
+    "status": "failed"
+  },
+  "creed-silver-mountain": {
+    "house": "Creed",
+    "name": "Silver Mountain",
+    "status": "failed"
+  },
+  "creed-aventus": {
+    "house": "Creed",
+    "name": "Aventus",
+    "status": "failed"
+  },
+  "creed-original-santal": {
+    "house": "Creed",
+    "name": "Original Santal",
+    "status": "failed"
+  },
+  "creed-carmina": {
+    "house": "Creed",
+    "name": "Carmina",
+    "status": "failed"
+  },
+  "creed-absolu-aventus": {
+    "house": "Creed",
+    "name": "Absolu Aventus",
+    "status": "failed"
+  },
+  "creed-aventus-for-her": {
+    "house": "Creed",
+    "name": "Aventus for her",
+    "status": "failed"
+  },
+  "creed-himalaya": {
+    "house": "Creed",
+    "name": "Himalaya",
+    "status": "failed"
+  },
+  "creed-green-irish-tweed": {
+    "house": "Creed",
+    "name": "Green Irish Tweed",
+    "status": "failed"
+  },
+  "creed-creed-viking": {
+    "house": "Creed",
+    "name": "Creed Viking",
+    "status": "failed"
+  },
+  "creed-milesima-imperial": {
+    "house": "Creed",
+    "name": "Milesima Imperial",
+    "status": "failed"
+  },
+  "creed-love-in-white": {
+    "house": "Creed",
+    "name": "Love in White",
+    "status": "failed"
+  },
+  "creed-virgin-island-water": {
+    "house": "Creed",
+    "name": "Virgin Island Water",
+    "status": "failed"
+  },
+  "cristiano-ronaldo-cr7": {
+    "house": "Cristiano Ronaldo",
+    "name": "CR7",
+    "status": "failed"
+  },
+  "cristiano-ronaldo-legacy": {
+    "house": "Cristiano Ronaldo",
+    "name": "Legacy",
+    "status": "failed"
+  },
+  "cyzone-addicted-women": {
+    "house": "Cyzone",
+    "name": "Addicted women",
+    "status": "failed"
+  },
+  "davidoff-cool-water-woman": {
+    "house": "Davidoff",
+    "name": "Cool water Woman",
+    "status": "failed"
+  },
+  "davidoff-cool-water": {
+    "house": "Davidoff",
+    "name": "Cool Water",
+    "status": "failed"
+  },
+  "davidoff-cool-water-intense": {
+    "house": "Davidoff",
+    "name": "Cool Water Intense",
+    "status": "failed"
+  },
+  "diesel-fragrances-sound-of-the-brave": {
+    "house": "Diesel Fragrances",
+    "name": "Sound of the Brave",
+    "status": "failed"
+  },
+  "diesel-fragrances-only-the-brave-tatoo": {
+    "house": "Diesel Fragrances",
+    "name": "Only the Brave Tatoo",
+    "status": "failed"
+  },
+  "diesel-fragrances-spirit-of-the-brave": {
+    "house": "Diesel Fragrances",
+    "name": "Spirit of the Brave",
+    "status": "failed"
+  },
+  "diesel-fragrances-only-the-brave": {
+    "house": "Diesel Fragrances",
+    "name": "Only the Brave",
+    "status": "failed"
+  },
+  "diesel-fragrances-only-the-brave-wild": {
+    "house": "Diesel Fragrances",
+    "name": "Only the Brave Wild",
+    "status": "failed"
+  },
+  "diesel-fragrances-only-the-brave-silver": {
+    "house": "Diesel Fragrances",
+    "name": "Only the Brave Silver",
+    "status": "failed"
+  },
+  "diesel-fragrances-diesel-plus-plus": {
+    "house": "Diesel Fragrances",
+    "name": "Diesel Plus Plus",
+    "status": "failed"
+  },
+  "diesel-fragrances-fuel-for-life": {
+    "house": "Diesel Fragrances",
+    "name": "Fuel for Life",
+    "status": "failed"
+  },
+  "diesel-fragrances-bad": {
+    "house": "Diesel Fragrances",
+    "name": "Bad",
+    "status": "failed"
+  },
+  "diesel-fragrances-loverdose": {
+    "house": "Diesel Fragrances",
+    "name": "Loverdose",
+    "status": "failed"
+  },
+  "diesel-fragrances-diesel-zero-plus-femenine": {
+    "house": "Diesel Fragrances",
+    "name": "Diesel zero Plus Femenine",
+    "status": "failed"
+  },
+  "diesel-fragrances-d-red": {
+    "house": "Diesel Fragrances",
+    "name": "D red",
+    "status": "failed"
+  },
+  "dkny-dkny-be-delicious": {
+    "house": "DKNY",
+    "name": "DKNY be Delicious",
+    "status": "failed"
+  },
+  "dkny-delicious-candy-apples-juicy-berry": {
+    "house": "DKNY",
+    "name": "Delicious candy Apples Juicy Berry",
+    "status": "failed"
+  },
+  "dolce-gabbana-light-blue-pour-homme": {
+    "house": "Dolce & Gabbana",
+    "name": "Light Blue Pour homme",
+    "status": "failed"
+  },
+  "dolce-gabbana-d-g-pour-homme": {
+    "house": "Dolce & Gabbana",
+    "name": "D & G pour homme",
+    "status": "failed"
+  },
+  "dolce-gabbana-d-g-pour-homme-intenso": {
+    "house": "Dolce & Gabbana",
+    "name": "D & G pour homme Intenso",
+    "status": "failed"
+  },
+  "dolce-gabbana-light-blue-italian-zest-hombre": {
+    "house": "Dolce & Gabbana",
+    "name": "Light Blue Italian Zest (Hombre)",
+    "status": "failed"
+  },
+  "dolce-gabbana-the-one-for-men": {
+    "house": "Dolce & Gabbana",
+    "name": "The one for men",
+    "status": "failed"
+  },
+  "dolce-gabbana-limperatrice": {
+    "house": "Dolce & Gabbana",
+    "name": "L´Imperatrice",
+    "gender": "Mujer",
+    "expected_filename": "dolce-gabbana-limperatrice.png",
+    "status": "failed",
+    "source_url": null,
+    "attempts": 0,
+    "last_updated": null
+  },
+  "dolce-gabbana-k": {
+    "house": "Dolce & Gabbana",
+    "name": "K",
+    "status": "failed"
+  },
+  "dolce-gabbana-the-one-sport-for-men": {
+    "house": "Dolce & Gabbana",
+    "name": "The one sport for men",
+    "status": "failed"
+  },
+  "dolce-gabbana-d-g-feminine": {
+    "house": "Dolce & Gabbana",
+    "name": "D & G Feminine",
+    "status": "failed"
+  },
+  "dolce-gabbana-light-blue-dreamy-in-portofino": {
+    "house": "Dolce & Gabbana",
+    "name": "Light Blue Dreamy in portofino",
+    "status": "failed"
+  },
+  "dolce-gabbana-the-one-luminous-night": {
+    "house": "Dolce & Gabbana",
+    "name": "The One Luminous Night",
+    "status": "failed"
+  },
+  "dolce-gabbana-dolce-peony": {
+    "house": "Dolce & Gabbana",
+    "name": "Dolce Peony",
+    "status": "failed"
+  },
+  "dolce-gabbana-light-blue": {
+    "house": "Dolce & Gabbana",
+    "name": "Light Blue",
+    "status": "failed"
+  },
+  "dolce-gabbana-dolce-dolce": {
+    "house": "Dolce & Gabbana",
+    "name": "Dolce Dolce",
+    "status": "failed"
+  },
+  "dolce-gabbana-the-only-one": {
+    "house": "Dolce & Gabbana",
+    "name": "The Only One",
+    "status": "failed"
+  },
+  "dolce-gabbana-the-one": {
+    "house": "Dolce & Gabbana",
+    "name": "The One",
+    "status": "failed"
+  },
+  "dolce-gabbana-light-blue-italian-zest-mujer": {
+    "house": "Dolce & Gabbana",
+    "name": "Light Blue Italian Zest (Mujer)",
+    "status": "failed"
+  },
+  "dolce-gabbana-pineapple": {
+    "house": "Dolce & Gabbana",
+    "name": "Pineapple",
+    "status": "failed"
+  },
+  "dolce-gabbana-q-by-dolce-gabbana": {
+    "house": "Dolce & Gabbana",
+    "name": "Q By Dolce & Gabbana",
+    "status": "failed"
+  },
+  "dolce-gabbana-devotion": {
+    "house": "Dolce & Gabbana",
+    "name": "Devotion",
+    "status": "failed"
+  },
+  "ducati-ducati-sport": {
+    "house": "Ducati",
+    "name": "Ducati Sport",
+    "status": "failed"
+  },
+  "dumont-nitro-red": {
+    "house": "Dumont",
+    "name": "Nitro red",
+    "status": "failed"
+  },
+  "elizabeth-arden-5th-avenue": {
+    "house": "Elizabeth Arden",
+    "name": "5th Avenue",
+    "status": "failed"
+  },
+  "elizabeth-taylor-white-diamonds": {
+    "house": "Elizabeth Taylor",
+    "name": "White Diamonds",
+    "status": "failed"
+  },
+  "emporio-armani-aqua-di-gio-hombre": {
+    "house": "Emporio Armani",
+    "name": "Aqua di Gió (Hombre)",
+    "status": "failed"
+  },
+  "emporio-armani-aqua-di-gio-mujer": {
+    "house": "Emporio Armani",
+    "name": "Aqua di Gió (Mujer)",
+    "status": "failed"
+  },
+  "emporio-armani-armani-black-code": {
+    "house": "Emporio Armani",
+    "name": "Armani Black Code",
+    "status": "failed"
+  },
+  "emporio-armani-armani-code-for-her": {
+    "house": "Emporio Armani",
+    "name": "Armani Code for Her",
+    "status": "failed"
+  },
+  "emporio-armani-aqua-di-gio-profumo": {
+    "house": "Emporio Armani",
+    "name": "Aqua di Gió Profumo",
+    "status": "failed"
+  },
+  "emporio-armani-acqua-di-gioia": {
+    "house": "Emporio Armani",
+    "name": "Acqua di Gioia",
+    "status": "failed"
+  },
+  "emporio-armani-idole-darmani": {
+    "house": "Emporio Armani",
+    "name": "Idole d’Armani",
+    "status": "failed"
+  },
+  "emporio-armani-armani-mania": {
+    "house": "Emporio Armani",
+    "name": "Armani Mania",
+    "status": "failed"
+  },
+  "emporio-armani-attitude-extreme": {
+    "house": "Emporio Armani",
+    "name": "Attitude Extreme",
+    "status": "failed"
+  },
+  "emporio-armani-si": {
+    "house": "Emporio Armani",
+    "name": "Si",
+    "status": "failed"
+  },
+  "emporio-armani-you-stronger": {
+    "house": "Emporio Armani",
+    "name": "You Stronger",
+    "status": "failed"
+  },
+  "emporio-armani-si-passione": {
+    "house": "Emporio Armani",
+    "name": "Si Passione",
+    "status": "failed"
+  },
+  "emporio-armani-you-because": {
+    "house": "Emporio Armani",
+    "name": "You Because",
+    "status": "failed"
+  },
+  "emporio-armani-emporio-armani-white": {
+    "house": "Emporio Armani",
+    "name": "Emporio Armani White",
+    "status": "failed"
+  },
+  "emporio-armani-acqua-di-gio-absolu": {
+    "house": "Emporio Armani",
+    "name": "Acqua Di Gio absolu",
+    "status": "failed"
+  },
+  "emporio-armani-armani-code-absolu": {
+    "house": "Emporio Armani",
+    "name": "Armani Code Absolu",
+    "status": "failed"
+  },
+  "emporio-armani-acqua-di-gio-profondo": {
+    "house": "Emporio Armani",
+    "name": "Acqua Di Gio Profondo",
+    "status": "failed"
+  },
+  "emporio-armani-my-way": {
+    "house": "Emporio Armani",
+    "name": "My Way",
+    "status": "failed"
+  },
+  "emporio-armani-stronger-with-you-oud": {
+    "house": "Emporio Armani",
+    "name": "Stronger with you Oud",
+    "status": "failed"
+  },
+  "emporio-armani-diamonds": {
+    "house": "Emporio Armani",
+    "name": "Diamonds",
+    "status": "failed"
+  },
+  "emporio-armani-stronger-with-you-intensely": {
+    "house": "Emporio Armani",
+    "name": "Stronger With You Intensely",
+    "status": "failed"
+  },
+  "enrique-iglesias-adrenaline-night": {
+    "house": "Enrique Iglesias",
+    "name": "Adrenaline Night",
+    "status": "failed"
+  },
+  "enrique-iglesias-adrenaline": {
+    "house": "Enrique Iglesias",
+    "name": "Adrenaline",
+    "status": "failed"
+  },
+  "eon-productions-james-bond-007": {
+    "house": "Eon Productions",
+    "name": "James Bond 007",
+    "status": "failed"
+  },
+  "escada-moon-sparkle": {
+    "house": "Escada",
+    "name": "Moon Sparkle",
+    "status": "failed"
+  },
+  "escada-cherry-in-the-air": {
+    "house": "Escada",
+    "name": "Cherry in the Air",
+    "status": "failed"
+  },
+  "escada-ocean-loundge": {
+    "house": "Escada",
+    "name": "Ocean Loundge",
+    "status": "failed"
+  },
+  "escada-into-the-blue": {
+    "house": "Escada",
+    "name": "Into the Blue",
+    "status": "failed"
+  },
+  "escada-taj-sunset": {
+    "house": "Escada",
+    "name": "Taj Sunset",
+    "status": "failed"
+  },
+  "escada-fiesta-carioca": {
+    "house": "Escada",
+    "name": "Fiesta Carioca",
+    "status": "failed"
+  },
+  "escada-agua-de-sol": {
+    "house": "Escada",
+    "name": "Agua de Sol",
+    "status": "failed"
+  },
+  "escada-rockn-in-rio": {
+    "house": "Escada",
+    "name": "Rock´n in Rio",
+    "gender": "Mujer",
+    "expected_filename": "escada-rockn-in-rio.png",
+    "status": "failed",
+    "source_url": null,
+    "attempts": 0,
+    "last_updated": null
+  },
+  "escada-sorbetto-rosso": {
+    "house": "Escada",
+    "name": "Sorbetto Rosso",
+    "status": "failed"
+  },
+  "escada-susen-heart-men": {
+    "house": "Escada",
+    "name": "Susen Heart Men",
+    "status": "failed"
+  },
+  "escada-miami-blosson": {
+    "house": "Escada",
+    "name": "Miami Blosson",
+    "status": "failed"
+  },
+  "escada-sexi-graffiti": {
+    "house": "Escada",
+    "name": "Sexi Graffiti",
+    "status": "failed"
+  },
+  "escada-flor-de-sol": {
+    "house": "Escada",
+    "name": "Flor de Sol",
+    "status": "failed"
+  },
+  "escada-escada-magnetism": {
+    "house": "Escada",
+    "name": "Escada Magnetism",
+    "status": "failed"
+  },
+  "escentric-molecules-molecule-01": {
+    "house": "Escentric Molecules",
+    "name": "Molecule 01",
+    "status": "failed"
+  },
+  "esika-winner-sport": {
+    "house": "Ésika",
+    "name": "Winner sport",
+    "status": "failed"
+  },
+  "esika-dorsay": {
+    "house": "Ésika",
+    "name": "Dorsay",
+    "status": "failed"
+  },
+  "estee-lauder-pleasures-for-men": {
+    "house": "Estée Lauder",
+    "name": "Pleasures for men",
+    "status": "failed"
+  },
+  "estee-lauder-pleasures": {
+    "house": "Estée Lauder",
+    "name": "Pleasures",
+    "status": "failed"
+  },
+  "ex-nihilo-fleur-narcotique": {
+    "house": "Ex Nihilo",
+    "name": "Fleur Narcotique",
+    "status": "failed"
+  },
+  "faconnable-faconnable": {
+    "house": "Façonnable",
+    "name": "Faconnable",
+    "status": "failed"
+  },
+  "ferrari-ferrari-black": {
+    "house": "Ferrari",
+    "name": "Ferrari Black",
+    "status": "failed"
+  },
+  "ferrari-scuderia-ferrari-red": {
+    "house": "Ferrari",
+    "name": "Scuderia Ferrari Red",
+    "status": "failed"
+  },
+  "fred-hayman-273-beverly-hills": {
+    "house": "Fred Hayman",
+    "name": "273 Beverly Hills",
+    "status": "failed"
+  },
+  "fred-hayman-touch": {
+    "house": "Fred Hayman",
+    "name": "Touch",
+    "status": "failed"
+  },
+  "fugazzi-orange-crush": {
+    "house": "Fugazzi",
+    "name": "Orange Crush",
+    "status": "failed"
+  },
+  "giardini-di-toscana-bianco-latte": {
+    "house": "Giardini di Toscana",
+    "name": "Bianco Latte",
+    "status": "failed"
+  },
+  "gilles-cantuel-arsenal-blue": {
+    "house": "Gilles Cantuel",
+    "name": "Arsenal Blue",
+    "status": "failed"
+  },
+  "giorgio-valenti-rosa-negra": {
+    "house": "Giorgio Valenti",
+    "name": "Rosa Negra",
+    "status": "failed"
+  },
+  "givenchy-givenchy-pour-homme-blue": {
+    "house": "Givenchy",
+    "name": "Givenchy Pour Homme Blue",
+    "status": "failed"
+  },
+  "givenchy-only-gentleman": {
+    "house": "Givenchy",
+    "name": "Only Gentleman",
+    "status": "failed"
+  },
+  "givenchy-givenchi-pour-homme": {
+    "house": "Givenchy",
+    "name": "Givenchi pour Homme",
+    "status": "failed"
+  },
+  "givenchy-play-intense": {
+    "house": "Givenchy",
+    "name": "Play Intense",
+    "status": "failed"
+  },
+  "givenchy-play-for-her": {
+    "house": "Givenchy",
+    "name": "play for her",
+    "status": "failed"
+  },
+  "givenchy-play-intense-for-her": {
+    "house": "Givenchy",
+    "name": "Play Intense for Her",
+    "status": "failed"
+  },
+  "givenchy-very-irresistible": {
+    "house": "Givenchy",
+    "name": "Very Irresistible",
+    "status": "failed"
+  },
+  "givenchy-organza": {
+    "house": "Givenchy",
+    "name": "Organza",
+    "status": "failed"
+  },
+  "givenchy-irresistible": {
+    "house": "Givenchy",
+    "name": "Irresistible",
+    "status": "failed"
+  },
+  "givenchy-linterdit": {
+    "house": "Givenchy",
+    "name": "L´Interdit",
+    "gender": "Mujer",
+    "expected_filename": "givenchy-linterdit.png",
+    "status": "failed",
+    "source_url": null,
+    "attempts": 0,
+    "last_updated": null
+  },
+  "givenchy-amarige": {
+    "house": "Givenchy",
+    "name": "Amarige",
+    "status": "failed"
+  },
+  "givenchy-ange-ou-demon": {
+    "house": "Givenchy",
+    "name": "Ange ou Démon",
+    "status": "failed"
+  },
+  "givenchy-gentleman-reserve-privee": {
+    "house": "Givenchy",
+    "name": "Gentleman Reserve Priveé",
+    "status": "failed"
+  },
+  "glasshouse-fragrances-barbie": {
+    "house": "Glasshouse Fragrances",
+    "name": "Barbie",
+    "status": "failed"
+  },
+  "gucci-gucci": {
+    "house": "Gucci",
+    "name": "Gucci",
+    "status": "failed"
+  },
+  "gucci-gucci-sport": {
+    "house": "Gucci",
+    "name": "GUCCI Sport",
+    "status": "failed"
+  },
+  "gucci-gucci-guilty-intense": {
+    "house": "Gucci",
+    "name": "Gucci Guilty Intense",
+    "status": "failed"
+  },
+  "gucci-gucci-guilty": {
+    "house": "Gucci",
+    "name": "Gucci Guilty",
+    "status": "failed"
+  },
+  "gucci-gucci-guilty-pour-homme": {
+    "house": "Gucci",
+    "name": "Gucci Guilty pour Homme",
+    "status": "failed"
+  },
+  "gucci-gucci-pour-homme-ii": {
+    "house": "Gucci",
+    "name": "Gucci pour Homme II",
+    "status": "failed"
+  },
+  "gucci-rush": {
+    "house": "Gucci",
+    "name": "Rush",
+    "status": "failed"
+  },
+  "gucci-flora": {
+    "house": "Gucci",
+    "name": "Flora",
+    "status": "failed"
+  },
+  "gucci-envy-me": {
+    "house": "Gucci",
+    "name": "Envy Me",
+    "status": "failed"
+  },
+  "guerlain-shalimar": {
+    "house": "Guerlain",
+    "name": "Shalimar",
+    "status": "failed"
+  },
+  "guess-guess-marciano": {
+    "house": "Guess",
+    "name": "Guess Marciano",
+    "status": "failed"
+  },
+  "guess-guess-night": {
+    "house": "Guess",
+    "name": "Guess Night",
+    "status": "failed"
+  },
+  "guess-guess": {
+    "house": "Guess",
+    "name": "Guess",
+    "status": "failed"
+  },
+  "guess-guess-gold": {
+    "house": "Guess",
+    "name": "Guess Gold",
+    "status": "failed"
+  },
+  "guess-guess-man": {
+    "house": "Guess",
+    "name": "Guess Man",
+    "status": "failed"
+  },
+  "guy-laroche-paris-drakkar-noir": {
+    "house": "Guy Laroche Paris",
+    "name": "Drakkar Noir",
+    "status": "failed"
+  },
+  "harley-davidson-legendary": {
+    "house": "Harley-Davidson",
+    "name": "Legendary",
+    "status": "failed"
+  },
+  "hugo-boss-boss": {
+    "house": "Hugo Boss",
+    "name": "Boss",
+    "status": "failed"
+  },
+  "hugo-boss-boss-bottled-unlimited": {
+    "house": "Hugo Boss",
+    "name": "Boss Bottled Unlimited",
+    "status": "failed"
+  },
+  "hugo-boss-boss-bottled-infinite": {
+    "house": "Hugo Boss",
+    "name": "Boss Bottled Infinite",
+    "status": "failed"
+  },
+  "hugo-boss-boss-bottled": {
+    "house": "Hugo Boss",
+    "name": "Boss Bottled",
+    "status": "failed"
+  },
+  "hugo-boss-boss-bottled-nigth": {
+    "house": "Hugo Boss",
+    "name": "Boss Bottled Nigth",
+    "status": "failed"
+  },
+  "hugo-boss-boss-bottled-oud": {
+    "house": "Hugo Boss",
+    "name": "Boss Bottled Oud",
+    "status": "failed"
+  },
+  "hugo-boss-boss-bottled-united": {
+    "house": "Hugo Boss",
+    "name": "Boss Bottled United",
+    "status": "failed"
+  },
+  "hugo-boss-boss-the-scent": {
+    "house": "Hugo Boss",
+    "name": "Boss the Scent",
+    "status": "failed"
+  },
+  "hugo-boss-boss-selection": {
+    "house": "Hugo Boss",
+    "name": "Boss selection",
+    "status": "failed"
+  },
+  "hugo-boss-hugo-man-extreme": {
+    "house": "Hugo Boss",
+    "name": "Hugo Man Extreme",
+    "status": "failed"
+  },
+  "hugo-boss-hugo-reversed": {
+    "house": "Hugo Boss",
+    "name": "Hugo Reversed",
+    "status": "failed"
+  },
+  "hugo-boss-hugo-red": {
+    "house": "Hugo Boss",
+    "name": "Hugo Red",
+    "status": "failed"
+  },
+  "hugo-boss-hugo": {
+    "house": "Hugo Boss",
+    "name": "Hugo",
+    "status": "failed"
+  },
+  "hugo-boss-hugo-just-different": {
+    "house": "Hugo Boss",
+    "name": "Hugo Just Different",
+    "status": "failed"
+  },
+  "hugo-boss-hugo-xy": {
+    "house": "Hugo Boss",
+    "name": "Hugo XY",
+    "status": "failed"
+  },
+  "hugo-boss-hugo-energise-for-men": {
+    "house": "Hugo Boss",
+    "name": "Hugo Energise for Men",
+    "status": "failed"
+  },
+  "hugo-boss-boss-orange": {
+    "house": "Hugo Boss",
+    "name": "Boss Orange",
+    "status": "failed"
+  },
+  "hugo-boss-boss-in-motion-blue-edition": {
+    "house": "Hugo Boss",
+    "name": "Boss in motion Blue edition",
+    "status": "failed"
+  },
+  "hugo-boss-boss-in-motion": {
+    "house": "Hugo Boss",
+    "name": "Boss in motion",
+    "status": "failed"
+  },
+  "hugo-boss-boss-orange-man": {
+    "house": "Hugo Boss",
+    "name": "Boss Orange Man",
+    "status": "failed"
+  },
+  "hugo-boss-hugo-element": {
+    "house": "Hugo Boss",
+    "name": "Hugo element",
+    "status": "failed"
+  },
+  "hugo-boss-hugo-dark-blue": {
+    "house": "Hugo Boss",
+    "name": "Hugo Dark Blue",
+    "status": "failed"
+  },
+  "hugo-boss-alive": {
+    "house": "Hugo Boss",
+    "name": "Alive",
+    "status": "failed"
+  },
+  "hugo-boss-boss-the-scent-for-her": {
+    "house": "Hugo Boss",
+    "name": "Boss the scent for her",
+    "status": "failed"
+  },
+  "hugo-boss-boss-bottled-absolu": {
+    "house": "Hugo Boss",
+    "name": "Boss Bottled Absolu",
+    "status": "failed"
+  },
+  "hugo-boss-boss-orange-sunset": {
+    "house": "Hugo Boss",
+    "name": "Boss Orange sunset",
+    "status": "failed"
+  },
+  "hugo-boss-hugo-deep-red": {
+    "house": "Hugo Boss",
+    "name": "Hugo Deep Red",
+    "status": "failed"
+  },
+  "hugo-boss-ma-vie": {
+    "house": "Hugo Boss",
+    "name": "Ma Vie",
+    "status": "failed"
+  },
+  "hugo-boss-hugo-pure-purple": {
+    "house": "Hugo Boss",
+    "name": "Hugo Pure Purple",
+    "status": "failed"
+  },
+  "hugo-boss-femme": {
+    "house": "Hugo Boss",
+    "name": "Femme",
+    "status": "failed"
+  },
+  "hugo-boss-boss-intense": {
+    "house": "Hugo Boss",
+    "name": "Boss Intense",
+    "status": "failed"
+  },
+  "hugo-boss-hugo-woman": {
+    "house": "Hugo Boss",
+    "name": "Hugo Woman",
+    "status": "failed"
+  },
+  "hugo-boss-hugo-xx": {
+    "house": "Hugo Boss",
+    "name": "Hugo XX",
+    "status": "failed"
+  },
+  "hugo-boss-boss-bottled-bold-citrus": {
+    "house": "Hugo Boss",
+    "name": "Boss Bottled Bold Citrus",
+    "status": "failed"
+  },
+  "hugo-boss-boss-bottled-beyond": {
+    "house": "Hugo Boss",
+    "name": "Boss Bottled Beyond",
+    "status": "failed"
+  },
+  "ilmin-il-ego": {
+    "house": "Ilmin",
+    "name": "IL Ego",
+    "status": "failed"
+  },
+  "ilmin-il-femme": {
+    "house": "Ilmin",
+    "name": "IL Femme",
+    "status": "failed"
+  },
+  "ilmin-il-kakuno": {
+    "house": "Ilmin",
+    "name": "IL Kakuno",
+    "status": "failed"
+  },
+  "ilmin-il-vita": {
+    "house": "Ilmin",
+    "name": "IL Vita",
+    "status": "failed"
+  },
+  "ilmin-ilmexico": {
+    "house": "Ilmin",
+    "name": "ILMexico",
+    "status": "failed"
+  },
+  "ilmin-il-erotique": {
+    "house": "Ilmin",
+    "name": "IL Erotique",
+    "status": "failed"
+  },
+  "ilmin-il-paris": {
+    "house": "Ilmin",
+    "name": "IL Paris",
+    "status": "failed"
+  },
+  "ilmin-il-sativa": {
+    "house": "Ilmin",
+    "name": "IL Sativa",
+    "status": "failed"
+  },
+  "ilmin-il-orgasme": {
+    "house": "Ilmin",
+    "name": "IL Orgasme",
+    "status": "failed"
+  },
+  "ilmin-il-roso": {
+    "house": "Ilmin",
+    "name": "IL Roso",
+    "status": "failed"
+  },
+  "initio-oud-for-greatness": {
+    "house": "Initio",
+    "name": "Oud for Greatness",
+    "status": "failed"
+  },
+  "initio-rehab": {
+    "house": "Initio",
+    "name": "Rehab",
+    "status": "failed"
+  },
+  "initio-atomic-rose": {
+    "house": "Initio",
+    "name": "Atomic Rose",
+    "status": "failed"
+  },
+  "initio-blesse-baraka": {
+    "house": "Initio",
+    "name": "Blesse Baraka",
+    "status": "failed"
+  },
+  "initio-narcotic-delight": {
+    "house": "Initio",
+    "name": "Narcotic Delight",
+    "status": "failed"
+  },
+  "issey-miyake-pour-homme-shade-of-lagoon": {
+    "house": "Issey Miyake",
+    "name": "Pour Homme Shade of Lagoon",
+    "status": "failed"
+  },
+  "issey-miyake-leau-majeure-dissey": {
+    "house": "Issey Miyake",
+    "name": "L´Eau Majeure dÍssey",
+    "gender": "Hombre",
+    "expected_filename": "issey-miyake-leau-majeure-dissey.png",
+    "status": "failed",
+    "source_url": null,
+    "attempts": 0,
+    "last_updated": null
+  },
+  "issey-miyake-leau-du-issey": {
+    "house": "Issey Miyake",
+    "name": "L´Eau du Issey",
+    "gender": "Mujer",
+    "expected_filename": "issey-miyake-leau-du-issey.png",
+    "status": "failed",
+    "source_url": null,
+    "attempts": 0,
+    "last_updated": null
+  },
+  "issey-miyake-leau-du-issey-por-homme": {
+    "house": "Issey Miyake",
+    "name": "L´Eau du Issey por homme",
+    "gender": "Hombre",
+    "expected_filename": "issey-miyake-leau-du-issey-por-homme.png",
+    "status": "failed",
+    "source_url": null,
+    "attempts": 0,
+    "last_updated": null
+  },
+  "issey-miyake-leau-bleu-dissey-por-homme-fleur": {
+    "house": "Issey Miyake",
+    "name": "L´Eau Bleu d´Issey por homme Fleur",
+    "gender": "Hombre",
+    "expected_filename": "issey-miyake-leau-bleu-dissey-por-homme-fleur.png",
+    "status": "failed",
+    "source_url": null,
+    "attempts": 0,
+    "last_updated": null
+  },
+  "issey-miyake-nuit-dissey": {
+    "house": "Issey Miyake",
+    "name": "Nuit d´Issey",
+    "gender": "Hombre",
+    "expected_filename": "issey-miyake-nuit-dissey.png",
+    "status": "failed",
+    "source_url": null,
+    "attempts": 0,
+    "last_updated": null
+  },
+  "jean-pascal-jean-pascal": {
+    "house": "Jean-Pascal",
+    "name": "Jean Pascal",
+    "status": "failed"
+  },
+  "jean-paul-gaultier-scandal-hombre": {
+    "house": "Jean Paul Gaultier",
+    "name": "Scandal (Hombre)",
+    "status": "failed"
+  },
+  "jean-paul-gaultier-le-male": {
+    "house": "Jean Paul Gaultier",
+    "name": "Le Male",
+    "status": "failed"
+  },
+  "jean-paul-gaultier-ultra-le-male": {
+    "house": "Jean Paul Gaultier",
+    "name": "Ultra le Male",
+    "status": "failed"
+  },
+  "jean-paul-gaultier-flue-du-male": {
+    "house": "Jean Paul Gaultier",
+    "name": "flue du male",
+    "status": "failed"
+  },
+  "jean-paul-gaultier-le-belle-fleur-terrible": {
+    "house": "Jean Paul Gaultier",
+    "name": "le Belle fleur terrible",
+    "status": "failed"
+  },
+  "jean-paul-gaultier-classique": {
+    "house": "Jean Paul Gaultier",
+    "name": "Classique",
+    "status": "failed"
+  },
+  "jean-paul-gaultier-belle": {
+    "house": "Jean Paul Gaultier",
+    "name": "Belle",
+    "status": "failed"
+  },
+  "jean-paul-gaultier-scandal-mujer": {
+    "house": "Jean Paul Gaultier",
+    "name": "Scandal (Mujer)",
+    "status": "failed"
+  },
+  "jean-paul-gaultier-classique-pin-up": {
+    "house": "Jean Paul Gaultier",
+    "name": "Classique Pin Up",
+    "status": "failed"
+  },
+  "jean-paul-gaultier-le-beau": {
+    "house": "Jean Paul Gaultier",
+    "name": "Le Beau",
+    "status": "failed"
+  },
+  "jean-paul-gaultier-le-male-elixir": {
+    "house": "Jean Paul Gaultier",
+    "name": "Le Male Elixir",
+    "status": "failed"
+  },
+  "jean-paul-gaultier-le-beau-paradise-garden": {
+    "house": "Jean Paul Gaultier",
+    "name": "Le Beau Paradise Garden",
+    "status": "failed"
+  },
+  "jean-paul-gaultier-scandal-absolu": {
+    "house": "Jean Paul Gaultier",
+    "name": "Scandal Absolu",
+    "status": "failed"
+  },
+  "jean-paul-gaultier-scandal-pour-homme-absolu": {
+    "house": "Jean Paul Gaultier",
+    "name": "Scandal Pour Homme Absolu",
+    "status": "failed"
+  },
+  "jean-paul-gaultier-le-male-le-perfum": {
+    "house": "Jean Paul Gaultier",
+    "name": "Le male Le perfum",
+    "status": "failed"
+  },
+  "jean-paul-gaultier-divine": {
+    "house": "Jean Paul Gaultier",
+    "name": "Divine",
+    "status": "failed"
+  },
+  "jean-paul-gaultier-scandal-pour-homme-intense": {
+    "house": "Jean Paul Gaultier",
+    "name": "Scandal Pour Homme Intense",
+    "status": "failed"
+  },
+  "jennifer-lopez-life": {
+    "house": "Jennifer Lopez",
+    "name": "Life",
+    "status": "failed"
+  },
+  "jesus-del-pozo-hallowen-man": {
+    "house": "Jesus Del Pozo",
+    "name": "Hallowen Man",
+    "status": "failed"
+  },
+  "jesus-del-pozo-hallowen": {
+    "house": "Jesus Del Pozo",
+    "name": "Hallowen",
+    "status": "failed"
+  },
+  "jimmy-choo-jimmy-choo": {
+    "house": "Jimmy Choo",
+    "name": "Jimmy Choo",
+    "status": "failed"
+  },
+  "jo-milano-game-of-spades-royale": {
+    "house": "Jo Milano",
+    "name": "Game of spades royale",
+    "status": "failed"
+  },
+  "jo-milano-game-of-spades-emerald": {
+    "house": "Jo Milano",
+    "name": "Game of Spades Emerald",
+    "status": "failed"
+  },
+  "joop-joop-homme": {
+    "house": "Joop!",
+    "name": "Joop homme",
+    "status": "failed"
+  },
+  "juicy-couture-viva-la-juicy": {
+    "house": "Juicy Couture",
+    "name": "Viva la Juicy",
+    "status": "failed"
+  },
+  "justin-bieber-next-girlfriend": {
+    "house": "Justin Bieber",
+    "name": "Next Girlfriend",
+    "status": "failed"
+  },
+  "katy-perry-meow": {
+    "house": "Katy Perry",
+    "name": "Meow",
+    "status": "failed"
+  },
+  "katy-perry-purr": {
+    "house": "Katy Perry",
+    "name": "Purr",
+    "status": "failed"
+  },
+  "katy-perry-mad-love": {
+    "house": "Katy Perry",
+    "name": "Mad Love",
+    "status": "failed"
+  },
+  "katy-perry-killer-queen-oh-so-sher": {
+    "house": "Katy Perry",
+    "name": "Killer Queen Oh so Sher",
+    "status": "failed"
+  },
+  "kayali-musk-12": {
+    "house": "Kayali",
+    "name": "Musk 12",
+    "status": "failed"
+  },
+  "kayali-yum-boujee": {
+    "house": "Kayali",
+    "name": "Yum boujee",
+    "status": "failed"
+  },
+  "kayali-eden-juicy-apple": {
+    "house": "Kayali",
+    "name": "Eden juicy apple",
+    "status": "failed"
+  },
+  "kayali-yum-pistachio-gelato-33": {
+    "house": "Kayali",
+    "name": "Yum pistachio gelato 33",
+    "status": "failed"
+  },
+  "kayali-eden-sparkling-lychee-39": {
+    "house": "Kayali",
+    "name": "Eden Sparkling Lychee 39",
+    "status": "failed"
+  },
+  "kenzo-flower": {
+    "house": "Kenzo",
+    "name": "Flower",
+    "status": "failed"
+  },
+  "kenzo-flower-red-edition": {
+    "house": "Kenzo",
+    "name": "Flower Red Edition",
+    "status": "failed"
+  },
+  "kilian-love-dont-be-shy": {
+    "house": "Kilian",
+    "name": "Love Don’t be shy",
+    "status": "failed"
+  },
+  "kilian-cant-stop-loving": {
+    "house": "Kilian",
+    "name": "Can´t stop loving",
+    "gender": "Mujer",
+    "expected_filename": "kilian-cant-stop-loving.png",
+    "status": "failed",
+    "source_url": null,
+    "attempts": 0,
+    "last_updated": null
+  },
+  "kilian-rolling-in-love": {
+    "house": "Kilian",
+    "name": "Rolling in love",
+    "status": "failed"
+  },
+  "kilian-angels-share": {
+    "house": "Kilian",
+    "name": "Angel’s Share",
+    "status": "failed"
+  },
+  "kilian-black-phantom": {
+    "house": "Kilian",
+    "name": "Black phantom",
+    "status": "failed"
+  },
+  "kilian-apple-brandy-on-the-rocks": {
+    "house": "Kilian",
+    "name": "Apple brandy on the rocks",
+    "status": "failed"
+  },
+  "kim-kardashian-bbf-kkw": {
+    "house": "Kim Kardashian",
+    "name": "BBF KKW",
+    "status": "failed"
+  },
+  "lacoste-l1212-jaune": {
+    "house": "Lacoste",
+    "name": "L.12.12 Jaune",
+    "status": "failed"
+  },
+  "lacoste-l1212-bleu": {
+    "house": "Lacoste",
+    "name": "L.12.12 Bleu",
+    "status": "failed"
+  },
+  "lacoste-l1212-blanc": {
+    "house": "Lacoste",
+    "name": "L.12.12 Blanc",
+    "status": "failed"
+  },
+  "lacoste-l1212-pour-lui-french-panache": {
+    "house": "Lacoste",
+    "name": "L.12.12 Pour lui French panache",
+    "status": "failed"
+  },
+  "lacoste-l1212-eau-fraiche": {
+    "house": "Lacoste",
+    "name": "L.12.12 Eau Fraiche",
+    "status": "failed"
+  },
+  "lacoste-l1212-rouge": {
+    "house": "Lacoste",
+    "name": "L.12.12 Rouge",
+    "status": "failed"
+  },
+  "lacoste-l1212-noir": {
+    "house": "Lacoste",
+    "name": "L.12.12 Noir",
+    "status": "failed"
+  },
+  "lacoste-l1212-neon-limited-edition": {
+    "house": "Lacoste",
+    "name": "L.12.12 Neon Limited Edition",
+    "status": "failed"
+  },
+  "lacoste-l1212-man-magnetic": {
+    "house": "Lacoste",
+    "name": "L.12.12 Man Magnetic",
+    "status": "failed"
+  },
+  "lacoste-l1212-energized": {
+    "house": "Lacoste",
+    "name": "L.12.12 Energized",
+    "status": "failed"
+  },
+  "lacoste-l1212-vert": {
+    "house": "Lacoste",
+    "name": "L.12.12 Vert",
+    "status": "failed"
+  },
+  "lacoste-l1212-pour-elle-magnetic": {
+    "house": "Lacoste",
+    "name": "L.12.12 pour Elle magnetic",
+    "status": "failed"
+  },
+  "lacoste-l1212-pour-elle-natur": {
+    "house": "Lacoste",
+    "name": "L.12.12 Pour Elle Natur",
+    "status": "failed"
+  },
+  "lacoste-l1212-pour-elle-elegant": {
+    "house": "Lacoste",
+    "name": "L.12.12 Pour elle Elegant",
+    "status": "failed"
+  },
+  "lacoste-l1212-pour-elle-sparkling": {
+    "house": "Lacoste",
+    "name": "L.12.12 Pour Elle Sparkling",
+    "status": "failed"
+  },
+  "lacoste-lhomme-lacoste-intense": {
+    "house": "Lacoste",
+    "name": "L´Homme Lacoste Intense",
+    "gender": "Hombre",
+    "expected_filename": "lacoste-lhomme-lacoste-intense.png",
+    "status": "failed",
+    "source_url": null,
+    "attempts": 0,
+    "last_updated": null
+  },
+  "lacoste-l1212-rose-eau-intense": {
+    "house": "Lacoste",
+    "name": "L.12.12 Rose Eau Intense",
+    "status": "failed"
+  },
+  "lacoste-lacoste-pour-femme-elixir": {
+    "house": "Lacoste",
+    "name": "Lacoste pour femme elixir",
+    "status": "failed"
+  },
+  "lacoste-lacoste-pour-femme": {
+    "house": "Lacoste",
+    "name": "Lacoste pour Femme",
+    "status": "failed"
+  },
+  "lacoste-lacoste-for-women": {
+    "house": "Lacoste",
+    "name": "Lacoste for women",
+    "status": "failed"
+  },
+  "lacoste-eau-de-lacoste": {
+    "house": "Lacoste",
+    "name": "Eau de Lacoste",
+    "status": "failed"
+  },
+  "lacoste-eau-de-lacoste-sensuelle": {
+    "house": "Lacoste",
+    "name": "Eau de Lacoste sensuelle",
+    "status": "failed"
+  },
+  "lacoste-joy-of-pink": {
+    "house": "Lacoste",
+    "name": "Joy of Pink",
+    "status": "failed"
+  },
+  "lacoste-touch-of-pink": {
+    "house": "Lacoste",
+    "name": "Touch of pink",
+    "status": "failed"
+  },
+  "lacoste-match-point": {
+    "house": "Lacoste",
+    "name": "Match Point",
+    "status": "failed"
+  },
+  "lacoste-challenge": {
+    "house": "Lacoste",
+    "name": "Challenge",
+    "status": "failed"
+  },
+  "lacoste-lacoste-elegance": {
+    "house": "Lacoste",
+    "name": "Lacoste Elegance",
+    "status": "failed"
+  },
+  "lacoste-lacoste-essential": {
+    "house": "Lacoste",
+    "name": "Lacoste Essential",
+    "status": "failed"
+  },
+  "lacoste-style-in-red": {
+    "house": "Lacoste",
+    "name": "Style in red",
+    "status": "failed"
+  },
+  "lacoste-lacoste-original": {
+    "house": "Lacoste",
+    "name": "Lacoste Original",
+    "status": "failed"
+  },
+  "lacoste-l1212-blanc-eau-intense": {
+    "house": "Lacoste",
+    "name": "L.12.12 Blanc Eau Intense",
+    "status": "failed"
+  },
+  "lacoste-l1212-pour-elle-french-panache": {
+    "house": "Lacoste",
+    "name": "L.12.12 pour Elle French panache",
+    "status": "failed"
+  },
+  "lady-gaga-fame": {
+    "house": "Lady Gaga",
+    "name": "Fame",
+    "status": "failed"
+  },
+  "lancome-la-vie-est-belle": {
+    "house": "Lancôme",
+    "name": "La Vie est Belle",
+    "status": "failed"
+  },
+  "lancome-magnifique": {
+    "house": "Lancôme",
+    "name": "Magnifique",
+    "status": "failed"
+  },
+  "lancome-la-vie-est-belle-leclat": {
+    "house": "Lancôme",
+    "name": "La vie est Belle Léclat",
+    "status": "failed"
+  },
+  "lancome-idole": {
+    "house": "Lancôme",
+    "name": "Idole",
+    "status": "failed"
+  },
+  "lancome-tresor-in-love": {
+    "house": "Lancôme",
+    "name": "Tresor in Love",
+    "status": "failed"
+  },
+  "lancome-tresor": {
+    "house": "Lancôme",
+    "name": "Tresor",
+    "status": "failed"
+  },
+  "lancome-poeme": {
+    "house": "Lancôme",
+    "name": "Poeme",
+    "status": "failed"
+  },
+  "lancome-hypnose": {
+    "house": "Lancôme",
+    "name": "Hypnóse",
+    "status": "failed"
+  },
+  "lancome-la-vie-est-belle-elixir": {
+    "house": "Lancôme",
+    "name": "la vie est belle elixir",
+    "status": "failed"
+  },
+  "lanvin-modern-princess": {
+    "house": "Lanvin",
+    "name": "Modern princess",
+    "status": "failed"
+  },
+  "lattafa-nebras": {
+    "house": "Lattafa",
+    "name": "Nebras",
+    "status": "failed"
+  },
+  "lattafa-qaade-lattafa": {
+    "house": "Lattafa",
+    "name": "Qaa´de Lattafa",
+    "gender": "Unisex",
+    "expected_filename": "lattafa-qaade-lattafa.png",
+    "status": "failed",
+    "source_url": null,
+    "attempts": 0,
+    "last_updated": null
+  },
+  "lattafa-badee-al-oud-amethyste": {
+    "house": "Lattafa",
+    "name": "Bade´e Al oud Amethyste",
+    "gender": "Unisex",
+    "expected_filename": "lattafa-badee-al-oud-amethyste.png",
+    "status": "failed",
+    "source_url": null,
+    "attempts": 0,
+    "last_updated": null
+  },
+  "lattafa-khamrah": {
+    "house": "Lattafa",
+    "name": "Khamrah",
+    "status": "failed"
+  },
+  "lattafa-yara": {
+    "house": "Lattafa",
+    "name": "Yara",
+    "status": "failed"
+  },
+  "lattafa-asad": {
+    "house": "Lattafa",
+    "name": "Asad",
+    "status": "failed"
+  },
+  "lattafa-yara-tous": {
+    "house": "Lattafa",
+    "name": "Yara Tous",
+    "status": "failed"
+  },
+  "lattafa-opulent-musk": {
+    "house": "Lattafa",
+    "name": "Opulent Musk",
+    "status": "failed"
+  },
+  "lattafa-badee-al-oud-glory": {
+    "house": "Lattafa",
+    "name": "Badeé Al Oud Glory",
+    "status": "failed"
+  },
+  "lattafa-badee-al-oud-sublime": {
+    "house": "Lattafa",
+    "name": "Badeé Al Oud Sublime",
+    "status": "failed"
+  },
+  "lattafa-badee-aloud-honor-glory": {
+    "house": "Lattafa",
+    "name": "Badeé Aloud Honor & Glory",
+    "status": "failed"
+  },
+  "lattafa-yara-mori": {
+    "house": "Lattafa",
+    "name": "Yara Mori",
+    "status": "failed"
+  },
+  "lattafa-khalis-oudi": {
+    "house": "Lattafa",
+    "name": "Khalis Oudi",
+    "status": "failed"
+  },
+  "lattafa-raghba": {
+    "house": "Lattafa",
+    "name": "Raghba",
+    "status": "failed"
+  },
+  "lattafa-oud-lail-maleki": {
+    "house": "Lattafa",
+    "name": "Oud Lail Maleki",
+    "status": "failed"
+  },
+  "lattafa-musk-al-raheeq": {
+    "house": "Lattafa",
+    "name": "Musk Al Raheeq",
+    "status": "failed"
+  },
+  "lattafa-oud-mood": {
+    "house": "Lattafa",
+    "name": "Oud Mood",
+    "status": "failed"
+  },
+  "lattafa-sheikh-al-shuyukh": {
+    "house": "Lattafa",
+    "name": "Sheikh al Shuyukh",
+    "status": "failed"
+  },
+  "lattafa-haya": {
+    "house": "Lattafa",
+    "name": "Haya",
+    "status": "failed"
+  },
+  "lattafa-mayar": {
+    "house": "Lattafa",
+    "name": "Mayar",
+    "status": "failed"
+  },
+  "lattafa-eclaire": {
+    "house": "Lattafa",
+    "name": "Eclaire",
+    "status": "failed"
+  },
+  "lattafa-fakhar-black": {
+    "house": "Lattafa",
+    "name": "Fakhar Black",
+    "status": "failed"
+  },
+  "lattafa-shaheen-gold": {
+    "house": "Lattafa",
+    "name": "Shaheen Gold",
+    "status": "failed"
+  },
+  "lattafa-mayar-natural-intense": {
+    "house": "Lattafa",
+    "name": "Mayar Natural Intense",
+    "status": "failed"
+  },
+  "lattafa-asad-zanzibar": {
+    "house": "Lattafa",
+    "name": "Asad Zanzibar",
+    "status": "failed"
+  },
+  "lattafa-ajwad-pink-to-pink": {
+    "house": "Lattafa",
+    "name": "Ajwad Pink to pink",
+    "status": "failed"
+  },
+  "lattafa-sehr": {
+    "house": "Lattafa",
+    "name": "Sehr",
+    "status": "failed"
+  },
+  "lattafa-yara-candy": {
+    "house": "Lattafa",
+    "name": "Yara Candy",
+    "status": "failed"
+  },
+  "lattafa-her-confession": {
+    "house": "Lattafa",
+    "name": "Her Confession",
+    "status": "failed"
+  },
+  "lattafa-fakhar-rose": {
+    "house": "Lattafa",
+    "name": "Fakhar Rose",
+    "status": "failed"
+  },
+  "lattafa-musamam-white-intense": {
+    "house": "Lattafa",
+    "name": "Musamam White Intense",
+    "status": "failed"
+  },
+  "lattafa-al-noble-ameer": {
+    "house": "Lattafa",
+    "name": "Al Noble Ameer",
+    "status": "failed"
+  },
+  "lattafa-noble-blush": {
+    "house": "Lattafa",
+    "name": "Noble Blush",
+    "status": "failed"
+  },
+  "lattafa-teriaq": {
+    "house": "Lattafa",
+    "name": "Teriaq",
+    "status": "failed"
+  },
+  "lattafa-emeer": {
+    "house": "Lattafa",
+    "name": "Emeer",
+    "status": "failed"
+  },
+  "lattafa-ajwad": {
+    "house": "Lattafa",
+    "name": "Ajwad",
+    "status": "failed"
+  },
+  "lattafa-now-women-rave": {
+    "house": "Lattafa",
+    "name": "Now Women Rave",
+    "status": "failed"
+  },
+  "lattafa-asad-bourbon": {
+    "house": "Lattafa",
+    "name": "Asad Bourbon",
+    "status": "failed"
+  },
+  "lattafa-teriaq-intense": {
+    "house": "Lattafa",
+    "name": "Teriaq intense",
+    "status": "failed"
+  },
+  "lattafa-khamrah-qahwa": {
+    "house": "Lattafa",
+    "name": "Khamrah qahwa",
+    "status": "failed"
+  },
+  "lattafa-khamrah-dukhan": {
+    "house": "Lattafa",
+    "name": "Khamrah dukhan",
+    "status": "failed"
+  },
+  "lattafa-victoria": {
+    "house": "Lattafa",
+    "name": "victoria",
+    "status": "failed"
+  },
+  "lattafa-mayar-cherry-intense": {
+    "house": "Lattafa",
+    "name": "Mayar cherry intense",
+    "status": "failed"
+  },
+  "lattafa-art-of-universe": {
+    "house": "Lattafa",
+    "name": "Art of universe",
+    "status": "failed"
+  },
+  "lattafa-affection": {
+    "house": "Lattafa",
+    "name": "Affection",
+    "status": "failed"
+  },
+  "lattafa-qaed-al-fursan": {
+    "house": "Lattafa",
+    "name": "Qaed Al Fursan",
+    "status": "failed"
+  },
+  "lattafa-afeef": {
+    "house": "Lattafa",
+    "name": "Afeef",
+    "status": "failed"
+  },
+  "lattafa-yara-elixir": {
+    "house": "Lattafa",
+    "name": "Yara Elixir",
+    "status": "failed"
+  },
+  "lattafa-eclaire-banoffi": {
+    "house": "Lattafa",
+    "name": "Eclaire Banoffi",
+    "status": "failed"
+  },
+  "lattafa-berry-on-top": {
+    "house": "Lattafa",
+    "name": "Berry On Top",
+    "status": "failed"
+  },
+  "lattafa-vainilla-freak": {
+    "house": "Lattafa",
+    "name": "Vainilla Freak",
+    "status": "failed"
+  },
+  "lattafa-mallow-maddnes": {
+    "house": "Lattafa",
+    "name": "Mallow Maddnes",
+    "status": "failed"
+  },
+  "lattafa-asad-elixir": {
+    "house": "Lattafa",
+    "name": "Asad Elixir",
+    "status": "failed"
+  },
+  "lattafa-fire-on-ice": {
+    "house": "Lattafa",
+    "name": "Fire On Ice",
+    "status": "failed"
+  },
+  "lattafa-eclaire-pistache": {
+    "house": "Lattafa",
+    "name": "Eclaire Pistache",
+    "status": "failed"
+  },
+  "lattafa-whipped-pleasure": {
+    "house": "Lattafa",
+    "name": "Whipped Pleasure",
+    "status": "failed"
+  },
+  "lattafa-cookie-crave": {
+    "house": "Lattafa",
+    "name": "Cookie Crave",
+    "status": "failed"
+  },
+  "le-labo-santal-33": {
+    "house": "Le Labo",
+    "name": "Santal 33",
+    "status": "failed"
+  },
+  "le-labo-the-matcha": {
+    "house": "Le Labo",
+    "name": "The matcha",
+    "status": "failed"
+  },
+  "le-labo-bergamote-22": {
+    "house": "Le Labo",
+    "name": "Bergamote 22",
+    "status": "failed"
+  },
+  "le-labo-the-noir-29": {
+    "house": "Le Labo",
+    "name": "The Noir 29",
+    "status": "failed"
+  },
+  "le-labo-rose-31": {
+    "house": "Le Labo",
+    "name": "Rose 31",
+    "status": "failed"
+  },
+  "liz-claiborne-curve": {
+    "house": "Liz Claiborne",
+    "name": "Curve",
+    "status": "failed"
+  },
+  "liz-claiborne-curve-for-men": {
+    "house": "Liz Claiborne",
+    "name": "Curve for men",
+    "status": "failed"
+  },
+  "loewe-loewe-7": {
+    "house": "Loewe",
+    "name": "Loewe 7",
+    "status": "failed"
+  },
+  "loewe-loewe-7-anonimo": {
+    "house": "Loewe",
+    "name": "Loewe 7 Anonimo",
+    "status": "failed"
+  },
+  "loewe-solo": {
+    "house": "Loewe",
+    "name": "Solo",
+    "status": "failed"
+  },
+  "lolita-lempicka-lolita-lempicka": {
+    "house": "Lolita Lempicka",
+    "name": "Lolita Lempicka",
+    "status": "failed"
+  },
+  "lorenzo-pazzaglia-summer-hammer": {
+    "house": "Lorenzo Pazzaglia",
+    "name": "Summer Hammer",
+    "status": "failed"
+  },
+  "lorenzo-pazzaglia-sun-gria": {
+    "house": "Lorenzo Pazzaglia",
+    "name": "Sun-gria",
+    "status": "failed"
+  },
+  "lorenzo-pazzaglia-que-chimba": {
+    "house": "Lorenzo Pazzaglia",
+    "name": "Que Chimba!",
+    "status": "failed"
+  },
+  "lorenzo-pazzaglia-speachless": {
+    "house": "Lorenzo Pazzaglia",
+    "name": "Speachless",
+    "status": "failed"
+  },
+  "louis-vuitton-ombre-nomade": {
+    "house": "Louis Vuitton",
+    "name": "Ombre Nomade",
+    "status": "failed"
+  },
+  "louis-vuitton-limmensite": {
+    "house": "Louis Vuitton",
+    "name": "L´Immensite",
+    "gender": "Hombre",
+    "expected_filename": "louis-vuitton-limmensite.png",
+    "status": "failed",
+    "source_url": null,
+    "attempts": 0,
+    "last_updated": null
+  },
+  "louis-vuitton-city-of-stars": {
+    "house": "Louis Vuitton",
+    "name": "City of Stars",
+    "status": "failed"
+  },
+  "louis-vuitton-pacific-chill": {
+    "house": "Louis Vuitton",
+    "name": "Pacific Chill",
+    "status": "failed"
+  },
+  "louis-vuitton-meteore": {
+    "house": "Louis Vuitton",
+    "name": "Météore",
+    "status": "failed"
+  },
+  "louis-vuitton-imagination": {
+    "house": "Louis Vuitton",
+    "name": "Imagination",
+    "status": "failed"
+  },
+  "louis-vuitton-afternoon-swim": {
+    "house": "Louis Vuitton",
+    "name": "Afternoon Swim",
+    "status": "failed"
+  },
+  "louis-vuitton-atrape-reves": {
+    "house": "Louis Vuitton",
+    "name": "Atrape - Réves",
+    "gender": "Mujer",
+    "expected_filename": "louis-vuitton-atrape-reves.png",
+    "status": "failed",
+    "source_url": null,
+    "attempts": 0,
+    "last_updated": null
+  },
+  "maison-alhambra-sceptre-malachite": {
+    "house": "Maison Alhambra",
+    "name": "Sceptre malachite",
+    "status": "failed"
+  },
+  "maison-crivelli-oud-maracuja-extrait-de-parfum": {
+    "house": "Maison Crivelli",
+    "name": "Oud maracuja extrait de parfum",
+    "status": "failed"
+  },
+  "maison-crivelli-hibiscus-mahajad": {
+    "house": "Maison Crivelli",
+    "name": "Hibiscus mahajad",
+    "status": "failed"
+  },
+  "maison-francis-kurkdjian-baccarat-roug-540": {
+    "house": "Maison Francis Kurkdjian",
+    "name": "Baccarat Roug 540",
+    "status": "failed"
+  },
+  "maison-francis-kurkdjian-oud-satin-mood": {
+    "house": "Maison Francis Kurkdjian",
+    "name": "Oud Satin Mood",
+    "status": "failed"
+  },
+  "maison-francis-kurkdjian-724": {
+    "house": "Maison Francis Kurkdjian",
+    "name": "724",
+    "status": "failed"
+  },
+  "mancera-red-tobacco": {
+    "house": "Mancera",
+    "name": "Red Tobacco",
+    "status": "failed"
+  },
+  "mancera-musky-garden": {
+    "house": "Mancera",
+    "name": "Musky Garden",
+    "status": "failed"
+  },
+  "mancera-instant-crush": {
+    "house": "Mancera",
+    "name": "Instant Crush",
+    "status": "failed"
+  },
+  "mancera-roses-greedy": {
+    "house": "Mancera",
+    "name": "Roses Greedy",
+    "status": "failed"
+  },
+  "mancera-black-gold": {
+    "house": "Mancera",
+    "name": "Black Gold",
+    "status": "failed"
+  },
+  "mancera-cedrat-boise": {
+    "house": "Mancera",
+    "name": "Cedrat Boise",
+    "status": "failed"
+  },
+  "mancera-wild-fruits": {
+    "house": "Mancera",
+    "name": "Wild fruits",
+    "status": "failed"
+  },
+  "mancera-coco-vanille": {
+    "house": "Mancera",
+    "name": "Coco Vanille",
+    "status": "failed"
+  },
+  "mancera-black-vanilla": {
+    "house": "Mancera",
+    "name": "Black Vanilla",
+    "status": "failed"
+  },
+  "marc-jacobs-perfect": {
+    "house": "Marc Jacobs",
+    "name": "Perfect",
+    "status": "failed"
+  },
+  "marc-jacobs-daisy": {
+    "house": "Marc Jacobs",
+    "name": "Daisy",
+    "status": "failed"
+  },
+  "marc-jacobs-bang": {
+    "house": "Marc Jacobs",
+    "name": "Bang",
+    "status": "failed"
+  },
+  "marc-jacobs-decadence": {
+    "house": "Marc Jacobs",
+    "name": "Decadence",
+    "status": "failed"
+  },
+  "memo-paris-sherwood": {
+    "house": "Memo Paris",
+    "name": "Sherwood",
+    "status": "failed"
+  },
+  "mercedes-benz-black-club": {
+    "house": "Mercedes-Benz",
+    "name": "Black club",
+    "status": "failed"
+  },
+  "mercedes-benz-mercedes-benz-club": {
+    "house": "Mercedes-Benz",
+    "name": "Mercedes Benz Club",
+    "status": "failed"
+  },
+  "messi-the-fragrance-messi-eau-de-parfum": {
+    "house": "Messi The Fragrance",
+    "name": "Messi Eau de Parfum",
+    "status": "failed"
+  },
+  "michael-kors-midnight-shimmer": {
+    "house": "Michael Kors",
+    "name": "Midnight Shimmer",
+    "status": "failed"
+  },
+  "michael-kors-sexy-sunset": {
+    "house": "Michael Kors",
+    "name": "Sexy Sunset",
+    "status": "failed"
+  },
+  "montana-montana-parfum-dhomme": {
+    "house": "Montana",
+    "name": "Montana Parfum d´Homme",
+    "gender": "Hombre",
+    "expected_filename": "montana-montana-parfum-dhomme.png",
+    "status": "failed",
+    "source_url": null,
+    "attempts": 0,
+    "last_updated": null
+  },
+  "montale-orange-aoud": {
+    "house": "Montale",
+    "name": "Orange Aoud",
+    "status": "failed"
+  },
+  "montale-starry-night": {
+    "house": "Montale",
+    "name": "Starry Night",
+    "status": "failed"
+  },
+  "montale-arabians": {
+    "house": "Montale",
+    "name": "Arabians",
+    "status": "failed"
+  },
+  "montale-intense-cafe": {
+    "house": "Montale",
+    "name": "Intense Cafe",
+    "status": "failed"
+  },
+  "montale-rosa-night": {
+    "house": "Montale",
+    "name": "Rosa Night",
+    "status": "failed"
+  },
+  "montale-musk-to-musk": {
+    "house": "Montale",
+    "name": "Musk to Musk",
+    "status": "failed"
+  },
+  "montale-day-dreams": {
+    "house": "Montale",
+    "name": "Day Dreams",
+    "status": "failed"
+  },
+  "montale-fruits-of-the-musk": {
+    "house": "Montale",
+    "name": "Fruits of the Musk",
+    "status": "failed"
+  },
+  "montale-roses-musk": {
+    "house": "Montale",
+    "name": "Roses Musk",
+    "status": "failed"
+  },
+  "montale-pink-extasy": {
+    "house": "Montale",
+    "name": "Pink Extasy",
+    "status": "failed"
+  },
+  "montale-candy-rose": {
+    "house": "Montale",
+    "name": "Candy Rose",
+    "status": "failed"
+  },
+  "montale-powder-flowers": {
+    "house": "Montale",
+    "name": "Powder Flowers",
+    "status": "failed"
+  },
+  "montale-arabians-tonka": {
+    "house": "Montale",
+    "name": "Arabians Tonka",
+    "status": "failed"
+  },
+  "montblanc-emblem": {
+    "house": "Montblanc",
+    "name": "Emblem",
+    "status": "failed"
+  },
+  "montblanc-starwalker": {
+    "house": "Montblanc",
+    "name": "Starwalker",
+    "status": "failed"
+  },
+  "montblanc-legend": {
+    "house": "Montblanc",
+    "name": "Legend",
+    "status": "failed"
+  },
+  "montblanc-explorer": {
+    "house": "Montblanc",
+    "name": "Explorer",
+    "status": "failed"
+  },
+  "montblanc-legend-night": {
+    "house": "Montblanc",
+    "name": "Legend Night",
+    "status": "failed"
+  },
+  "montblanc-legend-red": {
+    "house": "Montblanc",
+    "name": "Legend Red",
+    "status": "failed"
+  },
+  "montblanc-presence": {
+    "house": "Montblanc",
+    "name": "Presence",
+    "status": "failed"
+  },
+  "montblanc-individuel": {
+    "house": "Montblanc",
+    "name": "Individuel",
+    "status": "failed"
+  },
+  "montblanc-legend-spirit": {
+    "house": "Montblanc",
+    "name": "Legend Spirit",
+    "status": "failed"
+  },
+  "montblanc-legend-for-her": {
+    "house": "Montblanc",
+    "name": "Legend for Her",
+    "status": "failed"
+  },
+  "montblanc-black-meisterstuck": {
+    "house": "Montblanc",
+    "name": "Black Meisterstuck",
+    "status": "failed"
+  },
+  "moschino-gold-fresh-couture": {
+    "house": "Moschino",
+    "name": "Gold Fresh Couture",
+    "status": "failed"
+  },
+  "moschino-funny": {
+    "house": "Moschino",
+    "name": "Funny",
+    "status": "failed"
+  },
+  "moschino-toy-boy": {
+    "house": "Moschino",
+    "name": "Toy boy",
+    "status": "failed"
+  },
+  "moschino-i-love-love": {
+    "house": "Moschino",
+    "name": "I love love",
+    "status": "failed"
+  },
+  "moschino-toy-2": {
+    "house": "Moschino",
+    "name": "Toy 2",
+    "status": "failed"
+  },
+  "moschino-toy-2-bubble-gum": {
+    "house": "Moschino",
+    "name": "Toy 2 Bubble Gum",
+    "status": "failed"
+  },
+  "moschino-toy-2-pearl": {
+    "house": "Moschino",
+    "name": "Toy 2 Pearl",
+    "status": "failed"
+  },
+  "moschino-pink-fresh-couture": {
+    "house": "Moschino",
+    "name": "Pink Fresh Couture",
+    "status": "failed"
+  },
+  "narciso-rodriguez-musc-noir-for-her": {
+    "house": "Narciso Rodriguez",
+    "name": "Musc Noir for Her",
+    "status": "failed"
+  },
+  "natura-kaiak-mujer": {
+    "house": "Natura",
+    "name": "Kaiak (Mujer)",
+    "status": "failed"
+  },
+  "natura-kaiak-hombre": {
+    "house": "Natura",
+    "name": "Kaiak (Hombre)",
+    "status": "failed"
+  },
+  "nautica-nautica": {
+    "house": "Nautica",
+    "name": "Nautica",
+    "status": "failed"
+  },
+  "nautica-latitude-longitude": {
+    "house": "Nautica",
+    "name": "Latitude Longitude",
+    "status": "failed"
+  },
+  "nautica-nautica-voyage": {
+    "house": "Nautica",
+    "name": "Nautica Voyage",
+    "status": "failed"
+  },
+  "nautica-color-red": {
+    "house": "Nautica",
+    "name": "Color Red",
+    "status": "failed"
+  },
+  "nina-ricci-rouge": {
+    "house": "Nina Ricci",
+    "name": "Rouge",
+    "status": "failed"
+  },
+  "nina-ricci-nina": {
+    "house": "Nina Ricci",
+    "name": "Nina",
+    "status": "failed"
+  },
+  "nina-ricci-ricci-ricci": {
+    "house": "Nina Ricci",
+    "name": "Ricci Ricci",
+    "status": "failed"
+  },
+  "one-direction-you-i": {
+    "house": "One Direction",
+    "name": "You & I",
+    "status": "failed"
+  },
+  "one-direction-our-moment": {
+    "house": "One Direction",
+    "name": "Our moment",
+    "status": "failed"
+  },
+  "orientica-amber-rouge": {
+    "house": "Orientica",
+    "name": "Amber Rouge",
+    "status": "failed"
+  },
+  "orientica-royal-amber": {
+    "house": "Orientica",
+    "name": "Royal Amber",
+    "status": "failed"
+  },
+  "orientica-oud-saffron": {
+    "house": "Orientica",
+    "name": "Oud Saffron",
+    "status": "failed"
+  },
+  "orientica-velvet-gold": {
+    "house": "Orientica",
+    "name": "Velvet Gold",
+    "status": "failed"
+  },
+  "orientica-exclusive-azure-fantasy": {
+    "house": "Orientica",
+    "name": "Exclusive Azure Fantasy",
+    "status": "failed"
+  },
+  "orto-parisi-megamare": {
+    "house": "Orto Parisi",
+    "name": "Megamare",
+    "status": "failed"
+  },
+  "oscar-de-la-renta-oscar": {
+    "house": "Oscar de la Renta",
+    "name": "Oscar",
+    "status": "failed"
+  },
+  "oscar-de-la-renta-oscar-pour-lui": {
+    "house": "Oscar de la Renta",
+    "name": "Oscar pour Lui",
+    "status": "failed"
+  },
+  "paco-rabanne-invictus": {
+    "house": "Paco Rabanne",
+    "name": "Invictus",
+    "status": "failed"
+  },
+  "paco-rabanne-invictus-intense": {
+    "house": "Paco Rabanne",
+    "name": "Invictus Intense",
+    "status": "failed"
+  },
+  "paco-rabanne-invictus-aqua": {
+    "house": "Paco Rabanne",
+    "name": "Invictus Aqua",
+    "status": "failed"
+  },
+  "paco-rabanne-invictus-onix": {
+    "house": "Paco Rabanne",
+    "name": "Invictus Onix",
+    "status": "failed"
+  },
+  "paco-rabanne-invictus-legend": {
+    "house": "Paco Rabanne",
+    "name": "Invictus Legend",
+    "status": "failed"
+  },
+  "paco-rabanne-invictus-victory": {
+    "house": "Paco Rabanne",
+    "name": "Invictus Victory",
+    "status": "failed"
+  },
+  "paco-rabanne-olimpea": {
+    "house": "Paco Rabanne",
+    "name": "Olimpea",
+    "status": "failed"
+  },
+  "paco-rabanne-olimpea-aqua": {
+    "house": "Paco Rabanne",
+    "name": "Olimpea Aqua",
+    "status": "failed"
+  },
+  "paco-rabanne-1million": {
+    "house": "Paco Rabanne",
+    "name": "1MILLION",
+    "status": "failed"
+  },
+  "paco-rabanne-1-million-prive": {
+    "house": "Paco Rabanne",
+    "name": "1 MILLION Prive",
+    "status": "failed"
+  },
+  "paco-rabanne-1million-luky": {
+    "house": "Paco Rabanne",
+    "name": "1Million Luky",
+    "status": "failed"
+  },
+  "paco-rabanne-invictus-victory-elixiri": {
+    "house": "Paco Rabanne",
+    "name": "Invictus Victory Elixiri",
+    "status": "failed"
+  },
+  "paco-rabanne-lady-million-prive": {
+    "house": "Paco Rabanne",
+    "name": "Lady million prive",
+    "status": "failed"
+  },
+  "paco-rabanne-lady-million-luky": {
+    "house": "Paco Rabanne",
+    "name": "Lady Million Luky",
+    "status": "failed"
+  },
+  "paco-rabanne-pure-xs": {
+    "house": "Paco Rabanne",
+    "name": "Pure XS",
+    "status": "failed"
+  },
+  "paco-rabanne-pure-xs-night": {
+    "house": "Paco Rabanne",
+    "name": "Pure XS Night",
+    "status": "failed"
+  },
+  "paco-rabanne-black-xslaphrodisiaque": {
+    "house": "Paco Rabanne",
+    "name": "Black XSL´Aphrodisiaque",
+    "gender": "Hombre",
+    "expected_filename": "paco-rabanne-black-xslaphrodisiaque.png",
+    "status": "failed",
+    "source_url": null,
+    "attempts": 0,
+    "last_updated": null
+  },
+  "paco-rabanne-black-xs": {
+    "house": "Paco Rabanne",
+    "name": "Black XS",
+    "status": "failed"
+  },
+  "paco-rabanne-black-xs-lexces": {
+    "house": "Paco Rabanne",
+    "name": "Black XS L´exces",
+    "gender": "Hombre",
+    "expected_filename": "paco-rabanne-black-xs-lexces.png",
+    "status": "failed",
+    "source_url": null,
+    "attempts": 0,
+    "last_updated": null
+  },
+  "paco-rabanne-black-xs-los-angeles-hombre": {
+    "house": "Paco Rabanne",
+    "name": "Black XS los Angeles (Hombre)",
+    "status": "failed"
+  },
+  "paco-rabanne-black-xs-los-angeles-mujer": {
+    "house": "Paco Rabanne",
+    "name": "Black XS los Angeles (Mujer)",
+    "status": "failed"
+  },
+  "paco-rabanne-black-xs-for-her": {
+    "house": "Paco Rabanne",
+    "name": "Black XS for her",
+    "status": "failed"
+  },
+  "paco-rabanne-lady-millon-royal": {
+    "house": "Paco Rabanne",
+    "name": "Lady Millon Royal",
+    "status": "failed"
+  },
+  "paco-rabanne-ultraviolet-man": {
+    "house": "Paco Rabanne",
+    "name": "Ultraviolet Man",
+    "status": "failed"
+  },
+  "paco-rabanne-ultraviolet": {
+    "house": "Paco Rabanne",
+    "name": "Ultraviolet",
+    "status": "failed"
+  },
+  "paco-rabanne-phantom": {
+    "house": "Paco Rabanne",
+    "name": "Phantom",
+    "status": "failed"
+  },
+  "paco-rabanne-paco": {
+    "house": "Paco Rabanne",
+    "name": "Paco",
+    "status": "failed"
+  },
+  "paco-rabanne-1-million-elixir": {
+    "house": "Paco Rabanne",
+    "name": "1 Million Elixir",
+    "status": "failed"
+  },
+  "paco-rabanne-xs-pour-lui": {
+    "house": "Paco Rabanne",
+    "name": "XS pour Lui",
+    "status": "failed"
+  },
+  "paco-rabanne-lady-million": {
+    "house": "Paco Rabanne",
+    "name": "Lady Million",
+    "status": "failed"
+  },
+  "paco-rabanne-lady-million-fabulous": {
+    "house": "Paco Rabanne",
+    "name": "Lady Million Fabulous",
+    "status": "failed"
+  },
+  "paco-rabanne-fame": {
+    "house": "Paco Rabanne",
+    "name": "Fame",
+    "status": "failed"
+  },
+  "paco-rabanne-1-million-golden-oud": {
+    "house": "Paco Rabanne",
+    "name": "1 million Golden Oud",
+    "status": "failed"
+  },
+  "paco-rabanne-phanton-legion": {
+    "house": "Paco Rabanne",
+    "name": "Phanton Legion",
+    "status": "failed"
+  },
+  "paco-rabanne-million-gold": {
+    "house": "Paco Rabanne",
+    "name": "Million Gold",
+    "status": "failed"
+  },
+  "paco-rabanne-invictus-platinum": {
+    "house": "Paco Rabanne",
+    "name": "Invictus platinum",
+    "status": "failed"
+  },
+  "parfums-de-marly-herod": {
+    "house": "Parfums de Marly",
+    "name": "Herod",
+    "status": "failed"
+  },
+  "parfums-de-marly-delina": {
+    "house": "Parfums de Marly",
+    "name": "Delina",
+    "status": "failed"
+  },
+  "parfums-de-marly-kalan": {
+    "house": "Parfums de Marly",
+    "name": "Kalan",
+    "status": "failed"
+  },
+  "parfums-de-marly-valaya": {
+    "house": "Parfums de Marly",
+    "name": "Valaya",
+    "status": "failed"
+  },
+  "parfums-de-marly-oriana": {
+    "house": "Parfums de Marly",
+    "name": "Oriana",
+    "status": "failed"
+  },
+  "parfums-de-marly-pegasus": {
+    "house": "Parfums de Marly",
+    "name": "Pegasus",
+    "status": "failed"
+  },
+  "parfums-de-marly-layton": {
+    "house": "Parfums de Marly",
+    "name": "Layton",
+    "status": "failed"
+  },
+  "parfums-de-marly-haltane": {
+    "house": "Parfums de Marly",
+    "name": "Haltane",
+    "status": "failed"
+  },
+  "parfums-de-marly-althair": {
+    "house": "Parfums de Marly",
+    "name": "Althaïr",
+    "status": "failed"
+  },
+  "paris-hilton-platinum-rush": {
+    "house": "Paris Hilton",
+    "name": "Platinum Rush",
+    "status": "failed"
+  },
+  "paris-hilton-golden-rush-man": {
+    "house": "Paris Hilton",
+    "name": "Golden Rush Man",
+    "status": "failed"
+  },
+  "paris-hilton-passport-in-tokyo": {
+    "house": "Paris Hilton",
+    "name": "Passport in tokyo",
+    "status": "failed"
+  },
+  "paris-hilton-paris-hilton-men": {
+    "house": "Paris Hilton",
+    "name": "Paris Hilton Men",
+    "status": "failed"
+  },
+  "paris-hilton-paris-hilton": {
+    "house": "Paris Hilton",
+    "name": "Paris Hilton",
+    "status": "failed"
+  },
+  "paris-hilton-heiress": {
+    "house": "Paris Hilton",
+    "name": "Heiress",
+    "status": "failed"
+  },
+  "paris-hilton-siren": {
+    "house": "Paris Hilton",
+    "name": "Siren",
+    "status": "failed"
+  },
+  "paris-hilton-golden-rush": {
+    "house": "Paris Hilton",
+    "name": "Golden Rush",
+    "status": "failed"
+  },
+  "paris-hilton-can-can-burlesque": {
+    "house": "Paris Hilton",
+    "name": "Can Can Burlesque",
+    "status": "failed"
+  },
+  "paris-hilton-with-love": {
+    "house": "Paris Hilton",
+    "name": "With Love",
+    "status": "failed"
+  },
+  "paris-hilton-dazzle": {
+    "house": "Paris Hilton",
+    "name": "Dazzle",
+    "status": "failed"
+  },
+  "paris-hilton-paris-hilton-passport-in-paris": {
+    "house": "Paris Hilton",
+    "name": "Paris Hilton Passport in Paris",
+    "status": "failed"
+  },
+  "paris-hilton-can-can": {
+    "house": "Paris Hilton",
+    "name": "Can Can",
+    "status": "failed"
+  },
+  "paris-hilton-iconic": {
+    "house": "Paris Hilton",
+    "name": "Iconic",
+    "status": "failed"
+  },
+  "penhaligons-terrible-teddy": {
+    "house": "Penhaligon's",
+    "name": "Terrible Teddy",
+    "status": "failed"
+  },
+  "perry-ellis-360-black-man": {
+    "house": "Perry Ellis",
+    "name": "360 Black Man",
+    "status": "failed"
+  },
+  "perry-ellis-360-red-mujer": {
+    "house": "Perry Ellis",
+    "name": "360 Red (Mujer)",
+    "status": "failed"
+  },
+  "perry-ellis-360-coral": {
+    "house": "Perry Ellis",
+    "name": "360 Coral",
+    "status": "failed"
+  },
+  "perry-ellis-360": {
+    "house": "Perry Ellis",
+    "name": "360",
+    "status": "failed"
+  },
+  "perry-ellis-360-red-for-men": {
+    "house": "Perry Ellis",
+    "name": "360 Red for Men",
+    "status": "failed"
+  },
+  "perry-ellis-360-for-men": {
+    "house": "Perry Ellis",
+    "name": "360 for Men",
+    "status": "failed"
+  },
+  "perry-ellis-360-purple": {
+    "house": "Perry Ellis",
+    "name": "360° Purple",
+    "status": "failed"
+  },
+  "perry-ellis-red-sky": {
+    "house": "Perry Ellis",
+    "name": "Red sky",
+    "status": "failed"
+  },
+  "philipp-plein-no-limits": {
+    "house": "Philipp Plein",
+    "name": "No Limits",
+    "status": "failed"
+  },
+  "pino-silvestre-pino-silvestre": {
+    "house": "Pino Silvestre",
+    "name": "Pino Silvestre",
+    "status": "failed"
+  },
+  "porsche-design-porsche-desing-180": {
+    "house": "Porsche Design",
+    "name": "Porsche Desing 180",
+    "status": "failed"
+  },
+  "prada-prada-candy": {
+    "house": "Prada",
+    "name": "Prada Candy",
+    "status": "failed"
+  },
+  "prada-luna-rossa-carbon": {
+    "house": "Prada",
+    "name": "Luna Rossa Carbon",
+    "status": "failed"
+  },
+  "prada-luna-rossa-ocean": {
+    "house": "Prada",
+    "name": "Luna Rossa Ocean",
+    "status": "failed"
+  },
+  "prada-luna-rossa-prada": {
+    "house": "Prada",
+    "name": "Luna Rossa Prada",
+    "status": "failed"
+  },
+  "prada-paradoxe-radical-essence": {
+    "house": "Prada",
+    "name": "Paradoxe Radical Essence",
+    "status": "failed"
+  },
+  "prada-prada-paradoxe": {
+    "house": "Prada",
+    "name": "Prada Paradoxe",
+    "status": "failed"
+  },
+  "ralph-lauren-polo-red": {
+    "house": "Ralph Lauren",
+    "name": "Polo Red",
+    "status": "failed"
+  },
+  "ralph-lauren-polo-blue": {
+    "house": "Ralph Lauren",
+    "name": "Polo Blue",
+    "status": "failed"
+  },
+  "ralph-lauren-polo-red-extreme": {
+    "house": "Ralph Lauren",
+    "name": "Polo Red Extreme",
+    "status": "failed"
+  },
+  "ralph-lauren-polo-clasico": {
+    "house": "Ralph Lauren",
+    "name": "Polo (Clásico)",
+    "status": "failed"
+  },
+  "ralph-lauren-polo-deep-blue": {
+    "house": "Ralph Lauren",
+    "name": "Polo Deep Blue",
+    "status": "failed"
+  },
+  "ralph-lauren-polo-double-black": {
+    "house": "Ralph Lauren",
+    "name": "Polo Double Black",
+    "status": "failed"
+  },
+  "ralph-lauren-polo-utra-blue": {
+    "house": "Ralph Lauren",
+    "name": "Polo Utra Blue",
+    "status": "failed"
+  },
+  "ralph-lauren-polo-sport-blue": {
+    "house": "Ralph Lauren",
+    "name": "Polo Sport Blue",
+    "status": "failed"
+  },
+  "ralph-lauren-polo-sport": {
+    "house": "Ralph Lauren",
+    "name": "Polo Sport",
+    "status": "failed"
+  },
+  "ralph-lauren-big-pony-4": {
+    "house": "Ralph Lauren",
+    "name": "Big Pony 4",
+    "status": "failed"
+  },
+  "ralph-lauren-the-big-pony-2": {
+    "house": "Ralph Lauren",
+    "name": "The big pony 2",
+    "status": "failed"
+  },
+  "ralph-lauren-ralph-love": {
+    "house": "Ralph Lauren",
+    "name": "Ralph Love",
+    "status": "failed"
+  },
+  "ralph-lauren-ralph": {
+    "house": "Ralph Lauren",
+    "name": "Ralph",
+    "status": "failed"
+  },
+  "ralph-lauren-polo-sport-woman": {
+    "house": "Ralph Lauren",
+    "name": "Polo sport Woman",
+    "status": "failed"
+  },
+  "ralph-lauren-beyond-romance": {
+    "house": "Ralph Lauren",
+    "name": "Beyond Romance",
+    "status": "failed"
+  },
+  "rasasi-hawas-for-him": {
+    "house": "Rasasi",
+    "name": "Hawas for Him",
+    "status": "failed"
+  },
+  "replica-fireplace": {
+    "house": "Replica",
+    "name": "Fireplace",
+    "status": "failed"
+  },
+  "reyane-tradition-insurrection": {
+    "house": "Reyane Tradition",
+    "name": "Insurrection",
+    "status": "failed"
+  },
+  "rihanna-rebl-fleur": {
+    "house": "Rihanna",
+    "name": "Reb´l Fleur",
+    "gender": "Mujer",
+    "expected_filename": "rihanna-rebl-fleur.png",
+    "status": "failed",
+    "source_url": null,
+    "attempts": 0,
+    "last_updated": null
+  },
+  "ritzy-perfumes-jean-nate": {
+    "house": "Ritzy Perfumes",
+    "name": "Jean Naté",
+    "status": "failed"
+  },
+  "roberto-cavalli-deep-desire": {
+    "house": "Roberto Cavalli",
+    "name": "Deep Desire",
+    "status": "failed"
+  },
+  "rochas-girl": {
+    "house": "Rochas",
+    "name": "Girl",
+    "status": "failed"
+  },
+  "rochas-lhomme-rochas": {
+    "house": "Rochas",
+    "name": "L´Homme Rochas",
+    "gender": "Hombre",
+    "expected_filename": "rochas-lhomme-rochas.png",
+    "status": "failed",
+    "source_url": null,
+    "attempts": 0,
+    "last_updated": null
+  },
+  "roger-gallet-jean-marie-farina": {
+    "house": "Roger & Gallet",
+    "name": "Jean Marie Farina",
+    "status": "failed"
+  },
+  "rosendo-mateu-rosendo-mateu-n5-floral-sensual-musk": {
+    "house": "Rosendo Mateu",
+    "name": "Rosendo Mateu N.5 floral, sensual, musk",
+    "status": "failed"
+  },
+  "royalty-by-maluma-jade-royalty": {
+    "house": "Royalty by Maluma",
+    "name": "Jade Royalty",
+    "status": "failed"
+  },
+  "royalty-by-maluma-onix-royalty": {
+    "house": "Royalty by Maluma",
+    "name": "Onix Royalty",
+    "status": "failed"
+  },
+  "royalty-by-maluma-garnet-royalty": {
+    "house": "Royalty by Maluma",
+    "name": "Garnet Royalty",
+    "status": "failed"
+  },
+  "salvatore-ferragamo-uomo": {
+    "house": "Salvatore Ferragamo",
+    "name": "Uomo",
+    "status": "failed"
+  },
+  "salvatore-ferragamo-ferragamo": {
+    "house": "Salvatore Ferragamo",
+    "name": "Ferragamo",
+    "status": "failed"
+  },
+  "salvatore-ferragamo-incanto-charms": {
+    "house": "Salvatore Ferragamo",
+    "name": "Incanto Charms",
+    "status": "failed"
+  },
+  "salvatore-ferragamo-uomo-signature": {
+    "house": "Salvatore Ferragamo",
+    "name": "Uomo Signature",
+    "status": "failed"
+  },
+  "selena-gomez-selena-gomez-eau-parfum": {
+    "house": "Selena Gomez",
+    "name": "Selena Gomez Eau Parfum",
+    "status": "failed"
+  },
+  "shakira-s": {
+    "house": "Shakira",
+    "name": "S",
+    "status": "failed"
+  },
+  "shakira-rock": {
+    "house": "Shakira",
+    "name": "Rock",
+    "status": "failed"
+  },
+  "shakira-elixir": {
+    "house": "Shakira",
+    "name": "Elixir",
+    "status": "failed"
+  },
+  "sofia-vergara-love": {
+    "house": "Sofia Vergara",
+    "name": "Love",
+    "status": "failed"
+  },
+  "sofia-vergara-sofia": {
+    "house": "Sofia Vergara",
+    "name": "Sofia",
+    "status": "failed"
+  },
+  "sofia-vergara-tempting": {
+    "house": "Sofia Vergara",
+    "name": "Tempting",
+    "status": "failed"
+  },
+  "sol-de-janeiro-carioca-crush": {
+    "house": "Sol de Janeiro",
+    "name": "Carioca Crush",
+    "status": "failed"
+  },
+  "sol-de-janeiro-summer-e-amor": {
+    "house": "Sol de Janeiro",
+    "name": "Summer é Amor",
+    "status": "failed"
+  },
+  "sol-de-janeiro-cheirosa-59": {
+    "house": "Sol de Janeiro",
+    "name": "Cheirosa '59",
+    "status": "failed"
+  },
+  "sol-de-janeiro-cheirosa-62": {
+    "house": "Sol de Janeiro",
+    "name": "Cheirosa 62",
+    "status": "failed"
+  },
+  "sol-de-janeiro-cheirosa-40": {
+    "house": "Sol de Janeiro",
+    "name": "Cheirosa 40",
+    "status": "failed"
+  },
+  "sol-de-janeiro-agua-mistica": {
+    "house": "Sol de Janeiro",
+    "name": "Agua mistica",
+    "status": "failed"
+  },
+  "sol-de-janeiro-beijos-de-sol": {
+    "house": "Sol de Janeiro",
+    "name": "Beijos de Sol",
+    "status": "failed"
+  },
+  "sol-de-janeiro-cheirosa-71": {
+    "house": "Sol de Janeiro",
+    "name": "Cheirosa 71",
+    "status": "failed"
+  },
+  "stephane-humbert-lucas-777-god-of-fire": {
+    "house": "Stéphane Humbert Lucas 777",
+    "name": "God of fire",
+    "status": "failed"
+  },
+  "sweet-tooth-sweet-tooth-cherry-baby": {
+    "house": "Sweet Tooth",
+    "name": "Sweet tooth cherry baby",
+    "status": "failed"
+  },
+  "sweet-tooth-sweet-tooth": {
+    "house": "Sweet Tooth",
+    "name": "Sweet tooth",
+    "status": "failed"
+  },
+  "ted-lapidus-rumba-ted": {
+    "house": "Ted Lapidus",
+    "name": "Rumba Ted",
+    "status": "failed"
+  },
+  "ted-lapidus-lapidus-por-homme": {
+    "house": "Ted Lapidus",
+    "name": "Lapidus por Homme",
+    "status": "failed"
+  },
+  "thierry-mugler-angel": {
+    "house": "Thierry Mugler",
+    "name": "Angel",
+    "status": "failed"
+  },
+  "thierry-mugler-angel-men": {
+    "house": "Thierry Mugler",
+    "name": "Angel Men",
+    "status": "failed"
+  },
+  "thierry-mugler-alien-mugler": {
+    "house": "Thierry Mugler",
+    "name": "Alien Mugler",
+    "status": "failed"
+  },
+  "thierry-mugler-angel-nova": {
+    "house": "Thierry Mugler",
+    "name": "Angel Nova",
+    "status": "failed"
+  },
+  "tiziana-terenzi-tabit": {
+    "house": "Tiziana Terenzi",
+    "name": "Tabit",
+    "status": "failed"
+  },
+  "tiziana-terenzi-andromeda": {
+    "house": "Tiziana Terenzi",
+    "name": "Andromeda",
+    "status": "failed"
+  },
+  "tiziana-terenzi-kirke": {
+    "house": "Tiziana Terenzi",
+    "name": "Kirke",
+    "status": "failed"
+  },
+  "tiziana-terenzi-gumin": {
+    "house": "Tiziana Terenzi",
+    "name": "Gumin",
+    "status": "failed"
+  },
+  "tom-ford-tom-ford-noir-extreme": {
+    "house": "Tom Ford",
+    "name": "Tom Ford Noir extreme",
+    "status": "failed"
+  },
+  "tom-ford-soleil-blanc": {
+    "house": "Tom Ford",
+    "name": "Soleil Blanc",
+    "status": "failed"
+  },
+  "tom-ford-ombre-leather": {
+    "house": "Tom Ford",
+    "name": "Ombre Leather",
+    "status": "failed"
+  },
+  "tom-ford-costa-azurra": {
+    "house": "Tom Ford",
+    "name": "Costa Azurra",
+    "status": "failed"
+  },
+  "tom-ford-vanilla-sex": {
+    "house": "Tom Ford",
+    "name": "Vanilla Sex",
+    "status": "failed"
+  },
+  "tom-ford-tobacco-vainille": {
+    "house": "Tom Ford",
+    "name": "Tobacco Vainille",
+    "status": "failed"
+  },
+  "tom-ford-neroli-portofino": {
+    "house": "Tom Ford",
+    "name": "Neroli Portofino",
+    "status": "failed"
+  },
+  "tommy-hilfiger-tommy-girl": {
+    "house": "Tommy Hilfiger",
+    "name": "Tommy Girl",
+    "status": "failed"
+  },
+  "tommy-hilfiger-tommy": {
+    "house": "Tommy Hilfiger",
+    "name": "Tommy",
+    "status": "failed"
+  },
+  "tommy-hilfiger-impact": {
+    "house": "Tommy Hilfiger",
+    "name": "Impact",
+    "status": "failed"
+  },
+  "tommy-hilfiger-tommy-bold": {
+    "house": "Tommy Hilfiger",
+    "name": "Tommy Bold",
+    "status": "failed"
+  },
+  "tous-loveme": {
+    "house": "Tous",
+    "name": "LoveMe",
+    "status": "failed"
+  },
+  "tous-tous-man": {
+    "house": "Tous",
+    "name": "Tous Man",
+    "status": "failed"
+  },
+  "tous-loveme-the-emerald-elixir": {
+    "house": "Tous",
+    "name": "LoveMe the Emerald Elixir",
+    "status": "failed"
+  },
+  "valentino-voce-viva-by-valentino": {
+    "house": "Valentino",
+    "name": "Voce Viva By Valentino",
+    "status": "failed"
+  },
+  "valentino-born-in-roma-yellow-dream": {
+    "house": "Valentino",
+    "name": "Born in Roma yellow Dream",
+    "status": "failed"
+  },
+  "valentino-valentino-uomo-born-in-roma": {
+    "house": "Valentino",
+    "name": "Valentino Uomo Born in roma",
+    "status": "failed"
+  },
+  "valentino-valentino-donna": {
+    "house": "Valentino",
+    "name": "Valentino Donna",
+    "status": "failed"
+  },
+  "valentino-valentino-donna-born-in-roma": {
+    "house": "Valentino",
+    "name": "Valentino Donna Born In Roma",
+    "status": "failed"
+  },
+  "valentino-born-in-roma-coral-fantasy": {
+    "house": "Valentino",
+    "name": "Born in roma coral fantasy",
+    "status": "failed"
+  },
+  "van-cleef-arpels-van-cleef-arpels-pour-homme": {
+    "house": "Van Cleef & Arpels",
+    "name": "Van Cleef & Arpels Pour Homme",
+    "status": "failed"
+  },
+  "victoria-beckham-beckam-signature": {
+    "house": "Victoria Beckham",
+    "name": "Beckam Signature",
+    "status": "failed"
+  },
+  "versace-eau-fraiche": {
+    "house": "Versace",
+    "name": "Eau Fraiche",
+    "status": "failed"
+  },
+  "versace-dylan-turquise": {
+    "house": "Versace",
+    "name": "Dylan Turquise",
+    "status": "failed"
+  },
+  "versace-dylan-blue-hombre": {
+    "house": "Versace",
+    "name": "Dylan Blue (Hombre)",
+    "status": "failed"
+  },
+  "versace-dylan-blue-mujer": {
+    "house": "Versace",
+    "name": "Dylan Blue (Mujer)",
+    "status": "failed"
+  },
+  "versace-eros-femme": {
+    "house": "Versace",
+    "name": "Eros Femme",
+    "status": "failed"
+  },
+  "versace-blue-jeans": {
+    "house": "Versace",
+    "name": "Blue Jeans",
+    "status": "failed"
+  },
+  "versace-versense": {
+    "house": "Versace",
+    "name": "Versense",
+    "status": "failed"
+  },
+  "versace-versace-pour-homme": {
+    "house": "Versace",
+    "name": "Versace pour Homme",
+    "status": "failed"
+  },
+  "versace-bright-crystal-absolu": {
+    "house": "Versace",
+    "name": "Bright Crystal Absolu",
+    "status": "failed"
+  },
+  "versace-flame": {
+    "house": "Versace",
+    "name": "Flame",
+    "status": "failed"
+  },
+  "versace-eros": {
+    "house": "Versace",
+    "name": "Eros",
+    "status": "failed"
+  },
+  "versace-bright-crystal": {
+    "house": "Versace",
+    "name": "Bright Crystal",
+    "status": "failed"
+  },
+  "versace-yellow-diamond": {
+    "house": "Versace",
+    "name": "Yellow Diamond",
+    "status": "failed"
+  },
+  "versace-eros-energy": {
+    "house": "Versace",
+    "name": "Eros Energy",
+    "status": "failed"
+  },
+  "versace-dylan-purple": {
+    "house": "Versace",
+    "name": "Dylan Purple",
+    "status": "failed"
+  },
+  "victorias-secret-angel": {
+    "house": "Victoria's Secret",
+    "name": "Angel",
+    "status": "failed"
+  },
+  "victorias-secret-scandalous": {
+    "house": "Victoria's Secret",
+    "name": "Scandalous",
+    "status": "failed"
+  },
+  "victorias-secret-bombshell": {
+    "house": "Victoria's Secret",
+    "name": "Bombshell",
+    "status": "failed"
+  },
+  "victorias-secret-eau-so-sexy": {
+    "house": "Victoria's Secret",
+    "name": "Eau so sexy",
+    "status": "failed"
+  },
+  "victorias-secret-endles-love": {
+    "house": "Victoria's Secret",
+    "name": "Endles Love",
+    "status": "failed"
+  },
+  "victorias-secret-pear-glase": {
+    "house": "Victoria's Secret",
+    "name": "Pear Glase",
+    "status": "failed"
+  },
+  "victorias-secret-vainilla-lace": {
+    "house": "Victoria's Secret",
+    "name": "Vainilla Lace",
+    "status": "failed"
+  },
+  "victorias-secret-love-spell": {
+    "house": "Victoria's Secret",
+    "name": "Love Spell",
+    "status": "failed"
+  },
+  "victorias-secret-pure-seduction": {
+    "house": "Victoria's Secret",
+    "name": "Pure seduction",
+    "status": "failed"
+  },
+  "victorias-secret-mango-tentantion": {
+    "house": "Victoria's Secret",
+    "name": "Mango Tentantion",
+    "status": "failed"
+  },
+  "victorias-secret-coconut-passion": {
+    "house": "Victoria's Secret",
+    "name": "Coconut Passion",
+    "status": "failed"
+  },
+  "victorias-secret-bombshell-in-bloom": {
+    "house": "Victoria's Secret",
+    "name": "Bombshell in Bloom",
+    "status": "failed"
+  },
+  "victorias-secret-aqua-kiss": {
+    "house": "Victoria's Secret",
+    "name": "Aqua Kiss",
+    "status": "failed"
+  },
+  "victorias-secret-juice-berry-beauty-rush": {
+    "house": "Victoria's Secret",
+    "name": "Juice Berry Beauty Rush",
+    "status": "failed"
+  },
+  "victorias-secret-give-me-love": {
+    "house": "Victoria's Secret",
+    "name": "Give me love",
+    "status": "failed"
+  },
+  "victorias-secret-love-addict": {
+    "house": "Victoria's Secret",
+    "name": "Love Addict",
+    "status": "failed"
+  },
+  "victorias-secret-wink-wink-beauty-rush": {
+    "house": "Victoria's Secret",
+    "name": "Wink Wink Beauty rush",
+    "status": "failed"
+  },
+  "victorias-secret-rush": {
+    "house": "Victoria's Secret",
+    "name": "Rush",
+    "status": "failed"
+  },
+  "victorias-secret-rush-jazmine": {
+    "house": "Victoria's Secret",
+    "name": "Rush Jazmine",
+    "status": "failed"
+  },
+  "victorias-secret-rush-vainilla": {
+    "house": "Victoria's Secret",
+    "name": "Rush Vainilla",
+    "status": "failed"
+  },
+  "viktor-rolf-spicebomb": {
+    "house": "Viktor & Rolf",
+    "name": "Spicebomb",
+    "status": "failed"
+  },
+  "viktor-rolf-flower-bomb": {
+    "house": "Viktor & Rolf",
+    "name": "Flower Bomb",
+    "status": "failed"
+  },
+  "viktor-rolf-spicebomb-night": {
+    "house": "Viktor & Rolf",
+    "name": "Spicebomb Night",
+    "status": "failed"
+  },
+  "viktor-rolf-bonbon": {
+    "house": "Viktor & Rolf",
+    "name": "Bonbon",
+    "status": "failed"
+  },
+  "viktor-rolf-rose-flowere-explosion": {
+    "house": "Viktor & Rolf",
+    "name": "Rose Flowere Explosion",
+    "status": "failed"
+  },
+  "xerjoff-alexandria-ii": {
+    "house": "Xerjoff",
+    "name": "Alexandria ii",
+    "status": "failed"
+  },
+  "xerjoff-amber-star": {
+    "house": "Xerjoff",
+    "name": "Amber star",
+    "status": "failed"
+  },
+  "xerjoff-erba": {
+    "house": "Xerjoff",
+    "name": "Erba",
+    "status": "failed"
+  },
+  "xerjoff-xj-1861-naxos": {
+    "house": "Xerjoff",
+    "name": "XJ 1861 Naxos",
+    "status": "failed"
+  },
+  "xerjoff-tony-iommy-monkey-special": {
+    "house": "Xerjoff",
+    "name": "Tony Iommy Monkey Special",
+    "status": "failed"
+  },
+  "xerjoff-lira": {
+    "house": "Xerjoff",
+    "name": "Lira",
+    "status": "failed"
+  },
+  "yanbal-osadia-hombre": {
+    "house": "Yanbal",
+    "name": "Osadia (Hombre)",
+    "status": "failed"
+  },
+  "yanbal-adrenalina-men": {
+    "house": "Yanbal",
+    "name": "Adrenalina Men",
+    "status": "failed"
+  },
+  "yanbal-ohm": {
+    "house": "Yanbal",
+    "name": "OHM",
+    "status": "failed"
+  },
+  "yanbal-solo": {
+    "house": "Yanbal",
+    "name": "Solo",
+    "status": "failed"
+  },
+  "yanbal-temptation-hombre": {
+    "house": "Yanbal",
+    "name": "Temptation (Hombre)",
+    "status": "failed"
+  },
+  "yanbal-arom-pour": {
+    "house": "Yanbal",
+    "name": "Arom Pour",
+    "status": "failed"
+  },
+  "yanbal-musk-women": {
+    "house": "Yanbal",
+    "name": "Musk Women",
+    "status": "failed"
+  },
+  "yanbal-adrenalina": {
+    "house": "Yanbal",
+    "name": "Adrenalina",
+    "status": "failed"
+  },
+  "yanbal-celos": {
+    "house": "Yanbal",
+    "name": "Celos",
+    "status": "failed"
+  },
+  "yanbal-ccori-rose": {
+    "house": "Yanbal",
+    "name": "Ccori rose",
+    "status": "failed"
+  },
+  "yanbal-temptation-mujer": {
+    "house": "Yanbal",
+    "name": "Temptation (Mujer)",
+    "status": "failed"
+  },
+  "yanbal-osadia-mujer": {
+    "house": "Yanbal",
+    "name": "Osadia (Mujer)",
+    "status": "failed"
+  },
+  "yanbal-ccori-le-perfume": {
+    "house": "Yanbal",
+    "name": "Ccori Le perfume",
+    "status": "failed"
+  },
+  "yanbal-gaia": {
+    "house": "Yanbal",
+    "name": "Gaia",
+    "status": "failed"
+  },
+  "yanbal-ccori-pasion": {
+    "house": "Yanbal",
+    "name": "Ccori Pasion",
+    "status": "failed"
+  },
+  "yanbal-cielo": {
+    "house": "Yanbal",
+    "name": "Cielo",
+    "status": "failed"
+  },
+  "yanbal-43-n": {
+    "house": "Yanbal",
+    "name": "43° N",
+    "status": "failed"
+  },
+  "yves-saint-laurent-manifiesto": {
+    "house": "Yves Saint Laurent",
+    "name": "Manifiesto",
+    "status": "failed"
+  },
+  "yves-saint-laurent-elle": {
+    "house": "Yves Saint Laurent",
+    "name": "Elle",
+    "status": "failed"
+  },
+  "yves-saint-laurent-m7": {
+    "house": "Yves Saint Laurent",
+    "name": "M7",
+    "status": "failed"
+  },
+  "yves-saint-laurent-parisienne": {
+    "house": "Yves Saint Laurent",
+    "name": "Parisienne",
+    "status": "failed"
+  },
+  "yves-saint-laurent-la-nuit-de-lhomme": {
+    "house": "Yves Saint Laurent",
+    "name": "La Nuit de l´Homme",
+    "gender": "Hombre",
+    "expected_filename": "yves-saint-laurent-la-nuit-de-lhomme.png",
+    "status": "failed",
+    "source_url": null,
+    "attempts": 0,
+    "last_updated": null
+  },
+  "yves-saint-laurent-black-opium": {
+    "house": "Yves Saint Laurent",
+    "name": "Black Opium",
+    "status": "failed"
+  },
+  "yves-saint-laurent-y": {
+    "house": "Yves Saint Laurent",
+    "name": "Y",
+    "status": "failed"
+  },
+  "yves-saint-laurent-libre": {
+    "house": "Yves Saint Laurent",
+    "name": "Libre",
+    "status": "failed"
+  },
+  "yves-saint-laurent-y-elixir": {
+    "house": "Yves Saint Laurent",
+    "name": "Y Elixir",
+    "status": "failed"
+  },
+  "zlatan-ibrahimovic-zlatan-pour-homme": {
+    "house": "Zlatan Ibrahimović",
+    "name": "Zlatan pour Homme",
+    "status": "failed"
+  },
+  "ariana-grande-love-notes---pink-woods": {
+    "house": "Ariana Grande",
+    "name": "Love Notes - Pink Woods",
+    "status": "completed",
+    "source_url": "https://arianagrandefragrances.com/cdn/shop/files/AG_PINK_WOODS_Bottle_2000x2000_aaa278c7-d614-42df-9e55-cc8b62ea9ad1.webp?v=1749770904"
+  },
+  "dolce-gabbana-l-imperatrice": {
+    "house": "Dolce & Gabbana",
+    "name": "L´Imperatrice",
+    "status": "failed"
+  },
+  "escada-rock-n-in-rio": {
+    "house": "Escada",
+    "name": "Rock´n in Rio",
+    "status": "failed"
+  },
+  "givenchy-l-interdit": {
+    "house": "Givenchy",
+    "name": "L´Interdit",
+    "status": "failed"
+  },
+  "issey-miyake-l-eau-majeure-dissey": {
+    "house": "Issey Miyake",
+    "name": "L´Eau Majeure dÍssey",
+    "status": "failed"
+  },
+  "issey-miyake-l-eau-du-issey": {
+    "house": "Issey Miyake",
+    "name": "L´Eau du Issey",
+    "status": "failed"
+  },
+  "issey-miyake-l-eau-du-issey-por-homme": {
+    "house": "Issey Miyake",
+    "name": "L´Eau du Issey por homme",
+    "status": "failed"
+  },
+  "issey-miyake-l-eau-bleu-d-issey-por-homme-fleur": {
+    "house": "Issey Miyake",
+    "name": "L´Eau Bleu d´Issey por homme Fleur",
+    "status": "failed"
+  },
+  "issey-miyake-nuit-d-issey": {
+    "house": "Issey Miyake",
+    "name": "Nuit d´Issey",
+    "status": "failed"
+  },
+  "kilian-can-t-stop-loving": {
+    "house": "Kilian",
+    "name": "Can´t stop loving",
+    "status": "failed"
+  },
+  "lacoste-l-homme-lacoste-intense": {
+    "house": "Lacoste",
+    "name": "L´Homme Lacoste Intense",
+    "status": "failed"
+  },
+  "lattafa-qaa-de-lattafa": {
+    "house": "Lattafa",
+    "name": "Qaa´de Lattafa",
+    "status": "failed"
+  },
+  "lattafa-bade-e-al-oud-amethyste": {
+    "house": "Lattafa",
+    "name": "Bade´e Al oud Amethyste",
+    "status": "failed"
+  },
+  "louis-vuitton-l-immensite": {
+    "house": "Louis Vuitton",
+    "name": "L´Immensite",
+    "status": "failed"
+  },
+  "louis-vuitton-atrape---reves": {
+    "house": "Louis Vuitton",
+    "name": "Atrape - Réves",
+    "status": "failed"
+  },
+  "montana-montana-parfum-d-homme": {
+    "house": "Montana",
+    "name": "Montana Parfum d´Homme",
+    "status": "failed"
+  },
+  "paco-rabanne-black-xsl-aphrodisiaque": {
+    "house": "Paco Rabanne",
+    "name": "Black XSL´Aphrodisiaque",
+    "status": "failed"
+  },
+  "paco-rabanne-black-xs-l-exces": {
+    "house": "Paco Rabanne",
+    "name": "Black XS L´exces",
+    "status": "failed"
+  },
+  "rihanna-reb-l-fleur": {
+    "house": "Rihanna",
+    "name": "Reb´l Fleur",
+    "status": "failed"
+  },
+  "rochas-l-homme-rochas": {
+    "house": "Rochas",
+    "name": "L´Homme Rochas",
+    "status": "failed"
+  },
+  "yves-saint-laurent-la-nuit-de-l-homme": {
+    "house": "Yves Saint Laurent",
+    "name": "La Nuit de l´Homme",
+    "status": "failed"
+  }
+}
