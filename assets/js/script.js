@@ -68,6 +68,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const viewGridBtn = document.getElementById("viewGridBtn");
     const viewListBtn = document.getElementById("viewListBtn");
     const backToTopBtn = document.getElementById("backToTopBtn");
+    const controlsSection = document.getElementById("controlsSection");
+    const controlsToggle = document.getElementById("controlsToggle");
 
     // Elementos del Modal
     const perfumeModal = document.getElementById("perfumeModal");
@@ -607,6 +609,16 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    // Toggle controls section (Minimize/Expand)
+    if (controlsToggle && controlsSection) {
+        controlsToggle.addEventListener("click", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            controlsSection.classList.toggle("minimized");
+            console.log("Controls toggle clicked. Minimized state:", controlsSection.classList.contains("minimized"));
+        });
+    }
+
     // Botón Volver Arriba
     window.addEventListener("scroll", () => {
         if (window.scrollY > 350) {
@@ -625,6 +637,30 @@ document.addEventListener("DOMContentLoaded", () => {
     populateHouseSelect();
     generateAlphabetIndex();
     renderCatalog();
+
+    // Observer para revelado progresivo de tarjetas
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    // Aplicar observer a las tarjetas después de renderizar
+    const observeCards = () => {
+        document.querySelectorAll('.perfume-card').forEach(card => {
+            card.classList.add('reveal');
+            revealObserver.observe(card);
+        });
+    };
+
+    // Modificar renderCatalog para llamar a observeCards
+    const originalRenderCatalog = renderCatalog;
+    renderCatalog = () => {
+        originalRenderCatalog();
+        observeCards();
+    };
 });
 
 /**
