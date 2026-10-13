@@ -145,6 +145,10 @@
 }
 
 .controls-section.minimized .controls-toggle-btn {
+    transform: translateX(-50%);
+}
+
+.controls-section:not(.minimized) .controls-toggle-btn {
     transform: translateX(-50%) rotate(180deg);
 }
 *,
