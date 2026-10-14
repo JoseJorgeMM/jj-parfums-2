@@ -50,6 +50,7 @@ function initUI() {
 
 // --- LÓGICA DE FAVORITOS ---
 function toggleFavorite(perfumeId) {
+    console.log("Toggling favorite for:", perfumeId);
     var index = state.favorites.indexOf(perfumeId);
     if (index === -1) {
         state.favorites.push(perfumeId);
@@ -62,6 +63,7 @@ function toggleFavorite(perfumeId) {
 
 // --- MODAL Y LIGHTBOX ---
 function openPerfumeModal(perfume) {
+    console.log("Opening modal for:", perfume.name);
     var modal = document.getElementById("perfumeModal");
     var img = document.getElementById("modalBottleImg");
     var name = document.getElementById("modalPerfumeName");
@@ -69,23 +71,27 @@ function openPerfumeModal(perfume) {
     var gender = document.getElementById("modalGender");
     var notes = document.getElementById("modalNotes");
 
-    if (!modal) return;
+    if (!modal) {
+        console.error("Modal element not found");
+        return;
+    }
 
     name.textContent = perfume.name;
     house.textContent = perfume.house;
     gender.textContent = perfume.gender;
     notes.textContent = perfume.notes;
 
-    // Ruta de imagen (estamos usando la carpeta raíz ya que las imágenes no están en subcarpetas por casa)
-    var imgPath = perfume.image;
+    // Validamos la imagen para evitar el error de 'undefined'
+    var imgPath = (perfume && perfume.image) ? perfume.image : "";
     img.src = imgPath;
 
-    // Mostrar imagen si existe
     document.getElementById("modalBottleStage").style.display = "block";
+
+    // IMPORTANTE: Forzamos la visibilidad con style.display y la clase .active del CSS
     modal.style.display = "flex";
+    modal.classList.add("active");
     modal.setAttribute("aria-hidden", "false");
 
-    // Evento para abrir Lightbox al hacer click en la imagen del modal
     img.onclick = function() {
         var lb = document.getElementById("imageLightbox");
         var lbImg = document.getElementById("lightboxImg");
@@ -98,6 +104,7 @@ function closePerfumeModal() {
     var modal = document.getElementById("perfumeModal");
     if (modal) {
         modal.style.display = "none";
+        modal.classList.remove("active");
         modal.setAttribute("aria-hidden", "true");
     }
 }
@@ -112,11 +119,13 @@ window.renderCatalog = function() {
 
     var filtered = catalogData.filter(function(p) {
         var matchesSearch = !state.searchTerm ||
-                            p.name.toLowerCase().indexOf(state.searchTerm) !== -1 ||
-                            p.house.toLowerCase().indexOf(state.searchTerm) !== -1;
+                            (p.name && p.name.toLowerCase().indexOf(state.searchTerm) !== -1) ||
+                            (p.house && p.house.toLowerCase().indexOf(state.searchTerm) !== -1);
         var matchesHouse = state.activeHouse === "all" || p.house === state.activeHouse;
         var matchesGender = state.activeGender === "all" || p.gender === state.activeGender;
-        var matchesFavs = !state.favoritesOnly || state.favorites.indexOf(p.id) !== -1;
+
+        var id = p.id || p.name;
+        var matchesFavs = !state.favoritesOnly || (id && state.favorites.indexOf(id) !== -1);
 
         return matchesSearch && matchesHouse && matchesGender && matchesFavs;
     });
@@ -130,7 +139,6 @@ window.renderCatalog = function() {
         return;
     }
 
-    // Agrupación por Casa
     var grouped = {};
     filtered.forEach(function(p) {
         if (!grouped[p.house]) grouped[p.house] = [];
@@ -147,15 +155,16 @@ window.renderCatalog = function() {
         grid.className = "perfumes-grid";
 
         grouped[houseName].forEach(function(p) {
-            var isFav = state.favorites.indexOf(p.id) !== -1;
+            var id = p.id || p.name;
+            var isFav = (id && state.favorites.indexOf(id) !== -1);
             var card = document.createElement("article");
             card.className = "perfume-card";
 
-            var imgPath = p.image;
+            var imgPath = p.image || "";
 
             card.innerHTML =
                 '<div class="card-top">' +
-                    '<button class="fav-btn ' + (isFav ? 'active' : '') + '" onclick="event.stopPropagation(); toggleFavorite(\'' + p.id + '\')" title="Añadir a favoritos">' +
+                    '<button class="favorite-btn ' + (isFav ? 'active' : '') + '" title="Añadir a favoritos">' +
                         (isFav ? '❤️' : '🤍') +
                     '</button>' +
                 '</div>' +
@@ -171,14 +180,21 @@ window.renderCatalog = function() {
                     '<p class="card-notes">' + p.notes + '</p>' +
                 '</div>' +
                 '<div class="card-footer">' +
-                    '<button class="view-details-btn">Ver Detalles</button>' +
+                    '<button class="card-view-notes-btn">Ver Detalles</button>' +
                     '<span class="card-extract-label">Extracto Puro</span>' +
                 '</div>';
 
-            // Hacer que TODA la tarjeta sea clickeable para abrir el modal
             card.onclick = function() {
                 openPerfumeModal(p);
             };
+
+            var favBtn = card.querySelector(".favorite-btn");
+            if (favBtn) {
+                favBtn.onclick = function(e) {
+                    e.stopPropagation();
+                    toggleFavorite(id);
+                };
+            }
 
             grid.appendChild(card);
         });
@@ -192,7 +208,6 @@ window.renderCatalog = function() {
 document.addEventListener("DOMContentLoaded", function() {
     initUI();
 
-    // Buscador
     var searchInput = document.getElementById("searchInput");
     if (searchInput) {
         searchInput.addEventListener("input", function() {
@@ -201,10 +216,8 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // Selector de Casas
     var houseSelect = document.getElementById("houseSelect");
     if (houseSelect) {
-        // Llenar selector dinámicamente
         var houses = [...new Set(catalogData.map(p => p.house))].sort();
         houses.forEach(h => {
             var opt = document.createElement("option");
@@ -219,7 +232,6 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // Filtros de Género y Favoritos
     var genderBtns = document.querySelectorAll(".filter-btn");
     genderBtns.forEach(btn => {
         btn.addEventListener("click", function() {
@@ -238,7 +250,6 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    // Cerrar Modal
     var closeBtns = [
         document.getElementById("modalCloseBtn"),
         document.getElementById("modalFooterCloseBtn")

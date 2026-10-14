@@ -1318,21 +1318,24 @@ body {
 }
 
 .card-view-notes-btn {
-    font-size: 0.72rem;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+    background: transparent;
+    border: 1px solid var(--border-gold);
     color: var(--gold-light);
-    opacity: 0.75;
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
+    padding: 6px 16px;
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 3px;
+    cursor: pointer;
     transition: var(--transition);
+    font-weight: 500;
 }
 
-.perfume-card:hover .card-view-notes-btn {
-    opacity: 1;
-    color: var(--gold-primary);
-    transform: translateX(3px);
+.card-view-notes-btn:hover {
+    background: var(--gold-primary);
+    color: #0a0b0d;
+    box-shadow: 0 0 15px rgba(200, 164, 93, 0.3);
 }
 
 .card-extract-label {
