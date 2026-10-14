@@ -110,11 +110,38 @@
     left: 125%;
 }
 
-/* Glassmorphism Refinado */
-.controls-section {
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border-gold-subtle);
+/* Estilo para el Slogan de la Marca */
+.brand-slogan-container {
+    margin: 15px auto 25px;
+    max-width: 700px;
+    position: relative;
+    padding: 0 20px;
+}
+
+.brand-slogan {
+    font-family: var(--font-sans);
+    font-size: clamp(0.9rem, 2vw, 1.2rem);
+    font-style: italic;
+    color: var(--text-main);
+    line-height: 1.5;
+    font-weight: 300;
+    opacity: 0.9;
+    letter-spacing: 0.5px;
+    animation: sloganReveal 1.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+    opacity: 0;
+}
+
+@keyframes sloganReveal {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+        filter: blur(5px);
+    }
+    to {
+        opacity: 0.9;
+        transform: translateY(0);
+        filter: blur(0);
+    }
 }
 
 .controls-toggle-btn {
