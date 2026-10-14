@@ -81,13 +81,10 @@ function openPerfumeModal(perfume) {
     gender.textContent = perfume.gender;
     notes.textContent = perfume.notes;
 
-    // Validamos la imagen para evitar el error de 'undefined'
     var imgPath = (perfume && perfume.image) ? perfume.image : "";
     img.src = imgPath;
 
     document.getElementById("modalBottleStage").style.display = "block";
-
-    // IMPORTANTE: Forzamos la visibilidad con style.display y la clase .active del CSS
     modal.style.display = "flex";
     modal.classList.add("active");
     modal.setAttribute("aria-hidden", "false");
@@ -145,7 +142,9 @@ window.renderCatalog = function() {
         grouped[p.house].push(p);
     });
 
-    var sortedHouses = Object.keys(grouped).sort();
+    var sortedHouses = Object.keys(grouped).sort(function(a, b) {
+        return a.localeCompare(b, undefined, { sensitivity: 'base', numeric: true });
+    });
     sortedHouses.forEach(function(houseName) {
         var section = document.createElement("section");
         section.className = "house-group";
@@ -208,6 +207,7 @@ window.renderCatalog = function() {
 document.addEventListener("DOMContentLoaded", function() {
     initUI();
 
+    // Buscador
     var searchInput = document.getElementById("searchInput");
     if (searchInput) {
         searchInput.addEventListener("input", function() {
@@ -216,6 +216,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
+    // Selector de Casas
     var houseSelect = document.getElementById("houseSelect");
     if (houseSelect) {
         var houses = [...new Set(catalogData.map(p => p.house))].sort();
@@ -232,6 +233,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
+    // Filtros de Género y Favoritos
     var genderBtns = document.querySelectorAll(".filter-btn");
     genderBtns.forEach(btn => {
         btn.addEventListener("click", function() {
@@ -250,6 +252,18 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
+    // Botón de expandir/contraer filtros
+    var controlsToggle = document.getElementById("controlsToggle");
+    if (controlsToggle) {
+        controlsToggle.addEventListener("click", function() {
+            var section = document.getElementById("controlsSection");
+            if (section) {
+                section.classList.toggle("minimized");
+            }
+        });
+    }
+
+    // Cerrar Modal
     var closeBtns = [
         document.getElementById("modalCloseBtn"),
         document.getElementById("modalFooterCloseBtn")
