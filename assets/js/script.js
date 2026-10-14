@@ -93,6 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let favoritesOnly = false;
     let activeView = "grid";
 
+    // Mover favoritos dentro del scope del DOMContentLoaded para que esté sincronizado
     let favorites = JSON.parse(localStorage.getItem("jj_favorites") || "[]");
 
     function normalize(str) {
@@ -177,7 +178,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // 8. Renderizado del Catálogo
-    function renderCatalog() {
+    window.renderCatalog = function() {
         if (!container) return;
         container.innerHTML = "";
         const normSearch = normalize(searchTerm);
@@ -513,14 +514,19 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function toggleFavorite(perfume) {
+    // Importante: Obtener los favoritos actualizados del localStorage en cada clic
     let favorites = JSON.parse(localStorage.getItem("jj_favorites") || "[]");
     const index = favorites.findIndex(f => f.name === perfume.name && f.house === perfume.house);
+
     if (index === -1) {
         favorites.push({ name: perfume.name, house: perfume.house });
     } else {
         favorites.splice(index, 1);
     }
+
     localStorage.setItem("jj_favorites", JSON.stringify(favorites));
+
+    // Actualizamos los iconos de los corazones inmediatamente
     document.querySelectorAll(".perfume-card").forEach(card => {
         const favBtn = card.querySelector(".favorite-btn");
         if (favBtn) {
@@ -529,4 +535,13 @@ function toggleFavorite(perfume) {
             favBtn.classList.toggle("active", favorites.some(f => f.name === name && f.house === house));
         }
     });
+
+    // Si el filtro de favoritos está activo, forzamos el renderizado para añadir/quitar tarjetas
+    if (window.renderCatalog) {
+        // Verificamos si el botón de favoritos está activo en el DOM
+        const favFilterBtn = document.getElementById("favoritesFilterBtn");
+        if (favFilterBtn && favFilterBtn.classList.contains("active")) {
+            window.renderCatalog();
+        }
+    }
 }
