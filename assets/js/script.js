@@ -9,7 +9,7 @@ var state = {
     favoritesOnly: false,
     activeHouse: "all",
     searchTerm: "",
-    activeGender: "all"
+    activeGenders: ["all"]
 };
 
 // --- INICIALIZACIÓN DE UI ---
@@ -119,13 +119,33 @@ window.renderCatalog = function() {
                             (p.name && p.name.toLowerCase().indexOf(state.searchTerm) !== -1) ||
                             (p.house && p.house.toLowerCase().indexOf(state.searchTerm) !== -1);
         var matchesHouse = state.activeHouse === "all" || p.house === state.activeHouse;
-        var matchesGender = state.activeGender === "all" || p.gender === state.activeGender;
+
+        var matchesGender = state.activeGenders.indexOf("all") !== -1 ||
+                            state.activeGenders.indexOf(p.gender) !== -1;
 
         var id = p.id || p.name;
         var matchesFavs = !state.favoritesOnly || (id && state.favorites.indexOf(id) !== -1);
 
         return matchesSearch && matchesHouse && matchesGender && matchesFavs;
     });
+
+    // --- ACTUALIZACIÓN DE CONTADORES DE GÉNERO ---
+    var counts = { Hombre: 0, Mujer: 0, Unisex: 0 };
+    catalogData.forEach(function(p) {
+        if (counts.hasOwnProperty(p.gender)) {
+            counts[p.gender]++;
+        }
+    });
+
+    var countAll = document.getElementById("countAll");
+    var countH = document.getElementById("countHombre");
+    var countM = document.getElementById("countMujer");
+    var countU = document.getElementById("countUnisex");
+
+    if (countAll) countAll.textContent = catalogData.length;
+    if (countH) countH.textContent = counts.Hombre;
+    if (countM) countM.textContent = counts.Mujer;
+    if (countU) countU.textContent = counts.Unisex;
 
     if (resultsCounter) {
         resultsCounter.textContent = "Mostrando " + filtered.length + " fragancias";
@@ -179,7 +199,7 @@ window.renderCatalog = function() {
                     '<p class="card-notes">' + p.notes + '</p>' +
                 '</div>' +
                 '<div class="card-footer">' +
-                    '<button class="card-view-notes-btn">Ver Detalles</button>' +
+                    '<button class="card-view-notes-btn" onclick="openPerfumeModal(' + JSON.stringify(p).replace(/"/g, '&quot;') + ')">Ver Detalles</button>' +
                     '<span class="card-extract-label">Extracto Puro</span>' +
                 '</div>';
 
@@ -207,7 +227,6 @@ window.renderCatalog = function() {
 document.addEventListener("DOMContentLoaded", function() {
     initUI();
 
-    // Buscador
     var searchInput = document.getElementById("searchInput");
     if (searchInput) {
         searchInput.addEventListener("input", function() {
@@ -216,7 +235,6 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // Selector de Casas
     var houseSelect = document.getElementById("houseSelect");
     if (houseSelect) {
         var houses = [...new Set(catalogData.map(p => p.house))].sort();
@@ -233,7 +251,6 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // Filtros de Género y Favoritos
     var genderBtns = document.querySelectorAll(".filter-btn");
     genderBtns.forEach(btn => {
         btn.addEventListener("click", function() {
@@ -241,29 +258,55 @@ document.addEventListener("DOMContentLoaded", function() {
             var gender = this.getAttribute("data-gender");
 
             if (filter === "favorites") {
+                // Al activar favoritos, desactivamos todo lo demás para evitar conflictos
                 state.favoritesOnly = !state.favoritesOnly;
                 this.classList.toggle("active");
+
+                if (state.favoritesOnly) {
+                    state.activeGenders = ["all"];
+                    genderBtns.forEach(b => {
+                        if (b.getAttribute("data-gender")) b.classList.remove("active");
+                    });
+                }
             } else if (gender) {
-                state.activeGender = gender;
-                genderBtns.forEach(b => b.classList.remove("active"));
-                this.classList.add("active");
+                // Al seleccionar un género, desactivamos el filtro de favoritos
+                if (gender === "all") {
+                    state.activeGenders = ["all"];
+                    genderBtns.forEach(b => {
+                        if (b.getAttribute("data-gender")) b.classList.remove("active");
+                    });
+                    this.classList.add("active");
+                } else {
+                    state.favoritesOnly = false;
+                    var favBtn = document.getElementById("favoritesFilterBtn");
+                    if (favBtn) favBtn.classList.remove("active");
+
+                    if (state.activeGenders.indexOf("all") !== -1) {
+                        state.activeGenders = [];
+                    }
+
+                    if (state.activeGenders.indexOf(gender) === -1) {
+                        state.activeGenders.push(gender);
+                        this.classList.add("active");
+                    } else {
+                        // DESACTIVAR: Si ya estaba seleccionado, lo quitamos
+                        state.activeGenders = state.activeGenders.filter(function(g) { return g !== gender; });
+                        this.classList.remove("active");
+
+                        // Si no queda ningún género seleccionado, volvemos a "all"
+                        if (state.activeGenders.length === 0) {
+                            state.activeGenders = ["all"];
+                            genderBtns.forEach(b => {
+                                if (b.getAttribute("data-gender") === "all") b.classList.add("active");
+                            });
+                        }
+                    }
+                }
+                window.renderCatalog();
             }
-            window.renderCatalog();
         });
     });
 
-    // Botón de expandir/contraer filtros
-    var controlsToggle = document.getElementById("controlsToggle");
-    if (controlsToggle) {
-        controlsToggle.addEventListener("click", function() {
-            var section = document.getElementById("controlsSection");
-            if (section) {
-                section.classList.toggle("minimized");
-            }
-        });
-    }
-
-    // Cerrar Modal
     var closeBtns = [
         document.getElementById("modalCloseBtn"),
         document.getElementById("modalFooterCloseBtn")
