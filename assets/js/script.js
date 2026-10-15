@@ -14,8 +14,24 @@ var state = {
 
 // --- INICIALIZACIÓN DE UI ---
 function initUI() {
+    // Manejo de Video Responsivo (PC vs Móvil)
+    var heroVideo = document.getElementById("heroVideo");
+    if (heroVideo) {
+        function updateVideoSource() {
+            var isMobile = window.innerWidth <= 768;
+            var source = isMobile ? "img/herovertical.mp4" : "img/hero.mp4";
+            if (heroVideo.src !== source) {
+                heroVideo.src = source;
+                heroVideo.load();
+            }
+        }
+        updateVideoSource();
+        window.addEventListener("resize", updateVideoSource);
+    }
+
     // Efecto de Brillo de Fondo
     var glow = document.getElementById("bgGlow");
+
     if (glow) {
         window.addEventListener("mousemove", function(e) {
             glow.style.left = e.clientX + "px";
