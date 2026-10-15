@@ -243,7 +243,19 @@ window.renderCatalog = function() {
 document.addEventListener("DOMContentLoaded", function() {
     initUI();
 
+    // Lógica para Mostrar/Ocultar Filtros (Flecha)
+    var controlsToggle = document.getElementById("controlsToggle");
+    var controlsContainer = document.querySelector(".controls-container");
+    if (controlsToggle && controlsContainer) {
+        controlsToggle.onclick = function() {
+            controlsContainer.classList.toggle("collapsed");
+            this.classList.toggle("active");
+        };
+    }
+
     var searchInput = document.getElementById("searchInput");
+
+
     if (searchInput) {
         searchInput.addEventListener("input", function() {
             state.searchTerm = this.value.toLowerCase();

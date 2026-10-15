@@ -144,6 +144,17 @@
     }
 }
 
+/* Estado Colapsado de Filtros */
+.controls-container.collapsed {
+    display: none !important;
+}
+
+.controls-toggle-btn.active {
+    background: var(--gold-dark);
+    transform: translateX(-50%) rotate(180deg);
+}
+
+/* Ajuste para asegurar que la flecha sea visible y clickeable */
 .controls-toggle-btn {
     position: absolute;
     bottom: 10px;
@@ -165,6 +176,7 @@
     transition: all 0.3s ease;
     box-shadow: 0 4px 12px rgba(0,0,0,0.5);
 }
+
 
 .controls-toggle-btn:hover {
     transform: translateX(-50%) scale(1.1);
