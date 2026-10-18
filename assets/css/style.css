@@ -3269,3 +3269,94 @@ mark.search-highlight {
         font-size: 0.86rem;
     }
 }
+
+/* ==========================================================================
+   BARRA SUPERIOR DE RETORNO A LANDING PAGE
+   ========================================================================== */
+.catalog-top-nav {
+    background: rgba(9, 10, 13, 0.95);
+    border-bottom: 1px solid var(--border-gold);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    padding: 8px 16px;
+}
+
+.catalog-top-nav-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.nav-back-to-home {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--gold-light);
+    text-decoration: none;
+    font-size: 0.84rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    background: rgba(200, 164, 93, 0.1);
+    border: 1px solid var(--border-gold-subtle);
+    transition: var(--transition-luxury);
+}
+
+.nav-back-to-home:hover {
+    background: rgba(200, 164, 93, 0.22);
+    border-color: var(--gold-primary);
+    color: #fff;
+    transform: translateX(-3px);
+}
+
+.catalog-pill-indicator {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.nav-wa-quick-contact {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #25d366;
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 20px;
+    transition: var(--transition-luxury);
+}
+
+.nav-wa-quick-contact:hover {
+    background: #20bd5a;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+    color: #fff;
+}
+
+@media (max-width: 600px) {
+    .catalog-pill-indicator {
+        display: none;
+    }
+    .catalog-top-nav {
+        padding: 6px 10px;
+    }
+    .nav-back-to-home {
+        font-size: 0.78rem;
+        padding: 5px 10px;
+    }
+    .nav-wa-quick-contact {
+        font-size: 0.74rem;
+        padding: 5px 10px;
+    }
+}
