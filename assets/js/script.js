@@ -1,6 +1,6 @@
 /**
- * J.J PARFUMS - Catálogo Exclusivo
- * Versión Profesional con Favoritos y Lightbox
+ * J.J PARFUMS - Catálogo Exclusivo de Perfumería Fina en Roll-On
+ * Motor de UI, Filtros, Favoritos, WhatsApp y Rendimiento Móvil
  */
 
 // --- ESTADO GLOBAL ---
@@ -8,144 +8,356 @@ var state = {
     favorites: JSON.parse(localStorage.getItem("jj_favorites") || "[]"),
     favoritesOnly: false,
     activeHouse: "all",
+    activeGenders: ["all"],
+    activeMood: "all",
+    activeNote: "all",
+    activeLetter: "all",
     searchTerm: "",
-    activeGenders: ["all"]
+    viewMode: localStorage.getItem("jj_view_mode") || "grid",
+    filteredList: [],
+    renderedCount: 0,
+    pageSize: 28,
+    currentModalPerfume: null
 };
 
-// --- INICIALIZACIÓN DE UI ---
-function initUI() {
-    // Manejo de Video Responsivo (PC vs Móvil)
-    var heroVideo = document.getElementById("heroVideo");
-    if (heroVideo) {
-        function updateVideoSource() {
-            var isMobile = window.innerWidth <= 768;
-            var source = isMobile ? "img/herovertical.mp4" : "img/hero.mp4";
-            if (heroVideo.src !== source) {
-                heroVideo.src = source;
-                heroVideo.load();
-            }
-        }
-        updateVideoSource();
-        window.addEventListener("resize", updateVideoSource);
-    }
+// --- MAPAS DE FILTRO ---
+var MOOD_MAP = {
+    seductive: ["ámbar", "ambar", "vainilla", "canela", "dulce", "cuero", "café", "cafe", "haba tonka", "praliné", "praline", "incienso", "almizcle", "tabaco", "chocolate", "seductor", "seducción", "seduccion", "ron", "caramelo"],
+    fresh: ["cítrico", "citrico", "limón", "limon", "bergamota", "mandarina", "naranja", "acuático", "acuatico", "marino", "menta", "fresco", "verde", "manzana", "ozónico", "ozonico", "pomelo", "toronja"],
+    elegant: ["amaderado", "cedro", "sándalo", "sandalo", "vetiver", "iris", "pachulí", "pachuli", "oud", "especiado", "cardamomo", "lavanda", "chipre", "cuero", "musgo"],
+    romantic: ["floral", "rosa", "jazmín", "jazmin", "peonía", "peonia", "orquídea", "orquidea", "violeta", "frutal", "durazno", "fresa", "frambuesa", "cereza", "vainilla", "lirio", "magnolia"]
+};
 
-    // Efecto de Brillo de Fondo
-    var glow = document.getElementById("bgGlow");
-
-    if (glow) {
-        window.addEventListener("mousemove", function(e) {
-            glow.style.left = e.clientX + "px";
-            glow.style.top = e.clientY + "px";
-        });
-    }
-
-    // Efectos Parallax del Hero
-    var layers = {
-        core: document.querySelector(".layer-core"),
-        editorial: document.querySelector(".layer-editorial"),
-        grounding: document.querySelector(".layer-grounding")
-    };
-    window.addEventListener("scroll", function() {
-        var scrolled = window.pageYOffset;
-        if (layers.core) layers.core.style.transform = "translateY(" + (scrolled * 0.1) + "px)";
-        if (layers.editorial) layers.editorial.style.transform = "translateY(" + (scrolled * 0.3) + "px)";
-        if (layers.grounding) layers.grounding.style.transform = "translateY(" + (scrolled * 0.5) + "px)";
-    });
-
-    // Inyectar Lightbox al final del body
-    var lightbox = document.createElement("div");
-    lightbox.id = "imageLightbox";
-    lightbox.className = "lightbox";
-    lightbox.innerHTML = '<div class="lightbox-overlay"><img src="" id="lightboxImg" alt="Vista ampliada"><span class="lightbox-close">&times;</span></div>';
-    document.body.appendChild(lightbox);
-
-    lightbox.addEventListener("click", function() {
-        lightbox.classList.remove("active");
-    });
+// --- UTILIDADES ---
+function getPerfumeId(p) {
+    if (!p) return "";
+    return ((p.house || "") + "___" + (p.name || "")).toLowerCase().trim();
 }
 
-// --- LÓGICA DE FAVORITOS ---
-function toggleFavorite(perfumeId) {
-    console.log("Toggling favorite for:", perfumeId);
+function getWhatsAppUrl(p) {
+    var phone = "573126654386";
+    var text = "Hola J.J Parfums, me interesa pedir el extracto en roll-on concentrado de *" + p.name + "* (" + p.house + ") de máxima fijación. ¿Me confirmas precio y disponibilidad?";
+    return "https://wa.me/" + phone + "?text=" + encodeURIComponent(text);
+}
+
+function getFavoritesWhatsAppUrl() {
+    var phone = "573126654386";
+    var favPerfumes = catalogData.filter(function(p) {
+        return state.favorites.indexOf(getPerfumeId(p)) !== -1;
+    });
+    if (favPerfumes.length === 0) return "";
+    var lines = favPerfumes.map(function(p, i) {
+        return (i + 1) + ". *" + p.name + "* (" + p.house + " - " + p.gender + ")";
+    }).join("\n");
+    var text = "Hola J.J Parfums, he guardado estos extractos en roll-on en mi lista de favoritos y me gustaría consultar disponibilidad y precio:\n\n" + lines + "\n\n¿Me brindas más información?";
+    return "https://wa.me/" + phone + "?text=" + encodeURIComponent(text);
+}
+
+function getRollonPlaceholderSVG() {
+    return '<svg viewBox="0 0 100 160" class="bottle-svg-placeholder" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">' +
+        '<defs>' +
+            '<linearGradient id="goldCapGrad" x1="0%" y1="0%" x2="100%" y2="100%">' +
+                '<stop offset="0%" stop-color="#faecc8"/>' +
+                '<stop offset="50%" stop-color="#c8a45d"/>' +
+                '<stop offset="100%" stop-color="#7d5d24"/>' +
+            '</linearGradient>' +
+            '<linearGradient id="glassGrad" x1="0%" y1="0%" x2="100%" y2="0%">' +
+                '<stop offset="0%" stop-color="#141720"/>' +
+                '<stop offset="50%" stop-color="#242b38"/>' +
+                '<stop offset="100%" stop-color="#10131a"/>' +
+            '</linearGradient>' +
+        '</defs>' +
+        '<rect x="36" y="10" width="28" height="34" rx="3" fill="url(#goldCapGrad)" stroke="#c8a45d" stroke-width="1.2"/>' +
+        '<line x1="36" y1="21" x2="64" y2="21" stroke="rgba(0,0,0,0.35)" stroke-width="1"/>' +
+        '<rect x="30" y="44" width="40" height="98" rx="6" fill="url(#glassGrad)" stroke="rgba(200,164,93,0.4)" stroke-width="1.2"/>' +
+        '<rect x="33" y="66" width="34" height="56" rx="2" fill="#101217" stroke="rgba(200,164,93,0.5)" stroke-width="0.8"/>' +
+        '<text x="50" y="85" text-anchor="middle" font-family="\'Cinzel\', Georgia, serif" font-size="9" font-weight="700" fill="#eddab1">JJ</text>' +
+        '<text x="50" y="96" text-anchor="middle" font-family="\'Montserrat\', sans-serif" font-size="3.8" letter-spacing="0.8" fill="#c8a45d">PARFUMS</text>' +
+        '<line x1="37" y1="102" x2="63" y2="102" stroke="#c8a45d" stroke-width="0.6"/>' +
+        '<text x="50" y="112" text-anchor="middle" font-family="\'Montserrat\', sans-serif" font-size="3.5" fill="#8f94a0">ROLL-ON</text>' +
+    '</svg>';
+}
+
+// --- ACTUALIZACIÓN DE CONTADORES DE FAVORITOS ---
+function updateFavoritesBadge() {
+    var countFavs = document.getElementById("countFavs");
+    if (countFavs) {
+        countFavs.textContent = state.favorites.length;
+    }
+}
+
+// --- LÓGICA DE FAVORITOS (ALTO RENDIMIENTO) ---
+function toggleFavorite(perfumeId, triggerBtn) {
+    if (!perfumeId) return;
     var index = state.favorites.indexOf(perfumeId);
+    var isFav = false;
+
     if (index === -1) {
         state.favorites.push(perfumeId);
+        isFav = true;
     } else {
         state.favorites.splice(index, 1);
+        isFav = false;
     }
+
     localStorage.setItem("jj_favorites", JSON.stringify(state.favorites));
-    window.renderCatalog();
+    updateFavoritesBadge();
+
+    // Actualizar botón en el modal si está abierto
+    var modalFavBtn = document.getElementById("modalFavBtn");
+    if (modalFavBtn && state.currentModalPerfume && getPerfumeId(state.currentModalPerfume) === perfumeId) {
+        modalFavBtn.innerHTML = isFav ? "❤️" : "🤍";
+        modalFavBtn.classList.toggle("active", isFav);
+    }
+
+    // Actualizar botones de tarjetas activas en pantalla
+    var cardFavBtns = document.querySelectorAll('.favorite-btn[data-id="' + perfumeId + '"]');
+    cardFavBtns.forEach(function(btn) {
+        btn.innerHTML = isFav ? "❤️" : "🤍";
+        btn.classList.toggle("active", isFav);
+        btn.classList.add("pulse");
+        setTimeout(function() { btn.classList.remove("pulse"); }, 300);
+    });
+
+    // Si está viendo exclusivamente favoritos, actualizar la vista
+    if (state.favoritesOnly) {
+        filterAndRender(true);
+    }
 }
 
-// --- MODAL Y LIGHTBOX ---
+// --- MODAL / BOTTOM SHEET DE FICHA TÉCNICA ---
 function openPerfumeModal(perfume) {
-    console.log("Opening modal for:", perfume.name);
+    if (!perfume) return;
+    state.currentModalPerfume = perfume;
+
     var modal = document.getElementById("perfumeModal");
     var img = document.getElementById("modalBottleImg");
+    var placeholder = document.getElementById("modalBottlePlaceholder");
     var name = document.getElementById("modalPerfumeName");
     var house = document.getElementById("modalHouse");
     var gender = document.getElementById("modalGender");
     var notes = document.getElementById("modalNotes");
+    var tagsContainer = document.getElementById("modalTagsContainer");
+    var waBtn = document.getElementById("modalWhatsAppBtn");
+    var modalFavBtn = document.getElementById("modalFavBtn");
 
-    if (!modal) {
-        console.error("Modal element not found");
-        return;
-    }
+    if (!modal) return;
 
     name.textContent = perfume.name;
     house.textContent = perfume.house;
     gender.textContent = perfume.gender;
-    notes.textContent = perfume.notes;
+    gender.className = "gender-badge badge-" + perfume.gender;
+    notes.textContent = perfume.notes || "Extracto puro de perfumería fina de máxima fijación.";
 
-    var imgPath = (perfume && perfume.image) ? perfume.image : "";
-    img.src = imgPath;
+    // Configurar imagen o placeholder
+    if (perfume.image) {
+        img.src = perfume.image;
+        img.style.display = "block";
+        if (placeholder) placeholder.style.display = "none";
+        img.onerror = function() {
+            img.style.display = "none";
+            if (placeholder) {
+                placeholder.innerHTML = getRollonPlaceholderSVG();
+                placeholder.style.display = "flex";
+            }
+        };
+    } else {
+        img.style.display = "none";
+        if (placeholder) {
+            placeholder.innerHTML = getRollonPlaceholderSVG();
+            placeholder.style.display = "flex";
+        }
+    }
 
-    document.getElementById("modalBottleStage").style.display = "block";
-    modal.style.display = "flex";
+    // Generar tags olfativos desde las notas
+    if (tagsContainer) {
+        tagsContainer.innerHTML = "";
+        var noteKeywords = ["amaderado", "cítrico", "floral", "gourmand", "ámbar", "acuático", "especiado", "cuero", "vainilla", "oud", "lavanda", "fresco", "frutal"];
+        var lowerNotes = (perfume.notes || "").toLowerCase();
+        var foundTags = [];
+
+        noteKeywords.forEach(function(k) {
+            if (lowerNotes.indexOf(k) !== -1) {
+                foundTags.push(k.charAt(0).toUpperCase() + k.slice(1));
+            }
+        });
+
+        if (foundTags.length === 0) {
+            foundTags = ["Extracto Concentrado", "Larga Duración"];
+        }
+
+        foundTags.slice(0, 4).forEach(function(t) {
+            var tagEl = document.createElement("span");
+            tagEl.className = "modal-tag";
+            tagEl.textContent = t;
+            tagsContainer.appendChild(tagEl);
+        });
+    }
+
+    // Link directo a WhatsApp
+    if (waBtn) {
+        waBtn.href = getWhatsAppUrl(perfume);
+    }
+
+    // Estado del botón de favorito en el modal
+    if (modalFavBtn) {
+        var id = getPerfumeId(perfume);
+        var isFav = (state.favorites.indexOf(id) !== -1);
+        modalFavBtn.innerHTML = isFav ? "❤️" : "🤍";
+        modalFavBtn.classList.toggle("active", isFav);
+        modalFavBtn.onclick = function() {
+            toggleFavorite(id);
+        };
+    }
+
     modal.classList.add("active");
     modal.setAttribute("aria-hidden", "false");
-
-    img.onclick = function() {
-        var lb = document.getElementById("imageLightbox");
-        var lbImg = document.getElementById("lightboxImg");
-        lbImg.src = img.src;
-        lb.classList.add("active");
-    };
+    document.body.classList.add("modal-open");
 }
 
 function closePerfumeModal() {
     var modal = document.getElementById("perfumeModal");
     if (modal) {
-        modal.style.display = "none";
         modal.classList.remove("active");
         modal.setAttribute("aria-hidden", "true");
+        document.body.classList.remove("modal-open");
     }
 }
 
-// --- RENDERIZADO DEL CATÁLOGO ---
-window.renderCatalog = function() {
-    var container = document.getElementById("catalogContainer");
-    var resultsCounter = document.getElementById("resultsCounter");
-    if (!container) return;
+// --- CREACIÓN DE TARJETA DE PERFUME ---
+function createPerfumeCard(p) {
+    var id = getPerfumeId(p);
+    var isFav = (state.favorites.indexOf(id) !== -1);
+    var card = document.createElement("article");
+    card.className = "perfume-card";
 
-    container.innerHTML = "";
+    var waUrl = getWhatsAppUrl(p);
 
-    var filtered = catalogData.filter(function(p) {
-        var matchesSearch = !state.searchTerm ||
-                            (p.name && p.name.toLowerCase().indexOf(state.searchTerm) !== -1) ||
-                            (p.house && p.house.toLowerCase().indexOf(state.searchTerm) !== -1);
-        var matchesHouse = state.activeHouse === "all" || p.house === state.activeHouse;
+    var imgHtml = p.image
+        ? '<img src="' + p.image + '" alt="' + p.name + '" class="card-bottle-img" loading="lazy" onerror="this.style.display=\'none\'; this.nextElementSibling.style.display=\'flex\';">' +
+          '<div class="card-bottle-placeholder" style="display:none;">' + getRollonPlaceholderSVG() + '</div>'
+        : '<div class="card-bottle-placeholder">' + getRollonPlaceholderSVG() + '</div>';
 
-        var matchesGender = state.activeGenders.indexOf("all") !== -1 ||
-                            state.activeGenders.indexOf(p.gender) !== -1;
+    card.innerHTML =
+        '<div class="card-top">' +
+            '<span class="card-house-micro">' + p.house + '</span>' +
+            '<button type="button" class="favorite-btn ' + (isFav ? 'active' : '') + '" data-id="' + id + '" title="' + (isFav ? 'Quitar de favoritos' : 'Añadir a favoritos') + '" aria-label="Favorito">' +
+                (isFav ? '❤️' : '🤍') +
+            '</button>' +
+        '</div>' +
+        '<div class="card-image-box">' +
+            imgHtml +
+        '</div>' +
+        '<div class="card-info">' +
+            '<div class="card-header-left">' +
+                '<h3 class="perfume-name">' + p.name + '</h3>' +
+                '<span class="gender-badge badge-' + p.gender + '">' + p.gender + '</span>' +
+            '</div>' +
+            '<p class="card-notes">' + (p.notes || 'Extracto puro concentrado en roll-on.') + '</p>' +
+        '</div>' +
+        '<div class="card-footer">' +
+            '<button type="button" class="card-view-notes-btn">Ver Ficha</button>' +
+            '<a href="' + waUrl + '" class="card-whatsapp-quick" target="_blank" rel="noopener noreferrer" title="Pedir por WhatsApp">' +
+                '<svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">' +
+                    '<path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>' +
+                '</svg>' +
+                '<span>Pedir</span>' +
+            '</a>' +
+        '</div>';
 
-        var id = p.id || p.name;
-        var matchesFavs = !state.favoritesOnly || (id && state.favorites.indexOf(id) !== -1);
+    // Abrir modal al tocar la tarjeta o botón "Ver Ficha"
+    card.onclick = function(e) {
+        if (e.target.closest(".favorite-btn") || e.target.closest(".card-whatsapp-quick")) {
+            return;
+        }
+        openPerfumeModal(p);
+    };
 
-        return matchesSearch && matchesHouse && matchesGender && matchesFavs;
+    var favBtn = card.querySelector(".favorite-btn");
+    if (favBtn) {
+        favBtn.onclick = function(e) {
+            e.stopPropagation();
+            toggleFavorite(id, this);
+        };
+    }
+
+    var waBtn = card.querySelector(".card-whatsapp-quick");
+    if (waBtn) {
+        waBtn.onclick = function(e) {
+            e.stopPropagation();
+        };
+    }
+
+    return card;
+}
+
+// --- FILTRADO DE DATOS ---
+function filterData() {
+    var term = state.searchTerm.toLowerCase().trim();
+
+    return catalogData.filter(function(p) {
+        // Búsqueda en nombre, casa y notas
+        var matchesSearch = !term ||
+            (p.name && p.name.toLowerCase().indexOf(term) !== -1) ||
+            (p.house && p.house.toLowerCase().indexOf(term) !== -1) ||
+            (p.notes && p.notes.toLowerCase().indexOf(term) !== -1);
+
+        if (!matchesSearch) return false;
+
+        // Casa
+        if (state.activeHouse !== "all" && p.house !== state.activeHouse) {
+            return false;
+        }
+
+        // Género
+        if (state.activeGenders.indexOf("all") === -1 && state.activeGenders.indexOf(p.gender) === -1) {
+            return false;
+        }
+
+        // Favoritos
+        if (state.favoritesOnly) {
+            var id = getPerfumeId(p);
+            if (state.favorites.indexOf(id) === -1) {
+                return false;
+            }
+        }
+
+        // Filtro por Ocasión / Mood
+        if (state.activeMood !== "all") {
+            var keywords = MOOD_MAP[state.activeMood] || [];
+            var lowerNotes = (p.notes || "").toLowerCase();
+            var matchesMood = keywords.some(function(k) {
+                return lowerNotes.indexOf(k) !== -1;
+            });
+            if (!matchesMood) return false;
+        }
+
+        // Filtro por Acordes Olfativos
+        if (state.activeNote !== "all") {
+            var noteTerm = state.activeNote.toLowerCase();
+            var pNotes = (p.notes || "").toLowerCase();
+            // Comparación flexible quitando tildes para abarcar ambar/ámbar, citrico/cítrico
+            var normNotes = pNotes.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            var normTerm = noteTerm.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            if (normNotes.indexOf(normTerm) === -1) {
+                return false;
+            }
+        }
+
+        // Filtro por Letra Inicial de Casa
+        if (state.activeLetter !== "all") {
+            var firstLetter = (p.house || "").trim().charAt(0).toUpperCase();
+            if (firstLetter !== state.activeLetter) {
+                return false;
+            }
+        }
+
+        return true;
     });
+}
 
-    // --- ACTUALIZACIÓN DE CONTADORES DE GÉNERO ---
+// --- ACTUALIZACIÓN DE CONTADORES Y CHIPS ACTIVOS ---
+function updateFilterCountsAndBadges() {
     var counts = { Hombre: 0, Mujer: 0, Unisex: 0 };
     catalogData.forEach(function(p) {
         if (counts.hasOwnProperty(p.gender)) {
@@ -162,111 +374,376 @@ window.renderCatalog = function() {
     if (countH) countH.textContent = counts.Hombre;
     if (countM) countM.textContent = counts.Mujer;
     if (countU) countU.textContent = counts.Unisex;
+    updateFavoritesBadge();
 
-    if (resultsCounter) {
-        resultsCounter.textContent = "Mostrando " + filtered.length + " fragancias";
+    // Contar filtros activos diferentes al default
+    var activeFiltersCount = 0;
+    if (state.activeHouse !== "all") activeFiltersCount++;
+    if (state.activeMood !== "all") activeFiltersCount++;
+    if (state.activeNote !== "all") activeFiltersCount++;
+    if (state.activeLetter !== "all") activeFiltersCount++;
+
+    var badge = document.getElementById("activeFilterBadge");
+    if (badge) {
+        if (activeFiltersCount > 0) {
+            badge.textContent = activeFiltersCount;
+            badge.style.display = "inline-flex";
+        } else {
+            badge.style.display = "none";
+        }
     }
 
-    if (filtered.length === 0) {
-        container.innerHTML = '<div class="no-results">No se encontraron fragancias que coincidan con los filtros.</div>';
+    var resetBtn = document.getElementById("resetFiltersBtn");
+    if (resetBtn) {
+        var hasAnyFilter = (activeFiltersCount > 0 || state.searchTerm || state.favoritesOnly || state.activeGenders.indexOf("all") === -1);
+        resetBtn.style.display = hasAnyFilter ? "inline-flex" : "none";
+    }
+
+    // Actualizar etiquetas activas en la barra de resultados
+    var activeContainer = document.getElementById("activeFiltersContainer");
+    if (activeContainer) {
+        activeContainer.innerHTML = "";
+
+        if (state.activeHouse !== "all") {
+            createFilterTag(state.activeHouse, function() {
+                state.activeHouse = "all";
+                var hs = document.getElementById("houseSelect");
+                if (hs) hs.value = "all";
+                filterAndRender(true);
+            });
+        }
+        if (state.activeMood !== "all") {
+            var moodNames = { seductive: "Seductor", fresh: "Fresco", elegant: "Elegante", romantic: "Romántico" };
+            createFilterTag("Mood: " + (moodNames[state.activeMood] || state.activeMood), function() {
+                state.activeMood = "all";
+                document.querySelectorAll(".mood-btn").forEach(function(b) {
+                    b.classList.toggle("active", b.getAttribute("data-mood") === "all");
+                });
+                filterAndRender(true);
+            });
+        }
+        if (state.activeNote !== "all") {
+            createFilterTag("Nota: " + state.activeNote, function() {
+                state.activeNote = "all";
+                document.querySelectorAll(".chip-btn").forEach(function(b) {
+                    b.classList.toggle("active", b.getAttribute("data-note") === "all");
+                });
+                filterAndRender(true);
+            });
+        }
+        if (state.activeLetter !== "all") {
+            createFilterTag("Letra: " + state.activeLetter, function() {
+                state.activeLetter = "all";
+                document.querySelectorAll(".alpha-btn").forEach(function(b) {
+                    b.classList.remove("active");
+                });
+                filterAndRender(true);
+            });
+        }
+    }
+}
+
+function createFilterTag(label, onRemove) {
+    var activeContainer = document.getElementById("activeFiltersContainer");
+    if (!activeContainer) return;
+    var tag = document.createElement("span");
+    tag.className = "active-tag";
+    tag.innerHTML = label + ' <span class="tag-remove" aria-hidden="true">&times;</span>';
+    tag.onclick = onRemove;
+    activeContainer.appendChild(tag);
+}
+
+// --- RENDERIZADO PROGRESIVO DEL CATÁLOGO ---
+function renderNextChunk() {
+    var container = document.getElementById("catalogContainer");
+    var loadMoreContainer = document.getElementById("loadMoreContainer");
+    if (!container) return;
+
+    var total = state.filteredList.length;
+    var start = state.renderedCount;
+    var end = Math.min(start + state.pageSize, total);
+
+    var grid = container.querySelector(".perfumes-grid");
+    if (!grid) {
+        grid = document.createElement("div");
+        grid.className = "perfumes-grid";
+        container.appendChild(grid);
+    }
+
+    for (var i = start; i < end; i++) {
+        var card = createPerfumeCard(state.filteredList[i]);
+        grid.appendChild(card);
+    }
+
+    state.renderedCount = end;
+
+    // Actualizar contador
+    var resultsCounter = document.getElementById("resultsCounter");
+    if (resultsCounter) {
+        if (state.favoritesOnly) {
+            resultsCounter.textContent = "Mostrando tus " + total + " fragancias favoritas";
+        } else {
+            resultsCounter.textContent = "Mostrando " + end + " de " + total + " fragancias";
+        }
+    }
+
+    // Manejar botón de cargar más
+    if (loadMoreContainer) {
+        if (state.renderedCount < total) {
+            loadMoreContainer.style.display = "flex";
+            var remaining = total - state.renderedCount;
+            var btnSpan = loadMoreContainer.querySelector("span");
+            if (btnSpan) btnSpan.textContent = "Ver más fragancias (quedan " + remaining + ")";
+        } else {
+            loadMoreContainer.style.display = "none";
+        }
+    }
+}
+
+function filterAndRender(reset) {
+    if (reset) {
+        state.renderedCount = 0;
+    }
+
+    var container = document.getElementById("catalogContainer");
+    var bannerSlot = document.getElementById("favoritesBannerSlot");
+    var loadMoreContainer = document.getElementById("loadMoreContainer");
+
+    if (!container) return;
+
+    state.filteredList = filterData();
+    updateFilterCountsAndBadges();
+
+    container.innerHTML = "";
+    if (bannerSlot) bannerSlot.innerHTML = "";
+
+    // Manejo de Favoritos: Banner o Estado Vacío
+    if (state.favoritesOnly) {
+        if (state.filteredList.length === 0) {
+            if (bannerSlot) bannerSlot.innerHTML = "";
+            container.innerHTML =
+                '<div class="favorites-empty-box">' +
+                    '<div class="fav-empty-heart">🤍</div>' +
+                    '<h3 class="fav-empty-title">Aún no has guardado fragancias favoritas</h3>' +
+                    '<p class="fav-empty-desc">Toca el corazón (❤️) en cualquier perfume del catálogo para crear tu selección y consultar precio o encargo por WhatsApp.</p>' +
+                    '<button type="button" class="fav-empty-browse-btn" id="exitFavoritesBtn">Explorar Catálogo Completo</button>' +
+                '</div>';
+
+            var exitBtn = document.getElementById("exitFavoritesBtn");
+            if (exitBtn) {
+                exitBtn.onclick = function() {
+                    state.favoritesOnly = false;
+                    var favPill = document.getElementById("favoritesFilterBtn");
+                    if (favPill) favPill.classList.remove("active");
+                    filterAndRender(true);
+                };
+            }
+            if (loadMoreContainer) loadMoreContainer.style.display = "none";
+            return;
+        } else {
+            // Banner de consulta múltiple por WhatsApp
+            if (bannerSlot) {
+                var favCount = state.filteredList.length;
+                var waFavUrl = getFavoritesWhatsAppUrl();
+                bannerSlot.innerHTML =
+                    '<div class="favorites-action-banner">' +
+                        '<div class="fav-banner-content">' +
+                            '<div class="fav-banner-badge">✨ Tu Selección Personal (' + favCount + ')</div>' +
+                            '<h2 class="fav-banner-title">¿Listo para encargar tus extractos favoritos?</h2>' +
+                            '<p class="fav-banner-desc">Envíanos tu lista guardada en un solo mensaje de WhatsApp para darte asesoría y precio preferencial.</p>' +
+                        '</div>' +
+                        '<a href="' + waFavUrl + '" target="_blank" rel="noopener noreferrer" class="fav-banner-wa-btn">' +
+                            '<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">' +
+                                '<path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>' +
+                            '</svg>' +
+                            '<span>Consultar Selección (' + favCount + ') por WhatsApp</span>' +
+                        '</a>' +
+                    '</div>';
+            }
+        }
+    }
+
+    if (state.filteredList.length === 0) {
+        container.innerHTML =
+            '<div class="no-results-box">' +
+                '<div class="no-results-icon">' +
+                    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">' +
+                        '<circle cx="11" cy="11" r="8"></circle>' +
+                        '<line x1="21" y1="21" x2="16.65" y2="16.65"></line>' +
+                        '<line x1="8" y1="11" x2="14" y2="11"></line>' +
+                    '</svg>' +
+                '</div>' +
+                '<h3 class="no-results-title">No se encontraron fragancias</h3>' +
+                '<p class="no-results-text">Intenta ajustar tu búsqueda o restablecer los filtros para ver más opciones.</p>' +
+                '<button type="button" class="no-results-btn" onclick="resetAllFilters()">Restablecer Filtros</button>' +
+            '</div>';
+
+        var resultsCounter = document.getElementById("resultsCounter");
+        if (resultsCounter) resultsCounter.textContent = "0 fragancias encontradas";
+        if (loadMoreContainer) loadMoreContainer.style.display = "none";
         return;
     }
 
-    var grouped = {};
-    filtered.forEach(function(p) {
-        if (!grouped[p.house]) grouped[p.house] = [];
-        grouped[p.house].push(p);
-    });
+    // Renderizar primer lote
+    renderNextChunk();
+}
 
-    var sortedHouses = Object.keys(grouped).sort(function(a, b) {
-        return a.localeCompare(b, undefined, { sensitivity: 'base', numeric: true });
-    });
-    sortedHouses.forEach(function(houseName) {
-        var section = document.createElement("section");
-        section.className = "house-group";
-        section.innerHTML = '<div class="house-header"><h2 class="house-title">' + houseName + '</h2></div>';
-
-        var grid = document.createElement("div");
-        grid.className = "perfumes-grid";
-
-        grouped[houseName].forEach(function(p) {
-            var id = p.id || p.name;
-            var isFav = (id && state.favorites.indexOf(id) !== -1);
-            var card = document.createElement("article");
-            card.className = "perfume-card";
-
-            var imgPath = p.image || "";
-
-            card.innerHTML =
-                '<div class="card-top">' +
-                    '<button class="favorite-btn ' + (isFav ? 'active' : '') + '" title="Añadir a favoritos">' +
-                        (isFav ? '❤️' : '🤍') +
-                    '</button>' +
-                '</div>' +
-                '<div class="card-image-box">' +
-                    '<img src="' + imgPath + '" alt="' + p.name + '" class="card-bottle-img">' +
-                '</div>' +
-                '<div class="card-info">' +
-                    '<div class="card-header-left">' +
-                        '<span class="card-house-micro">' + p.house + '</span>' +
-                        '<h3 class="perfume-name">' + p.name + '</h3>' +
-                        '<span class="gender-badge badge-' + p.gender + '">' + p.gender + '</span>' +
-                    '</div>' +
-                    '<p class="card-notes">' + p.notes + '</p>' +
-                '</div>' +
-                '<div class="card-footer">' +
-                    '<button class="card-view-notes-btn" onclick="openPerfumeModal(' + JSON.stringify(p).replace(/"/g, '&quot;') + ')">Ver Detalles</button>' +
-                    '<span class="card-extract-label">Extracto Puro</span>' +
-                '</div>';
-
-            card.onclick = function() {
-                openPerfumeModal(p);
-            };
-
-            var favBtn = card.querySelector(".favorite-btn");
-            if (favBtn) {
-                favBtn.onclick = function(e) {
-                    e.stopPropagation();
-                    toggleFavorite(id);
-                };
-            }
-
-            grid.appendChild(card);
-        });
-
-        section.appendChild(grid);
-        container.appendChild(section);
-    });
+window.renderCatalog = function() {
+    filterAndRender(true);
 };
 
-// --- EVENTOS DE DOCUMENTO ---
-document.addEventListener("DOMContentLoaded", function() {
-    initUI();
+// --- RESTABLECER TODOS LOS FILTROS ---
+function resetAllFilters() {
+    state.searchTerm = "";
+    state.activeHouse = "all";
+    state.activeGenders = ["all"];
+    state.activeMood = "all";
+    state.activeNote = "all";
+    state.activeLetter = "all";
+    state.favoritesOnly = false;
 
-    // Lógica para Mostrar/Ocultar Filtros (Flecha)
-    var controlsToggle = document.getElementById("controlsToggle");
-    var controlsContainer = document.querySelector(".controls-container");
-    if (controlsToggle && controlsContainer) {
-        controlsToggle.onclick = function() {
-            controlsContainer.classList.toggle("collapsed");
-            this.classList.toggle("active");
-        };
-    }
+    var sInput = document.getElementById("searchInput");
+    if (sInput) sInput.value = "";
 
+    var clearBtn = document.getElementById("clearSearchBtn");
+    if (clearBtn) clearBtn.classList.remove("visible");
+
+    var hSelect = document.getElementById("houseSelect");
+    if (hSelect) hSelect.value = "all";
+
+    document.querySelectorAll(".gender-filters .filter-btn").forEach(function(b) {
+        var g = b.getAttribute("data-gender");
+        b.classList.toggle("active", g === "all");
+    });
+
+    var favPill = document.getElementById("favoritesFilterBtn");
+    if (favPill) favPill.classList.remove("active");
+
+    document.querySelectorAll(".mood-btn").forEach(function(b) {
+        b.classList.toggle("active", b.getAttribute("data-mood") === "all");
+    });
+
+    document.querySelectorAll(".chip-btn").forEach(function(b) {
+        b.classList.toggle("active", b.getAttribute("data-note") === "all");
+    });
+
+    document.querySelectorAll(".alpha-btn").forEach(function(b) {
+        b.classList.remove("active");
+    });
+
+    filterAndRender(true);
+}
+window.resetAllFilters = resetAllFilters;
+
+// --- INICIALIZACIÓN DE CONTROLES Y EVENTOS ---
+function initControls() {
+    // 1. Buscador en Vivo con debounce
     var searchInput = document.getElementById("searchInput");
-
+    var clearSearchBtn = document.getElementById("clearSearchBtn");
+    var searchTimeout = null;
 
     if (searchInput) {
         searchInput.addEventListener("input", function() {
-            state.searchTerm = this.value.toLowerCase();
-            window.renderCatalog();
+            var val = this.value;
+            if (clearSearchBtn) {
+                clearSearchBtn.classList.toggle("visible", val.length > 0);
+            }
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(function() {
+                state.searchTerm = val;
+                filterAndRender(true);
+            }, 120);
         });
     }
 
+    if (clearSearchBtn) {
+        clearSearchBtn.addEventListener("click", function() {
+            if (searchInput) {
+                searchInput.value = "";
+                searchInput.focus();
+            }
+            this.classList.remove("visible");
+            state.searchTerm = "";
+            filterAndRender(true);
+        });
+    }
+
+    // 2. Toggle de Gaveta de Filtros Avanzados (Mobile & Desktop)
+    var toggleFiltersBtn = document.getElementById("toggleFiltersBtn");
+    var advancedDrawer = document.getElementById("advancedFiltersDrawer");
+    if (toggleFiltersBtn && advancedDrawer) {
+        toggleFiltersBtn.addEventListener("click", function() {
+            var isOpen = advancedDrawer.classList.toggle("open");
+            this.classList.toggle("active", isOpen);
+            this.setAttribute("aria-expanded", isOpen ? "true" : "false");
+        });
+    }
+
+    // 3. Filtros de Género
+    var genderBtns = document.querySelectorAll(".gender-filters .filter-btn:not(#favoritesFilterBtn)");
+    genderBtns.forEach(function(btn) {
+        btn.addEventListener("click", function() {
+            var gender = this.getAttribute("data-gender");
+            state.favoritesOnly = false;
+            var favBtn = document.getElementById("favoritesFilterBtn");
+            if (favBtn) favBtn.classList.remove("active");
+
+            if (gender === "all") {
+                state.activeGenders = ["all"];
+                genderBtns.forEach(function(b) { b.classList.remove("active"); });
+                this.classList.add("active");
+            } else {
+                if (state.activeGenders.indexOf("all") !== -1) {
+                    state.activeGenders = [];
+                }
+                var idx = state.activeGenders.indexOf(gender);
+                if (idx === -1) {
+                    state.activeGenders.push(gender);
+                    this.classList.add("active");
+                } else {
+                    state.activeGenders.splice(idx, 1);
+                    this.classList.remove("active");
+                    if (state.activeGenders.length === 0) {
+                        state.activeGenders = ["all"];
+                        var allBtn = document.querySelector('.filter-btn[data-gender="all"]');
+                        if (allBtn) allBtn.classList.add("active");
+                    }
+                }
+                var allBtnEl = document.querySelector('.filter-btn[data-gender="all"]');
+                if (allBtnEl && state.activeGenders.indexOf("all") === -1) {
+                    allBtnEl.classList.remove("active");
+                }
+            }
+            filterAndRender(true);
+        });
+    });
+
+    // 4. Botón de Favoritos en la Barra Rápida
+    var favPillBtn = document.getElementById("favoritesFilterBtn");
+    if (favPillBtn) {
+        favPillBtn.addEventListener("click", function() {
+            state.favoritesOnly = !state.favoritesOnly;
+            this.classList.toggle("active", state.favoritesOnly);
+
+            if (state.favoritesOnly) {
+                // Al entrar a favoritos, normalizamos filtros visuales
+                genderBtns.forEach(function(b) {
+                    b.classList.toggle("active", b.getAttribute("data-gender") === "all");
+                });
+                state.activeGenders = ["all"];
+            }
+            filterAndRender(true);
+        });
+    }
+
+    // 5. Selector de Casas Perfumistas
     var houseSelect = document.getElementById("houseSelect");
-    if (houseSelect) {
-        var houses = [...new Set(catalogData.map(p => p.house))].sort();
-        houses.forEach(h => {
+    if (houseSelect && window.catalogData) {
+        var houses = [...new Set(catalogData.map(function(p) { return p.house; }))].sort(function(a, b) {
+            return a.localeCompare(b, "es", { sensitivity: "base" });
+        });
+
+        houses.forEach(function(h) {
             var opt = document.createElement("option");
             opt.value = h;
             opt.textContent = h;
@@ -275,73 +752,174 @@ document.addEventListener("DOMContentLoaded", function() {
 
         houseSelect.addEventListener("change", function() {
             state.activeHouse = this.value;
-            window.renderCatalog();
+            filterAndRender(true);
         });
     }
 
-    var genderBtns = document.querySelectorAll(".filter-btn");
-    genderBtns.forEach(btn => {
+    // 6. Selector de Moods / Ocasión
+    var moodBtns = document.querySelectorAll(".mood-btn");
+    moodBtns.forEach(function(btn) {
         btn.addEventListener("click", function() {
-            var filter = this.getAttribute("data-filter");
-            var gender = this.getAttribute("data-gender");
-
-            if (filter === "favorites") {
-                // Al activar favoritos, desactivamos todo lo demás para evitar conflictos
-                state.favoritesOnly = !state.favoritesOnly;
-                this.classList.toggle("active");
-
-                if (state.favoritesOnly) {
-                    state.activeGenders = ["all"];
-                    genderBtns.forEach(b => {
-                        if (b.getAttribute("data-gender")) b.classList.remove("active");
-                    });
-                }
-            } else if (gender) {
-                // Al seleccionar un género, desactivamos el filtro de favoritos
-                if (gender === "all") {
-                    state.activeGenders = ["all"];
-                    genderBtns.forEach(b => {
-                        if (b.getAttribute("data-gender")) b.classList.remove("active");
-                    });
-                    this.classList.add("active");
-                } else {
-                    state.favoritesOnly = false;
-                    var favBtn = document.getElementById("favoritesFilterBtn");
-                    if (favBtn) favBtn.classList.remove("active");
-
-                    if (state.activeGenders.indexOf("all") !== -1) {
-                        state.activeGenders = [];
-                    }
-
-                    if (state.activeGenders.indexOf(gender) === -1) {
-                        state.activeGenders.push(gender);
-                        this.classList.add("active");
-                    } else {
-                        // DESACTIVAR: Si ya estaba seleccionado, lo quitamos
-                        state.activeGenders = state.activeGenders.filter(function(g) { return g !== gender; });
-                        this.classList.remove("active");
-
-                        // Si no queda ningún género seleccionado, volvemos a "all"
-                        if (state.activeGenders.length === 0) {
-                            state.activeGenders = ["all"];
-                            genderBtns.forEach(b => {
-                                if (b.getAttribute("data-gender") === "all") b.classList.add("active");
-                            });
-                        }
-                    }
-                }
-                window.renderCatalog();
-            }
+            var mood = this.getAttribute("data-mood");
+            state.activeMood = mood;
+            moodBtns.forEach(function(b) { b.classList.remove("active"); });
+            this.classList.add("active");
+            filterAndRender(true);
         });
     });
 
+    // 7. Chips de Acordes Olfativos
+    var chipBtns = document.querySelectorAll(".chip-btn");
+    chipBtns.forEach(function(btn) {
+        btn.addEventListener("click", function() {
+            var note = this.getAttribute("data-note");
+            state.activeNote = note;
+            chipBtns.forEach(function(b) { b.classList.remove("active"); });
+            this.classList.add("active");
+            filterAndRender(true);
+        });
+    });
+
+    // 8. Índice Alfabético de Casas
+    var alphaContainer = document.getElementById("alphabetIndex");
+    if (alphaContainer && window.catalogData) {
+        alphaContainer.innerHTML = "";
+        var availableLetters = [...new Set(catalogData.map(function(p) {
+            return (p.house || "").trim().charAt(0).toUpperCase();
+        }))].sort();
+
+        var allLetterBtn = document.createElement("button");
+        allLetterBtn.type = "button";
+        allLetterBtn.className = "alpha-btn active";
+        allLetterBtn.textContent = "Todas";
+        allLetterBtn.onclick = function() {
+            state.activeLetter = "all";
+            document.querySelectorAll(".alpha-btn").forEach(function(b) { b.classList.remove("active"); });
+            this.classList.add("active");
+            filterAndRender(true);
+        };
+        alphaContainer.appendChild(allLetterBtn);
+
+        availableLetters.forEach(function(letter) {
+            var btn = document.createElement("button");
+            btn.type = "button";
+            btn.className = "alpha-btn";
+            btn.textContent = letter;
+            btn.onclick = function() {
+                if (state.activeLetter === letter) {
+                    state.activeLetter = "all";
+                    allLetterBtn.classList.add("active");
+                    this.classList.remove("active");
+                } else {
+                    state.activeLetter = letter;
+                    document.querySelectorAll(".alpha-btn").forEach(function(b) { b.classList.remove("active"); });
+                    this.classList.add("active");
+                }
+                filterAndRender(true);
+            };
+            alphaContainer.appendChild(btn);
+        });
+    }
+
+    // 9. Alternador de Vista (Cuadrícula / Lista)
+    var viewGridBtn = document.getElementById("viewGridBtn");
+    var viewListBtn = document.getElementById("viewListBtn");
+    var catalogContainer = document.getElementById("catalogContainer");
+
+    function applyViewMode(mode) {
+        state.viewMode = mode;
+        localStorage.setItem("jj_view_mode", mode);
+        if (catalogContainer) {
+            catalogContainer.classList.toggle("list-mode", mode === "list");
+        }
+        if (viewGridBtn) viewGridBtn.classList.toggle("active", mode === "grid");
+        if (viewListBtn) viewListBtn.classList.toggle("active", mode === "list");
+    }
+
+    if (viewGridBtn) viewGridBtn.onclick = function() { applyViewMode("grid"); };
+    if (viewListBtn) viewListBtn.onclick = function() { applyViewMode("list"); };
+    applyViewMode(state.viewMode);
+
+    // 10. Botón de Reset Filtros
+    var resetBtn = document.getElementById("resetFiltersBtn");
+    if (resetBtn) {
+        resetBtn.addEventListener("click", resetAllFilters);
+    }
+
+    // 11. Carga Progresiva / Infinite Scroll con IntersectionObserver
+    var loadMoreBtn = document.getElementById("loadMoreBtn");
+    if (loadMoreBtn) {
+        loadMoreBtn.addEventListener("click", function() {
+            renderNextChunk();
+        });
+    }
+
+    var sentinel = document.getElementById("catalogSentinel");
+    if (sentinel && window.IntersectionObserver) {
+        var observer = new IntersectionObserver(function(entries) {
+            if (entries[0].isIntersecting) {
+                if (state.renderedCount < state.filteredList.length) {
+                    renderNextChunk();
+                }
+            }
+        }, { rootMargin: "300px" });
+        observer.observe(sentinel);
+    }
+
+    // 12. Modal / Bottom Sheet Eventos de Cierre
     var closeBtns = [
         document.getElementById("modalCloseBtn"),
         document.getElementById("modalFooterCloseBtn")
     ];
-    closeBtns.forEach(btn => {
+    closeBtns.forEach(function(btn) {
         if (btn) btn.onclick = closePerfumeModal;
     });
 
-    window.renderCatalog();
+    var modalOverlay = document.getElementById("perfumeModal");
+    if (modalOverlay) {
+        modalOverlay.addEventListener("click", function(e) {
+            if (e.target === this) {
+                closePerfumeModal();
+            }
+        });
+    }
+
+    document.addEventListener("keydown", function(e) {
+        if (e.key === "Escape") {
+            closePerfumeModal();
+        }
+    });
+
+    // 13. Botón Volver Arriba
+    var backToTopBtn = document.getElementById("backToTopBtn");
+    if (backToTopBtn) {
+        window.addEventListener("scroll", function() {
+            backToTopBtn.classList.toggle("visible", window.pageYOffset > 500);
+        });
+        backToTopBtn.addEventListener("click", function() {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+    }
+
+    // 14. Video de Fondo Responsivo
+    var heroVideo = document.getElementById("heroVideo");
+    if (heroVideo) {
+        function updateVideoSource() {
+            var isMobile = window.innerWidth <= 768;
+            var targetSource = isMobile ? "img/herovertical.mp4" : "img/hero.mp4";
+            var currentSource = heroVideo.currentSrc || heroVideo.getAttribute("src") || "";
+            if (currentSource.indexOf(targetSource) === -1) {
+                heroVideo.src = targetSource;
+                heroVideo.load();
+            }
+        }
+        updateVideoSource();
+        window.addEventListener("resize", updateVideoSource);
+    }
+}
+
+// --- ARRANQUE PRINCIPAL ---
+document.addEventListener("DOMContentLoaded", function() {
+    initControls();
+    filterAndRender(true);
 });

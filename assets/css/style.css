@@ -144,52 +144,7 @@
     }
 }
 
-/* Estado Colapsado de Filtros */
-.controls-container.collapsed {
-    display: none !important;
-}
 
-.controls-toggle-btn.active {
-    background: var(--gold-dark);
-    transform: translateX(-50%) rotate(180deg);
-}
-
-/* Ajuste para asegurar que la flecha sea visible y clickeable */
-.controls-toggle-btn {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 32px;
-    height: 32px;
-    background: var(--gold-primary);
-    color: #0a0b0d;
-    border: 1px solid var(--border-gold);
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    font-weight: bold;
-    z-index: 101;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-}
-
-
-.controls-toggle-btn:hover {
-    transform: translateX(-50%) scale(1.1);
-    background: var(--gold-light);
-}
-
-.controls-section.minimized .controls-toggle-btn {
-    transform: translateX(-50%);
-}
-
-.controls-section:not(.minimized) .controls-toggle-btn {
-    transform: translateX(-50%) rotate(180deg);
-}
 *,
 *::before,
 *::after {
@@ -752,6 +707,72 @@ body {
 /* ==========================================================================
    Barra de Filtros y Controles Sticky
    ========================================================================== */
+/* ==========================================================================
+   Franja de Valor y Ventajas del Extracto en Roll-On
+   ========================================================================== */
+.rollon-strip {
+    background: linear-gradient(180deg, rgba(16, 18, 23, 0.95) 0%, rgba(10, 12, 16, 0.98) 100%);
+    border-bottom: 1px solid var(--border-gold-subtle);
+    border-top: 1px solid var(--border-subtle);
+    padding: 16px 20px;
+    position: relative;
+    z-index: 10;
+}
+
+.rollon-strip-container {
+    max-width: 1320px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+}
+
+.strip-pill {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(200, 164, 93, 0.16);
+    border-radius: 8px;
+    padding: 10px 14px;
+    transition: var(--transition);
+}
+
+.strip-pill:hover {
+    background: rgba(200, 164, 93, 0.05);
+    border-color: rgba(200, 164, 93, 0.35);
+    transform: translateY(-2px);
+}
+
+.strip-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+.strip-desc {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.strip-desc strong {
+    font-size: 0.82rem;
+    color: var(--gold-light);
+    font-family: var(--font-sans);
+    letter-spacing: 0.3px;
+    font-weight: 600;
+}
+
+.strip-desc span {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    line-height: 1.25;
+}
+
+/* ==========================================================================
+   Barra de Filtros y Controles Sticky Optimizada para Móvil
+   ========================================================================== */
 .controls-section {
     position: sticky;
     top: 0;
@@ -761,32 +782,17 @@ body {
     -webkit-backdrop-filter: blur(18px);
     border-bottom: 1px solid var(--border-gold);
     box-shadow: var(--shadow-sticky);
-    padding: 18px 0 14px;
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    overflow: hidden;
-    max-height: 1000px;
-}
-
-.controls-section.minimized {
-    max-height: 60px;
+    padding: 10px 0 8px;
+    transition: all 0.35s ease;
 }
 
 .controls-container {
     max-width: 1320px;
     margin: 0 auto;
-    padding: 0 24px;
+    padding: 0 16px;
     display: flex;
     flex-direction: column;
-    gap: 14px;
-    transition: opacity 0.3s ease, transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.controls-section.minimized .controls-container {
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(-20px);
+    gap: 8px;
 }
 
 /* Fila 1: Buscador */
@@ -803,9 +809,9 @@ body {
 
 .search-icon {
     position: absolute;
-    left: 20px;
-    width: 20px;
-    height: 20px;
+    left: 14px;
+    width: 18px;
+    height: 18px;
     color: var(--gold-primary);
     pointer-events: none;
     opacity: 0.85;
@@ -813,14 +819,14 @@ body {
 
 .search-box input {
     width: 100%;
-    padding: 14px 48px 14px 54px;
+    padding: 10px 38px 10px 42px;
     background-color: var(--bg-card);
     border: 1px solid var(--border-card);
     border-radius: 6px;
     color: var(--text-main);
     font-family: var(--font-sans);
-    font-size: 0.95rem;
-    letter-spacing: 0.5px;
+    font-size: 0.88rem;
+    letter-spacing: 0.4px;
     outline: none;
     transition: var(--transition);
 }
@@ -838,18 +844,18 @@ body {
 
 .clear-search-btn {
     position: absolute;
-    right: 14px;
+    right: 10px;
     background: rgba(255, 255, 255, 0.08);
     border: none;
     color: var(--text-muted);
-    width: 26px;
-    height: 26px;
+    width: 22px;
+    height: 22px;
     border-radius: 50%;
     cursor: pointer;
     display: none;
     align-items: center;
     justify-content: center;
-    font-size: 0.8rem;
+    font-size: 0.72rem;
     transition: var(--transition);
 }
 
@@ -862,13 +868,123 @@ body {
     display: flex;
 }
 
-/* Fila 2: Filtros de Marca y Género */
-.filters-main-row {
+/* Fila 2: Barra Rápida Móvil */
+.quick-filter-row {
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    gap: 14px;
+    gap: 10px;
+    flex-wrap: nowrap;
+}
+
+.quick-right-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+}
+
+.toggle-filters-btn {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border-card);
+    color: var(--text-secondary);
+    padding: 5px 11px;
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: var(--transition);
+    font-weight: 500;
+}
+
+.toggle-filters-btn:hover,
+.toggle-filters-btn.active {
+    border-color: var(--gold-primary);
+    color: var(--gold-light);
+    background: rgba(200, 164, 93, 0.12);
+}
+
+.filter-count-badge {
+    background: var(--gold-primary);
+    color: #0a0b0d;
+    font-size: 0.65rem;
+    font-weight: 700;
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+.fav-pill-btn {
+    position: relative;
+}
+
+.fav-badge-count {
+    background: rgba(239, 68, 68, 0.25) !important;
+    color: #fca5a5 !important;
+    border: 1px solid rgba(239, 68, 68, 0.4);
+}
+
+.fav-pill-btn.active .fav-badge-count {
+    background: rgba(10, 11, 13, 0.3) !important;
+    color: #0a0b0d !important;
+}
+
+/* Gaveta de Filtros Avanzados (Colapsable) */
+.advanced-filters-drawer {
+    display: none;
+    flex-direction: column;
+    gap: 12px;
+    padding: 14px 16px;
+    background: rgba(14, 17, 23, 0.95);
+    border: 1px solid rgba(200, 164, 93, 0.25);
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+    animation: drawerSlide 0.25s ease forwards;
+}
+
+.advanced-filters-drawer.open {
+    display: flex;
+}
+
+@keyframes drawerSlide {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.drawer-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.filter-block {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.filter-block-label {
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--text-muted);
+    font-weight: 600;
 }
 
 /* Selector de Casas */
@@ -1369,11 +1485,12 @@ body {
 }
 
 .card-footer {
-    margin-top: 14px;
+    margin-top: 12px;
     padding-top: 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 8px;
     border-top: 1px dashed rgba(255, 255, 255, 0.05);
 }
 
@@ -1381,12 +1498,12 @@ body {
     background: transparent;
     border: 1px solid var(--border-gold);
     color: var(--gold-light);
-    padding: 6px 16px;
+    padding: 6px 12px;
     font-family: var(--font-sans);
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    border-radius: 3px;
+    letter-spacing: 0.8px;
+    border-radius: 4px;
     cursor: pointer;
     transition: var(--transition);
     font-weight: 500;
@@ -1398,11 +1515,223 @@ body {
     box-shadow: 0 0 15px rgba(200, 164, 93, 0.3);
 }
 
-.card-extract-label {
-    font-size: 0.65rem;
-    color: var(--text-dim);
+.card-whatsapp-quick {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(37, 211, 102, 0.12);
+    border: 1px solid rgba(37, 211, 102, 0.4);
+    color: #4ade80;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    transition: var(--transition);
+    white-space: nowrap;
+}
+
+.card-whatsapp-quick:hover {
+    background: #25d366;
+    color: #052e16;
+    box-shadow: 0 0 12px rgba(37, 211, 102, 0.45);
+    transform: translateY(-1px);
+}
+
+.card-whatsapp-quick svg {
+    flex-shrink: 0;
+}
+
+/* Placeholder de Botella Roll-On de Lujo */
+.card-bottle-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+}
+
+.bottle-svg-placeholder {
+    max-height: 160px;
+    width: auto;
+    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.7));
+    transition: transform 0.4s ease;
+}
+
+.perfume-card:hover .bottle-svg-placeholder {
+    transform: scale(1.06) translateY(-4px);
+    filter: drop-shadow(0 12px 22px rgba(200, 164, 93, 0.3));
+}
+
+/* Animación de Pulso para Favoritos */
+.favorite-btn.pulse {
+    animation: heartPulse 0.3s ease;
+}
+
+@keyframes heartPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.35); }
+    100% { transform: scale(1); }
+}
+
+/* ==========================================================================
+   Banner de Selección de Favoritos & Consulta por WhatsApp
+   ========================================================================== */
+.favorites-action-banner {
+    max-width: 1320px;
+    margin: 20px auto 10px;
+    padding: 20px 24px;
+    background: linear-gradient(135deg, rgba(20, 25, 34, 0.95) 0%, rgba(13, 33, 23, 0.95) 100%);
+    border: 1px solid rgba(37, 211, 102, 0.35);
+    border-radius: 12px;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6), 0 0 20px rgba(37, 211, 102, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    animation: fadeIn 0.4s ease;
+}
+
+.fav-banner-content {
+    flex: 1;
+}
+
+.fav-banner-badge {
+    display: inline-block;
+    font-size: 0.7rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
+    color: #4ade80;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.fav-banner-title {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    color: var(--text-main);
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
+}
+
+.fav-banner-desc {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+}
+
+.fav-banner-wa-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+    color: #ffffff;
+    font-size: 0.88rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 12px 22px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: var(--transition-luxury);
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.35);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.fav-banner-wa-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.55);
+    background: linear-gradient(135deg, #28e06d 0%, #179e8e 100%);
+}
+
+.favorites-empty-box {
+    text-align: center;
+    padding: 70px 20px;
+    background: var(--bg-card);
+    border: 1px dashed var(--border-gold);
+    border-radius: 12px;
+    max-width: 550px;
+    margin: 40px auto;
+}
+
+.fav-empty-heart {
+    font-size: 3rem;
+    margin-bottom: 16px;
+    opacity: 0.85;
+}
+
+.fav-empty-title {
+    font-family: var(--font-serif);
+    font-size: 1.3rem;
+    color: var(--gold-light);
+    margin-bottom: 10px;
+}
+
+.fav-empty-desc {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    line-height: 1.6;
+    margin-bottom: 24px;
+}
+
+.fav-empty-browse-btn {
+    background: var(--gold-primary);
+    color: #0a0b0d;
+    border: none;
+    padding: 11px 24px;
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.fav-empty-browse-btn:hover {
+    background: var(--gold-light);
+    box-shadow: 0 4px 18px rgba(200, 164, 93, 0.4);
+}
+
+/* Carga Progresiva / Botón de Cargar Más */
+.load-more-container {
+    display: flex;
+    justify-content: center;
+    margin: 35px 0 20px;
+}
+
+.load-more-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-gold);
+    color: var(--gold-light);
+    padding: 12px 28px;
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.load-more-btn:hover {
+    background: var(--gold-primary);
+    color: #0a0b0d;
+    box-shadow: 0 6px 20px rgba(200, 164, 93, 0.35);
+}
+
+.catalog-sentinel {
+    height: 10px;
+    width: 100%;
 }
 
 /* ==========================================================================
@@ -1645,33 +1974,72 @@ mark.search-highlight {
     color: var(--gold-light);
 }
 
+.modal-drag-indicator {
+    display: none;
+    width: 44px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 10px;
+    margin: 0 auto 16px;
+}
+
 .modal-header {
-    margin-bottom: 22px;
-    padding-bottom: 16px;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
     border-bottom: 1px solid var(--border-card);
 }
 
 .modal-house-badge {
     font-family: var(--font-serif);
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     letter-spacing: 3px;
     text-transform: uppercase;
     color: var(--gold-primary);
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
+}
+
+.modal-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 10px;
 }
 
 .modal-title {
     font-family: var(--font-serif);
-    font-size: 1.8rem;
-    letter-spacing: 1px;
+    font-size: 1.7rem;
+    letter-spacing: 0.5px;
     color: var(--text-main);
     line-height: 1.25;
-    margin-bottom: 12px;
+    margin-bottom: 0;
+}
+
+.modal-fav-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    flex-shrink: 0;
+}
+
+.modal-fav-btn:hover,
+.modal-fav-btn.active {
+    border-color: #ef4444;
+    background: rgba(239, 68, 68, 0.15);
+    transform: scale(1.08);
 }
 
 .modal-body {
-    margin-bottom: 24px;
+    margin-bottom: 20px;
 }
 
 .modal-section-title {
@@ -1684,10 +2052,10 @@ mark.search-highlight {
 }
 
 .modal-notes-text {
-    font-size: 1rem;
+    font-size: 0.95rem;
     color: var(--text-secondary);
-    line-height: 1.7;
-    margin-bottom: 20px;
+    line-height: 1.6;
+    margin-bottom: 16px;
     font-weight: 300;
 }
 
@@ -1695,51 +2063,115 @@ mark.search-highlight {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
 }
 
 .modal-tag {
     background: rgba(200, 164, 93, 0.1);
     border: 1px solid var(--border-gold);
     color: var(--gold-light);
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     padding: 4px 12px;
     border-radius: 14px;
     letter-spacing: 0.5px;
 }
 
-.modal-info-box {
+/* Insignias de Formato Roll-On en el Modal */
+.modal-rollon-props {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.modal-rollon-props .prop-badge {
     display: flex;
     align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(200, 164, 93, 0.18);
+    border-radius: 6px;
+    padding: 8px 10px;
+}
+
+.modal-rollon-props .prop-icon {
+    font-size: 1.25rem;
+    line-height: 1;
+}
+
+.modal-rollon-props .prop-info strong {
+    display: block;
+    font-size: 0.72rem;
+    color: var(--gold-light);
+    line-height: 1.2;
+}
+
+.modal-rollon-props .prop-info small {
+    font-size: 0.65rem;
+    color: var(--text-dim);
+}
+
+.modal-info-box {
+    display: flex;
+    align-items: flex-start;
     gap: 12px;
     background: rgba(255, 255, 255, 0.03);
     border-left: 2px solid var(--gold-primary);
-    padding: 12px 16px;
-    font-size: 0.82rem;
-    color: var(--text-muted);
+    padding: 12px 14px;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
     border-radius: 0 4px 4px 0;
+    line-height: 1.45;
 }
 
 .modal-info-box svg {
     color: var(--gold-primary);
     flex-shrink: 0;
+    margin-top: 2px;
 }
 
 .modal-footer {
     display: flex;
+    align-items: center;
     justify-content: flex-end;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.modal-whatsapp-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.88rem;
+    letter-spacing: 0.5px;
+    padding: 12px 22px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: var(--transition-luxury);
+    box-shadow: 0 4px 18px rgba(37, 211, 102, 0.35);
+    flex: 1;
+}
+
+.modal-whatsapp-cta:hover {
+    background: linear-gradient(135deg, #28e06d 0%, #179e8e 100%);
+    box-shadow: 0 6px 24px rgba(37, 211, 102, 0.5);
+    transform: translateY(-2px);
 }
 
 .modal-action-close {
     background: transparent;
     border: 1px solid var(--border-gold);
     color: var(--gold-light);
-    padding: 10px 24px;
+    padding: 11px 20px;
     font-family: var(--font-sans);
-    font-size: 0.8rem;
-    letter-spacing: 1.5px;
+    font-size: 0.78rem;
+    letter-spacing: 1.2px;
     text-transform: uppercase;
-    border-radius: 3px;
+    border-radius: 4px;
     cursor: pointer;
     transition: var(--transition);
 }
@@ -2059,50 +2491,373 @@ mark.search-highlight {
 }
 
 /* ==========================================================================
-   Responsive Queries
+   Responsive Queries Optimizadas para Móvil (Mobile-First Luxury UX)
    ========================================================================== */
 @media (max-width: 1024px) {
-    .controls-section {
-        padding: 14px 0 10px;
+    .rollon-strip-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
     }
 
-    .filters-main-row {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .select-box {
-        max-width: 100%;
+    .quick-filter-row {
+        gap: 8px;
     }
 
     .gender-filters {
-        justify-content: flex-start;
         overflow-x: auto;
-        padding-bottom: 4px;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding-bottom: 2px;
+    }
+
+    .gender-filters::-webkit-scrollbar {
+        display: none;
     }
 }
 
 @media (max-width: 768px) {
+    .header {
+        min-height: 65vh;
+        padding: 40px 16px 30px;
+    }
+
+    .brand-title {
+        font-size: clamp(2rem, 9vw, 2.8rem);
+        letter-spacing: 4px;
+    }
+
+    .brand-slogan {
+        font-size: 0.95rem;
+        line-height: 1.4;
+    }
+
+    .header-badges {
+        gap: 12px;
+        padding: 8px 14px;
+        max-width: 95%;
+    }
+
+    .badge-stat .stat-number {
+        font-size: 1.15rem;
+    }
+
+    .badge-stat .stat-label {
+        font-size: 0.65rem;
+    }
+
+    /* Cinta de Beneficios en Móvil */
+    .rollon-strip {
+        padding: 12px 14px;
+    }
+
+    .rollon-strip-container {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 10px;
+        padding-bottom: 4px;
+        scrollbar-width: none;
+    }
+
+    .rollon-strip-container::-webkit-scrollbar {
+        display: none;
+    }
+
+    .strip-pill {
+        min-width: 220px;
+        scroll-snap-align: start;
+        padding: 9px 12px;
+        gap: 10px;
+    }
+
+    .strip-icon {
+        font-size: 1.35rem;
+    }
+
+    /* Barra Sticky Compacta */
+    .controls-section {
+        padding: 8px 0 6px;
+    }
+
+    .controls-container {
+        padding: 0 10px;
+        gap: 6px;
+    }
+
+    .search-box input {
+        padding: 9px 34px 9px 38px;
+        font-size: 0.85rem;
+        border-radius: 6px;
+    }
+
+    .search-icon {
+        left: 12px;
+        width: 16px;
+        height: 16px;
+    }
+
+    .filter-btn {
+        padding: 5px 10px;
+        font-size: 0.72rem;
+        gap: 6px;
+    }
+
+    .toggle-filters-btn {
+        padding: 5px 9px;
+        font-size: 0.72rem;
+    }
+
+    .view-btn {
+        padding: 6px 9px;
+    }
+
+    /* Cuadrícula de Perfumes en Móvil (2 Columnas Cómodas) */
     .perfumes-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
+        gap: 10px;
         padding: 0 10px;
     }
 
     .perfume-card {
-        padding: 15px;
-        border-radius: 12px;
+        padding: 10px;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .card-top {
+        margin-bottom: 8px;
     }
 
     .card-image-box {
-        height: 160px;
+        height: 135px;
+        margin-bottom: 8px;
+        border-radius: 6px;
+    }
+
+    .card-bottle-img {
+        max-height: 115px;
+    }
+
+    .bottle-svg-placeholder {
+        max-height: 110px;
     }
 
     .perfume-name {
-        font-size: 1rem;
+        font-size: 0.92rem;
+        line-height: 1.22;
+        margin-bottom: 4px;
+    }
+
+    .card-house-micro {
+        font-size: 0.6rem;
+        letter-spacing: 1px;
+    }
+
+    .gender-badge {
+        font-size: 0.58rem;
+        padding: 2px 6px;
     }
 
     .card-notes {
-        font-size: 0.75rem;
+        font-size: 0.7rem;
+        line-height: 1.35;
+        margin-top: 6px;
+        padding-top: 6px;
+        -webkit-line-clamp: 2;
+    }
+
+    .card-footer {
+        margin-top: 8px;
+        padding-top: 8px;
+        flex-direction: column;
+        gap: 6px;
+        align-items: stretch;
+    }
+
+    .card-view-notes-btn {
+        width: 100%;
+        text-align: center;
+        padding: 6px 8px;
+        font-size: 0.68rem;
+    }
+
+    .card-whatsapp-quick {
+        width: 100%;
+        justify-content: center;
+        padding: 7px 8px;
+        font-size: 0.72rem;
+    }
+
+    /* Vista de Lista en Móvil */
+    .catalog-container.list-mode .perfume-card {
+        padding: 10px 12px;
+        flex-direction: row;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .catalog-container.list-mode .card-image-box {
+        width: 48px;
+        height: 48px;
+        margin-bottom: 0;
+    }
+
+    .catalog-container.list-mode .card-footer {
+        flex-direction: row;
+        width: auto;
+        margin-top: 0;
+        padding-top: 0;
+        border-top: none;
+    }
+
+    .catalog-container.list-mode .card-view-notes-btn {
+        display: none;
+    }
+
+    .catalog-container.list-mode .card-whatsapp-quick {
+        width: auto;
+        padding: 6px 10px;
+    }
+
+    /* Modal como Bottom Sheet en Celular */
+    .modal-overlay {
+        padding: 0;
+        align-items: flex-end;
+    }
+
+    .modal-card {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        max-width: 100%;
+        width: 100%;
+        border-radius: 22px 22px 0 0;
+        transform: translateY(100%);
+        transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+        padding: 16px 18px 24px;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        max-height: 88vh;
+        overflow-y: auto;
+        box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.95);
+        border-bottom: none;
+    }
+
+    .modal-overlay.active .modal-card {
+        transform: translateY(0);
+    }
+
+    .modal-drag-indicator {
+        display: block;
+    }
+
+    .modal-content-wrapper {
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .modal-bottle-stage {
+        flex: none;
+        width: 100%;
+        height: 190px;
+        margin-bottom: 4px;
+        padding: 14px;
+    }
+
+    .modal-bottle-img {
+        max-height: 165px;
+    }
+
+    .modal-title {
+        font-size: 1.35rem;
+    }
+
+    .modal-rollon-props {
+        grid-template-columns: 1fr;
+        gap: 6px;
+    }
+
+    .modal-rollon-props .prop-badge {
+        padding: 6px 10px;
+    }
+
+    .modal-footer {
+        flex-direction: column-reverse;
+        gap: 8px;
+        align-items: stretch;
+    }
+
+    .modal-whatsapp-cta {
+        width: 100%;
+        text-align: center;
+        padding: 13px;
+        font-size: 0.88rem;
+    }
+
+    .modal-action-close {
+        width: 100%;
+        text-align: center;
+        padding: 9px;
+    }
+
+    /* Botón Flotante WhatsApp y Volver Arriba en Móvil */
+    .whatsapp-float {
+        bottom: 18px;
+        right: 18px;
+        width: 52px;
+        height: 52px;
+        font-size: 26px;
+    }
+
+    .whatsapp-float svg {
+        width: 28px;
+        height: 28px;
+    }
+
+    .back-to-top-btn {
+        bottom: 80px !important;
+        right: 18px;
+        width: 42px;
+        height: 42px;
+    }
+
+    /* Banner de Favoritos en Móvil */
+    .favorites-action-banner {
+        flex-direction: column;
+        text-align: center;
+        padding: 16px;
+        margin: 14px 10px 8px;
+        gap: 14px;
+    }
+
+    .fav-banner-wa-btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 380px) {
+    .perfumes-grid {
+        gap: 8px;
+        padding: 0 6px;
+    }
+
+    .perfume-card {
+        padding: 8px;
+    }
+
+    .card-image-box {
+        height: 115px;
+    }
+
+    .card-bottle-img {
+        max-height: 98px;
+    }
+
+    .perfume-name {
+        font-size: 0.86rem;
     }
 }
