@@ -1,31 +1,47 @@
 /* ==========================================================================
    J.J PARFUMS - LANDING PAGE OFICIAL
-   Interacciones, Video Responsivo, Acordeón FAQ y WhatsApp
+   Interacciones, Video Responsivo de Alto Impacto, Acordeón FAQ y WhatsApp
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', function () {
-  // 1. Manejo de Video Responsivo (hero.mp4 en PC vs herovertical.mp4 en móvil)
+  // 1. Manejo y Reproducción de Video Responsivo (PC vs Móvil)
   var heroVideo = document.getElementById('landingHeroVideo');
   if (heroVideo) {
+    heroVideo.muted = true;
+    heroVideo.defaultMuted = true;
+    heroVideo.setAttribute('playsinline', '');
+    heroVideo.setAttribute('muted', '');
+
     function updateLandingVideo() {
       var isMobile = window.innerWidth <= 768;
       var targetSource = isMobile ? 'img/herovertical.mp4' : 'img/hero.mp4';
-      var currentSource = heroVideo.getAttribute('src');
+      var currentSource = heroVideo.currentSrc || heroVideo.getAttribute('src') || '';
 
-      if (currentSource !== targetSource) {
+      if (currentSource.indexOf(targetSource) === -1) {
         heroVideo.src = targetSource;
         heroVideo.load();
-        var playPromise = heroVideo.play();
-        if (playPromise !== undefined) {
-          playPromise.catch(function () {
-            // Manejo de autoplay restringido por navegadores
-          });
-        }
+      }
+
+      var playPromise = heroVideo.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(function () {
+          // Si las políticas estrictas del navegador esperan interacción
+          var forcePlay = function () {
+            heroVideo.muted = true;
+            heroVideo.play();
+            window.removeEventListener('click', forcePlay);
+            window.removeEventListener('touchstart', forcePlay);
+            window.removeEventListener('scroll', forcePlay);
+          };
+          window.addEventListener('click', forcePlay, { once: true, passive: true });
+          window.addEventListener('touchstart', forcePlay, { once: true, passive: true });
+          window.addEventListener('scroll', forcePlay, { once: true, passive: true });
+        });
       }
     }
 
     updateLandingVideo();
-    window.addEventListener('resize', debounce(updateLandingVideo, 250));
+    window.addEventListener('resize', debounce(updateLandingVideo, 300));
   }
 
   // 2. Efecto de Resplandor Dinámico con Mouse (Desktop)
