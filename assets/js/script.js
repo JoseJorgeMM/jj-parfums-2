@@ -1,6 +1,6 @@
 /**
  * J.J PARFUMS - Catálogo Exclusivo de Perfumería Fina en Roll-On
- * Motor de UI, Filtros, Favoritos, WhatsApp y Rendimiento Móvil
+ * Motor de UI, Directorio de Casas (164 marcas), Filtros, Favoritos, WhatsApp y Rendimiento Móvil
  */
 
 // --- ESTADO GLOBAL ---
@@ -103,7 +103,7 @@ function toggleFavorite(perfumeId, triggerBtn) {
     localStorage.setItem("jj_favorites", JSON.stringify(state.favorites));
     updateFavoritesBadge();
 
-    // Actualizar botón en el modal si está abierto
+    // Actualizar botón en el modal de perfume si está abierto
     var modalFavBtn = document.getElementById("modalFavBtn");
     if (modalFavBtn && state.currentModalPerfume && getPerfumeId(state.currentModalPerfume) === perfumeId) {
         modalFavBtn.innerHTML = isFav ? "❤️" : "🤍";
@@ -336,7 +336,6 @@ function filterData() {
         if (state.activeNote !== "all") {
             var noteTerm = state.activeNote.toLowerCase();
             var pNotes = (p.notes || "").toLowerCase();
-            // Comparación flexible quitando tildes para abarcar ambar/ámbar, citrico/cítrico
             var normNotes = pNotes.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
             var normTerm = noteTerm.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
             if (normNotes.indexOf(normTerm) === -1) {
@@ -355,6 +354,41 @@ function filterData() {
         return true;
     });
 }
+
+// --- SELECCIÓN Y GESTIÓN DE CASAS PERFUMISTAS ---
+function selectHouse(houseName) {
+    state.activeHouse = houseName || "all";
+
+    // Actualizar select si existe
+    var houseSelect = document.getElementById("houseSelect");
+    if (houseSelect) {
+        houseSelect.value = state.activeHouse;
+    }
+
+    // Actualizar botón disparador de directorio
+    var triggerBtn = document.getElementById("openHousesModalBtn");
+    var triggerLabel = document.getElementById("housesBtnText");
+    if (triggerLabel && triggerBtn) {
+        if (state.activeHouse === "all") {
+            triggerLabel.textContent = "Casas (164)";
+            triggerBtn.classList.remove("selected");
+        } else {
+            triggerLabel.innerHTML = '<strong>' + state.activeHouse + '</strong> <span class="clear-house-x" title="Quitar filtro">✕</span>';
+            triggerBtn.classList.add("selected");
+        }
+    }
+
+    // Actualizar estado activo en los pills horizontales
+    var pills = document.querySelectorAll(".house-pill-btn");
+    pills.forEach(function(pill) {
+        var h = pill.getAttribute("data-house");
+        pill.classList.toggle("active", h === state.activeHouse);
+    });
+
+    closeHousesModal();
+    filterAndRender(true);
+}
+window.selectHouse = selectHouse;
 
 // --- ACTUALIZACIÓN DE CONTADORES Y CHIPS ACTIVOS ---
 function updateFilterCountsAndBadges() {
@@ -405,11 +439,8 @@ function updateFilterCountsAndBadges() {
         activeContainer.innerHTML = "";
 
         if (state.activeHouse !== "all") {
-            createFilterTag(state.activeHouse, function() {
-                state.activeHouse = "all";
-                var hs = document.getElementById("houseSelect");
-                if (hs) hs.value = "all";
-                filterAndRender(true);
+            createFilterTag("Casa: " + state.activeHouse, function() {
+                selectHouse("all");
             });
         }
         if (state.activeMood !== "all") {
@@ -482,6 +513,8 @@ function renderNextChunk() {
     if (resultsCounter) {
         if (state.favoritesOnly) {
             resultsCounter.textContent = "Mostrando tus " + total + " fragancias favoritas";
+        } else if (state.activeHouse !== "all") {
+            resultsCounter.textContent = "Mostrando " + end + " de " + total + " fragancias de " + state.activeHouse;
         } else {
             resultsCounter.textContent = "Mostrando " + end + " de " + total + " fragancias";
         }
@@ -541,7 +574,6 @@ function filterAndRender(reset) {
             if (loadMoreContainer) loadMoreContainer.style.display = "none";
             return;
         } else {
-            // Banner de consulta múltiple por WhatsApp
             if (bannerSlot) {
                 var favCount = state.filteredList.length;
                 var waFavUrl = getFavoritesWhatsAppUrl();
@@ -595,21 +627,18 @@ window.renderCatalog = function() {
 // --- RESTABLECER TODOS LOS FILTROS ---
 function resetAllFilters() {
     state.searchTerm = "";
-    state.activeHouse = "all";
     state.activeGenders = ["all"];
     state.activeMood = "all";
     state.activeNote = "all";
     state.activeLetter = "all";
     state.favoritesOnly = false;
+    selectHouse("all");
 
     var sInput = document.getElementById("searchInput");
     if (sInput) sInput.value = "";
 
     var clearBtn = document.getElementById("clearSearchBtn");
     if (clearBtn) clearBtn.classList.remove("visible");
-
-    var hSelect = document.getElementById("houseSelect");
-    if (hSelect) hSelect.value = "all";
 
     document.querySelectorAll(".gender-filters .filter-btn").forEach(function(b) {
         var g = b.getAttribute("data-gender");
@@ -635,7 +664,213 @@ function resetAllFilters() {
 }
 window.resetAllFilters = resetAllFilters;
 
-// --- INICIALIZACIÓN DE CONTROLES Y EVENTOS ---
+// --- DIRECTORIO DE CASAS PERFUMISTAS (MODAL & BARRA DESLIZABLE) ---
+function openHousesModal() {
+    var modal = document.getElementById("housesModal");
+    if (!modal) return;
+    modal.classList.add("active");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("modal-open");
+
+    // Limpiar y enfocar buscador del directorio
+    var searchInput = document.getElementById("houseDirectorySearch");
+    if (searchInput) {
+        searchInput.value = "";
+        renderHousesDirectory("");
+        setTimeout(function() { searchInput.focus(); }, 150);
+    }
+}
+
+function closeHousesModal() {
+    var modal = document.getElementById("housesModal");
+    if (modal) {
+        modal.classList.remove("active");
+        modal.setAttribute("aria-hidden", "true");
+        document.body.classList.remove("modal-open");
+    }
+}
+
+function getHousesListWithCounts() {
+    var houseCounts = {};
+    catalogData.forEach(function(p) {
+        if (!p.house) return;
+        houseCounts[p.house] = (houseCounts[p.house] || 0) + 1;
+    });
+
+    var sortedHouses = Object.keys(houseCounts).map(function(h) {
+        return { name: h, count: houseCounts[h] };
+    });
+
+    return sortedHouses;
+}
+
+function renderHousesDirectory(searchTerm, filterLetter) {
+    var grid = document.getElementById("housesDirectoryGrid");
+    if (!grid) return;
+    grid.innerHTML = "";
+
+    var houses = getHousesListWithCounts().sort(function(a, b) {
+        return a.name.localeCompare(b.name, "es", { sensitivity: "base" });
+    });
+
+    var term = (searchTerm || "").toLowerCase().trim();
+    var filtered = houses.filter(function(h) {
+        var matchesTerm = !term || h.name.toLowerCase().indexOf(term) !== -1;
+        var matchesLetter = !filterLetter || filterLetter === "all" || h.name.trim().toUpperCase().startsWith(filterLetter);
+        return matchesTerm && matchesLetter;
+    });
+
+    if (filtered.length === 0) {
+        grid.innerHTML = '<div class="no-houses-found">No se encontraron casas con "' + searchTerm + '"</div>';
+        return;
+    }
+
+    filtered.forEach(function(h) {
+        var itemBtn = document.createElement("button");
+        itemBtn.type = "button";
+        itemBtn.className = "house-dir-card" + (state.activeHouse === h.name ? " active" : "");
+        itemBtn.innerHTML =
+            '<span class="house-dir-name">' + h.name + '</span>' +
+            '<span class="house-dir-badge">' + h.count + '</span>';
+
+        itemBtn.onclick = function() {
+            selectHouse(h.name);
+        };
+
+        grid.appendChild(itemBtn);
+    });
+}
+
+function initHousesNavigation() {
+    var houses = getHousesListWithCounts();
+
+    // 1. Barra rápida deslizable con las casas más populares
+    var pillsContainer = document.getElementById("housesPillsContainer");
+    if (pillsContainer) {
+        pillsContainer.innerHTML = "";
+
+        // Botón "Todas"
+        var allPill = document.createElement("button");
+        allPill.type = "button";
+        allPill.className = "house-pill-btn" + (state.activeHouse === "all" ? " active" : "");
+        allPill.setAttribute("data-house", "all");
+        allPill.textContent = "Todas";
+        allPill.onclick = function() { selectHouse("all"); };
+        pillsContainer.appendChild(allPill);
+
+        // Top 14 casas con mayor catálogo
+        var topHouses = houses.slice().sort(function(a, b) {
+            return b.count - a.count;
+        }).slice(0, 14);
+
+        topHouses.forEach(function(h) {
+            var pill = document.createElement("button");
+            pill.type = "button";
+            pill.className = "house-pill-btn" + (state.activeHouse === h.name ? " active" : "");
+            pill.setAttribute("data-house", h.name);
+            pill.innerHTML = h.name + ' <span class="pill-count">' + h.count + '</span>';
+            pill.onclick = function() { selectHouse(h.name); };
+            pillsContainer.appendChild(pill);
+        });
+
+        // Pill "+ Ver todas (164)"
+        var morePill = document.createElement("button");
+        morePill.type = "button";
+        morePill.className = "house-pill-btn house-pill-more";
+        morePill.innerHTML = '+ Ver las 164 marcas...';
+        morePill.onclick = openHousesModal;
+        pillsContainer.appendChild(morePill);
+    }
+
+    // 2. Disparador principal de Directorio de Casas
+    var openHousesModalBtn = document.getElementById("openHousesModalBtn");
+    if (openHousesModalBtn) {
+        openHousesModalBtn.onclick = function(e) {
+            // Si tiene casa seleccionada y pulsa la X, quitamos el filtro
+            if (e.target.classList.contains("clear-house-x")) {
+                e.stopPropagation();
+                selectHouse("all");
+                return;
+            }
+            openHousesModal();
+        };
+    }
+
+    // 3. Cierre del modal de casas
+    var closeBtn = document.getElementById("housesModalCloseBtn");
+    if (closeBtn) closeBtn.onclick = closeHousesModal;
+
+    var modalOverlay = document.getElementById("housesModal");
+    if (modalOverlay) {
+        modalOverlay.addEventListener("click", function(e) {
+            if (e.target === this) closeHousesModal();
+        });
+    }
+
+    // 4. Buscador en tiempo real dentro del directorio
+    var dirSearch = document.getElementById("houseDirectorySearch");
+    var clearDirSearch = document.getElementById("clearHouseSearchBtn");
+    if (dirSearch) {
+        dirSearch.addEventListener("input", function() {
+            var val = this.value;
+            if (clearDirSearch) clearDirSearch.style.display = val.length > 0 ? "flex" : "none";
+            renderHousesDirectory(val);
+        });
+    }
+    if (clearDirSearch) {
+        clearDirSearch.addEventListener("click", function() {
+            if (dirSearch) {
+                dirSearch.value = "";
+                dirSearch.focus();
+            }
+            this.style.display = "none";
+            renderHousesDirectory("");
+        });
+    }
+
+    // 5. Salto alfabético en el modal de casas
+    var alphaStrip = document.getElementById("housesModalAlphaStrip");
+    if (alphaStrip) {
+        alphaStrip.innerHTML = "";
+        var letters = [...new Set(houses.map(function(h) {
+            return h.name.trim().charAt(0).toUpperCase();
+        }))].sort();
+
+        var allAlphaBtn = document.createElement("button");
+        allAlphaBtn.type = "button";
+        allAlphaBtn.className = "alpha-pill active";
+        allAlphaBtn.textContent = "Todas";
+        allAlphaBtn.onclick = function() {
+            document.querySelectorAll(".alpha-pill").forEach(function(b) { b.classList.remove("active"); });
+            this.classList.add("active");
+            renderHousesDirectory(dirSearch ? dirSearch.value : "", "all");
+        };
+        alphaStrip.appendChild(allAlphaBtn);
+
+        letters.forEach(function(letter) {
+            var lBtn = document.createElement("button");
+            lBtn.type = "button";
+            lBtn.className = "alpha-pill";
+            lBtn.textContent = letter;
+            lBtn.onclick = function() {
+                document.querySelectorAll(".alpha-pill").forEach(function(b) { b.classList.remove("active"); });
+                this.classList.add("active");
+                renderHousesDirectory(dirSearch ? dirSearch.value : "", letter);
+            };
+            alphaStrip.appendChild(lBtn);
+        });
+    }
+
+    // 6. Botón reset en el footer del modal
+    var houseResetBtn = document.getElementById("houseResetAllBtn");
+    if (houseResetBtn) {
+        houseResetBtn.onclick = function() {
+            selectHouse("all");
+        };
+    }
+}
+
+// --- INICIALIZACIÓN DE CONTROLES GENERALES ---
 function initControls() {
     // 1. Buscador en Vivo con debounce
     var searchInput = document.getElementById("searchInput");
@@ -726,7 +961,6 @@ function initControls() {
             this.classList.toggle("active", state.favoritesOnly);
 
             if (state.favoritesOnly) {
-                // Al entrar a favoritos, normalizamos filtros visuales
                 genderBtns.forEach(function(b) {
                     b.classList.toggle("active", b.getAttribute("data-gender") === "all");
                 });
@@ -736,7 +970,7 @@ function initControls() {
         });
     }
 
-    // 5. Selector de Casas Perfumistas
+    // 5. Selector de Casas Perfumistas tradicional (dropdown auxiliar)
     var houseSelect = document.getElementById("houseSelect");
     if (houseSelect && window.catalogData) {
         var houses = [...new Set(catalogData.map(function(p) { return p.house; }))].sort(function(a, b) {
@@ -751,8 +985,7 @@ function initControls() {
         });
 
         houseSelect.addEventListener("change", function() {
-            state.activeHouse = this.value;
-            filterAndRender(true);
+            selectHouse(this.value);
         });
     }
 
@@ -780,7 +1013,7 @@ function initControls() {
         });
     });
 
-    // 8. Índice Alfabético de Casas
+    // 8. Índice Alfabético de Casas en Drawer
     var alphaContainer = document.getElementById("alphabetIndex");
     if (alphaContainer && window.catalogData) {
         alphaContainer.innerHTML = "";
@@ -866,7 +1099,7 @@ function initControls() {
         observer.observe(sentinel);
     }
 
-    // 12. Modal / Bottom Sheet Eventos de Cierre
+    // 12. Modal Ficha de Perfume Eventos de Cierre
     var closeBtns = [
         document.getElementById("modalCloseBtn"),
         document.getElementById("modalFooterCloseBtn")
@@ -875,9 +1108,9 @@ function initControls() {
         if (btn) btn.onclick = closePerfumeModal;
     });
 
-    var modalOverlay = document.getElementById("perfumeModal");
-    if (modalOverlay) {
-        modalOverlay.addEventListener("click", function(e) {
+    var perfumeModalOverlay = document.getElementById("perfumeModal");
+    if (perfumeModalOverlay) {
+        perfumeModalOverlay.addEventListener("click", function(e) {
             if (e.target === this) {
                 closePerfumeModal();
             }
@@ -887,6 +1120,7 @@ function initControls() {
     document.addEventListener("keydown", function(e) {
         if (e.key === "Escape") {
             closePerfumeModal();
+            closeHousesModal();
         }
     });
 
@@ -916,6 +1150,9 @@ function initControls() {
         updateVideoSource();
         window.addEventListener("resize", updateVideoSource);
     }
+
+    // 15. Inicializar Directorio y Barra de Casas
+    initHousesNavigation();
 }
 
 // --- ARRANQUE PRINCIPAL ---

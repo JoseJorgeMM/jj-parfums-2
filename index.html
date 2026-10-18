@@ -194,6 +194,21 @@
         </div>
       </div>
 
+      <!-- Fila 3: Acceso Directo a Casas (Botón Directorio + Chips Horizontales) -->
+      <div class="houses-bar-row">
+        <button type="button" class="houses-directory-trigger" id="openHousesModalBtn" title="Ver lista completa de casas perfumistas">
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+          <span id="housesBtnText">Casas (164)</span>
+          <span class="houses-trigger-arrow" id="housesTriggerArrow">▾</span>
+        </button>
+        <div class="houses-pills-scroll" id="housesPillsContainer">
+          <!-- Inyectado dinámicamente con JS -->
+        </div>
+      </div>
+
       <!-- Gaveta de Filtros Avanzados (Colapsable) -->
       <div class="advanced-filters-drawer" id="advancedFiltersDrawer">
         <!-- Selector de Casas y Reset -->
@@ -348,6 +363,42 @@
             <button type="button" class="modal-action-close" id="modalFooterCloseBtn">Cerrar</button>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal / Bottom Sheet Directorio de Casas Perfumistas (164 marcas) -->
+  <div class="modal-overlay" id="housesModal" aria-hidden="true" role="dialog" aria-labelledby="housesModalTitle">
+    <div class="modal-card houses-modal-card" id="housesModalCard">
+      <div class="modal-drag-indicator" aria-hidden="true"></div>
+      <button type="button" class="modal-close-btn" id="housesModalCloseBtn" aria-label="Cerrar directorio de marcas">&times;</button>
+      
+      <div class="houses-modal-header">
+        <span class="modal-house-badge">DIRECTORIO EXCLUSIVO</span>
+        <h3 class="houses-modal-title" id="housesModalTitle">Casas Perfumistas (164)</h3>
+        <p class="houses-modal-subtitle">Toca cualquier casa para ver exclusivamente sus fragancias en extracto roll-on.</p>
+        
+        <!-- Buscador Rápido de Casas -->
+        <div class="search-box houses-search-box">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="houseDirectorySearch" placeholder="Escribe para buscar marca (ej. Dior, Creed, Lattafa)..." autocomplete="off" aria-label="Filtrar marcas">
+          <button type="button" id="clearHouseSearchBtn" class="clear-search-btn" title="Limpiar filtro">✕</button>
+        </div>
+
+        <!-- Barra de Salto Alfabético -->
+        <div class="houses-modal-alpha" id="housesModalAlphaStrip"></div>
+      </div>
+
+      <!-- Cuadrícula / Lista de las 164 Casas con Contador -->
+      <div class="houses-directory-grid" id="housesDirectoryGrid"></div>
+
+      <div class="houses-modal-footer">
+        <button type="button" class="house-reset-all-btn" id="houseResetAllBtn">
+          Ver todas las casas (Catálogo Completo)
+        </button>
       </div>
     </div>
   </div>
