@@ -105,4 +105,200 @@ document.addEventListener('DOMContentLoaded', function () {
       }, wait);
     };
   }
+
+  // 5. Carrusel y Filtros de Los Más Pedidos (Hombre y Mujer)
+  (function initBestSellersCarousel() {
+    var track = document.getElementById('bestSellersTrack');
+    var viewport = document.getElementById('bestSellersViewport');
+    var prevBtn = document.getElementById('bestSellersPrev');
+    var nextBtn = document.getElementById('bestSellersNext');
+    var dotsContainer = document.getElementById('bestSellersDots');
+    var filterBtns = document.querySelectorAll('.filter-pill-btn');
+
+    if (!track || !viewport) return;
+
+    var allCards = Array.from(track.querySelectorAll('.best-seller-card'));
+    var currentIndex = 0;
+    var currentFilter = 'all';
+    var autoPlayTimer = null;
+    var isHovered = false;
+
+    function getVisibleCards() {
+      return allCards.filter(function (card) {
+        return !card.classList.contains('hidden-card');
+      });
+    }
+
+    function getCardsPerView() {
+      var w = window.innerWidth;
+      if (w <= 640) return 1;
+      if (w <= 992) return 2;
+      return 3;
+    }
+
+    function getMaxIndex() {
+      var visible = getVisibleCards();
+      var perView = getCardsPerView();
+      return Math.max(0, visible.length - perView);
+    }
+
+    function updateCarousel() {
+      var visible = getVisibleCards();
+      var maxIdx = getMaxIndex();
+      if (currentIndex > maxIdx) currentIndex = maxIdx;
+      if (currentIndex < 0) currentIndex = 0;
+
+      var perView = getCardsPerView();
+      var cardWidth = visible[0] ? visible[0].offsetWidth : 300;
+      var gap = 22;
+      var offset = currentIndex * (cardWidth + gap);
+
+      if (window.innerWidth <= 640) {
+        viewport.scrollTo({
+          left: offset,
+          behavior: 'smooth'
+        });
+      } else {
+        track.style.transform = 'translateX(-' + offset + 'px)';
+      }
+
+      updateDots();
+
+      if (prevBtn) prevBtn.style.opacity = currentIndex === 0 ? '0.35' : '1';
+      if (nextBtn) nextBtn.style.opacity = currentIndex >= maxIdx ? '0.35' : '1';
+    }
+
+    function createDots() {
+      if (!dotsContainer) return;
+      dotsContainer.innerHTML = '';
+      var maxIdx = getMaxIndex();
+      var totalDots = maxIdx + 1;
+
+      for (var i = 0; i < totalDots; i++) {
+        (function (idx) {
+          var dot = document.createElement('span');
+          dot.className = 'carousel-dot' + (idx === currentIndex ? ' active' : '');
+          dot.setAttribute('role', 'button');
+          dot.setAttribute('aria-label', 'Ir a diapositiva ' + (idx + 1));
+          dot.addEventListener('click', function () {
+            currentIndex = idx;
+            updateCarousel();
+          });
+          dotsContainer.appendChild(dot);
+        })(i);
+      }
+    }
+
+    function updateDots() {
+      if (!dotsContainer) return;
+      var dots = dotsContainer.querySelectorAll('.carousel-dot');
+      dots.forEach(function (d, idx) {
+        if (idx === currentIndex) {
+          d.classList.add('active');
+        } else {
+          d.classList.remove('active');
+        }
+      });
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', function () {
+        if (currentIndex > 0) {
+          currentIndex--;
+          updateCarousel();
+        }
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', function () {
+        var maxIdx = getMaxIndex();
+        if (currentIndex < maxIdx) {
+          currentIndex++;
+        } else {
+          currentIndex = 0;
+        }
+        updateCarousel();
+      });
+    }
+
+    filterBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var filter = btn.getAttribute('data-filter') || 'all';
+        if (filter === currentFilter) return;
+
+        filterBtns.forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        currentFilter = filter;
+
+        allCards.forEach(function (card) {
+          var gender = card.getAttribute('data-gender');
+          if (filter === 'all' || gender === filter || (filter === 'mujer' && gender === 'unisex') || (filter === 'hombre' && gender === 'unisex')) {
+            card.classList.remove('hidden-card');
+          } else {
+            card.classList.add('hidden-card');
+          }
+        });
+
+        currentIndex = 0;
+        createDots();
+        updateCarousel();
+      });
+    });
+
+    var touchStartX = 0;
+    var touchEndX = 0;
+    viewport.addEventListener('touchstart', function (e) {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    viewport.addEventListener('touchend', function (e) {
+      touchEndX = e.changedTouches[0].screenX;
+      var diff = touchStartX - touchEndX;
+      var threshold = 40;
+      if (Math.abs(diff) > threshold) {
+        var maxIdx = getMaxIndex();
+        if (diff > 0 && currentIndex < maxIdx) {
+          currentIndex++;
+        } else if (diff < 0 && currentIndex > 0) {
+          currentIndex--;
+        }
+        updateCarousel();
+      }
+    }, { passive: true });
+
+    function startAutoplay() {
+      stopAutoplay();
+      autoPlayTimer = setInterval(function () {
+        if (!isHovered) {
+          var maxIdx = getMaxIndex();
+          if (currentIndex < maxIdx) {
+            currentIndex++;
+          } else {
+            currentIndex = 0;
+          }
+          updateCarousel();
+        }
+      }, 5500);
+    }
+
+    function stopAutoplay() {
+      if (autoPlayTimer) clearInterval(autoPlayTimer);
+    }
+
+    var wrapper = document.querySelector('.carousel-wrapper');
+    if (wrapper) {
+      wrapper.addEventListener('mouseenter', function () { isHovered = true; });
+      wrapper.addEventListener('mouseleave', function () { isHovered = false; });
+    }
+
+    createDots();
+    updateCarousel();
+    startAutoplay();
+
+    window.addEventListener('resize', debounce(function () {
+      createDots();
+      updateCarousel();
+    }, 250));
+  })();
 });
