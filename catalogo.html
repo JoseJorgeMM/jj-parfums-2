@@ -8,6 +8,18 @@
   <meta name="description"
     content="Catálogo completo y exclusivo de extractos concentrados de alta gama. Descubra más de 900 fragancias de las casas perfumistas más prestigiosas del mundo.">
 
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+  <!-- Open Graph / Compartir en WhatsApp y Redes -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="J.J PARFUMS">
+  <meta property="og:title" content="J.J PARFUMS | Catálogo Exclusivo de Perfumería Fina">
+  <meta property="og:description" content="Más de 900 fragancias árabes, de diseñador y de nicho en extracto puro roll-on. Arma tu pedido y envíalo por WhatsApp.">
+  <meta property="og:image" content="imagenes_landing/Gemini_Generated_Image_t9kcvyt9kcvyt9kc.jpg">
+  <meta property="og:locale" content="es_CO">
+  <meta name="twitter:card" content="summary_large_image">
+
   <!-- Tipografías de Lujo -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,6 +32,27 @@
 </head>
 
 <body>
+  <!-- Sprite de Iconos Finos (trazo 1.7, hereda color) -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+    <symbol id="lc-droplet" viewBox="0 0 24 24"><path d="M12 2.5c3.6 4.2 6.2 7.3 6.2 10.7a6.2 6.2 0 1 1-12.4 0c0-3.4 2.6-6.5 6.2-10.7z"/></symbol>
+    <symbol id="lc-hourglass" viewBox="0 0 24 24"><path d="M6 3h12M6 21h12M7.5 3v2.6a4.5 4.5 0 0 0 9 0V3M7.5 21v-2.6a4.5 4.5 0 0 1 9 0V21"/></symbol>
+    <symbol id="lc-sparkle" viewBox="0 0 24 24"><path d="M12 3l2.3 6.7L21 12l-6.7 2.3L12 21l-2.3-6.7L3 12l6.7-2.3z"/></symbol>
+    <symbol id="lc-gem" viewBox="0 0 24 24"><path d="M7 3h10l3.5 5.5L12 21 3.5 8.5 7 3z"/><path d="M3.5 8.5h17"/></symbol>
+    <symbol id="lc-crown" viewBox="0 0 24 24"><path d="M5 17.5h14"/><path d="M5 17.5 3.8 8.6l4.4 3L12 5l3.8 6.6 4.4-3-1.2 8.9z"/></symbol>
+    <symbol id="lc-flame" viewBox="0 0 24 24"><path d="M12 3c.7 3.4 4.9 5 4.9 9.2a4.9 4.9 0 0 1-9.8 0c0-2.5 2-3.8 2.6-6.3C10.9 7 12 4.6 12 3z"/><path d="M12 17.6a2.5 2.5 0 0 0 2.5-2.5c0-1.5-1.2-2.3-2.5-3.5-1.3 1.2-2.5 2-2.5 3.5a2.5 2.5 0 0 0 2.5 2.5z"/></symbol>
+    <symbol id="lc-bolt" viewBox="0 0 24 24"><path d="M13 2 5.5 13.5h4.8L9.8 22 18.5 10h-5.2L13 2z"/></symbol>
+    <symbol id="lc-trophy" viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M7.3 4h9.4v4.6a4.7 4.7 0 0 1-9.4 0V4z"/><path d="M7.3 5.6H4.6a2.8 2.8 0 0 0 2.8 4.3M16.7 5.6h2.7a2.8 2.8 0 0 1-2.8 4.3"/></symbol>
+    <symbol id="lc-moon" viewBox="0 0 24 24"><path d="M20 14.2A8.2 8.2 0 1 1 9.8 4a6.6 6.6 0 0 0 10.2 10.2z"/></symbol>
+    <symbol id="lc-star" viewBox="0 0 24 24"><path d="M12 3.2 14.6 8.6l6 .7-4.5 4.1 1.2 5.9L12 16.4 6.7 19.3l1.2-5.9L3.4 9.3l6-.7L12 3.2z"/></symbol>
+    <symbol id="lc-heart" viewBox="0 0 24 24"><path d="M12 20.3 4.9 13a4.4 4.4 0 0 1 6.3-6.3l.8.8.8-.8a4.4 4.4 0 0 1 6.3 6.3L12 20.3z"/></symbol>
+    <symbol id="lc-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.9"/><path d="M4.8 20a7.2 7.2 0 0 1 14.4 0"/></symbol>
+    <symbol id="lc-flower" viewBox="0 0 24 24"><circle cx="12" cy="9.4" r="4.4"/><path d="M12 13.8V21M9.7 18.7h4.6"/></symbol>
+    <symbol id="lc-chat" viewBox="0 0 24 24"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5H7l-4 3 1.2-4.6A8.5 8.5 0 1 1 21 11.5z"/></symbol>
+    <symbol id="lc-banned" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M5.5 5.5l13 13"/></symbol>
+    <symbol id="lc-wind" viewBox="0 0 24 24"><path d="M3 8.5h11a3 3 0 1 0-3-3M3 12.5h15.5a3 3 0 1 1-3 3M3 16.5h8a2.6 2.6 0 1 1-2.6 2.6"/></symbol>
+    <symbol id="lc-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.4"/></symbol>
+  </svg>
+
   <div class="bg-glow" id="bgGlow"></div>
 
   <!-- Barra Superior de Navegación y Retorno a Landing Page -->
@@ -33,7 +66,7 @@
       </a>
 
       <div class="catalog-top-nav-center">
-        <span class="catalog-pill-indicator">👑 Catálogo Exclusivo &bull; 953 Fragancias</span>
+        <span class="catalog-pill-indicator"><svg class="lade" aria-hidden="true"><use href="#lc-crown"/></svg> Catálogo Exclusivo &bull; 953 Fragancias</span>
       </div>
 
       <a href="https://wa.me/573126654386?text=Hola%20J.J%20Parfums%2C%20estoy%20viendo%20el%20cat%C3%A1logo%20y%20deseo%20asesor%C3%ADa%20personalizada." target="_blank" rel="noopener noreferrer" class="nav-wa-quick-contact" title="Hablar con un asesor por WhatsApp">
@@ -109,28 +142,28 @@
   <section class="rollon-strip" aria-label="Ventajas del extracto en roll-on">
     <div class="rollon-strip-container">
       <div class="strip-pill">
-        <span class="strip-icon">💧</span>
+        <span class="strip-icon"><svg class="lade" aria-hidden="true"><use href="#lc-droplet"/></svg></span>
         <div class="strip-desc">
           <strong>100% Extracto Puro</strong>
           <span>Aceite concentrado, 0% alcohol volátil</span>
         </div>
       </div>
       <div class="strip-pill">
-        <span class="strip-icon">⏳</span>
+        <span class="strip-icon"><svg class="lade" aria-hidden="true"><use href="#lc-hourglass"/></svg></span>
         <div class="strip-desc">
           <strong>Fijación 12h - 24h</strong>
           <span>Máxima estela y persistencia en piel</span>
         </div>
       </div>
       <div class="strip-pill">
-        <span class="strip-icon">✨</span>
+        <span class="strip-icon"><svg class="lade" aria-hidden="true"><use href="#lc-sparkle"/></svg></span>
         <div class="strip-desc">
           <strong>Roll-On Portátil</strong>
           <span>Aplicación directa sin desperdiciar en spray</span>
         </div>
       </div>
       <div class="strip-pill">
-        <span class="strip-icon">💬</span>
+        <span class="strip-icon"><svg class="lade" aria-hidden="true"><use href="#lc-chat"/></svg></span>
         <div class="strip-desc">
           <strong>Pedidos Directos</strong>
           <span>Asesoría inmediata por WhatsApp</span>
@@ -252,10 +285,10 @@
           <span class="filter-block-label">Ocasión & Mood:</span>
           <div class="mood-filters" role="group" aria-label="Filtro por estado de ánimo">
             <button class="mood-btn active" data-mood="all">Todos los Moods</button>
-            <button class="mood-btn" data-mood="seductive">🔥 Seductor / Noche</button>
-            <button class="mood-btn" data-mood="fresh">🌊 Fresco / Diario</button>
-            <button class="mood-btn" data-mood="elegant">💼 Elegante / Formal</button>
-            <button class="mood-btn" data-mood="romantic">🌹 Romántico / Cita</button>
+            <button class="mood-btn" data-mood="seductive"><svg class="lade" aria-hidden="true"><use href="#lc-flame"/></svg> Seductor / Noche</button>
+            <button class="mood-btn" data-mood="fresh"><svg class="lade" aria-hidden="true"><use href="#lc-droplet"/></svg> Fresco / Diario</button>
+            <button class="mood-btn" data-mood="elegant"><svg class="lade" aria-hidden="true"><use href="#lc-briefcase"/></svg> Elegante / Formal</button>
+            <button class="mood-btn" data-mood="romantic"><svg class="lade" aria-hidden="true"><use href="#lc-flower"/></svg> Romántico / Cita</button>
           </div>
         </div>
 
@@ -343,21 +376,21 @@
 
             <div class="modal-rollon-props">
               <div class="prop-badge">
-                <span class="prop-icon">💧</span>
+                <span class="prop-icon"><svg class="lade" aria-hidden="true"><use href="#lc-droplet"/></svg></span>
                 <div class="prop-info">
                   <strong>Extracto Puro</strong>
                   <small>Aceite concentrado</small>
                 </div>
               </div>
               <div class="prop-badge">
-                <span class="prop-icon">⏳</span>
+                <span class="prop-icon"><svg class="lade" aria-hidden="true"><use href="#lc-hourglass"/></svg></span>
                 <div class="prop-info">
                   <strong>Fijación 12h-24h</strong>
                   <small>Máxima estela</small>
                 </div>
               </div>
               <div class="prop-badge">
-                <span class="prop-icon">🚫</span>
+                <span class="prop-icon"><svg class="lade" aria-hidden="true"><use href="#lc-banned"/></svg></span>
                 <div class="prop-info">
                   <strong>0% Alcohol</strong>
                   <small>No reseca la piel</small>
@@ -376,6 +409,13 @@
             </div>
           </div>
           <div class="modal-footer">
+            <button type="button" id="modalAddOrderBtn" class="modal-add-order-btn" title="Añadir al pedido">
+              <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+              <span>Añadir al Pedido</span>
+            </button>
             <a href="#" id="modalWhatsAppBtn" class="modal-whatsapp-cta" target="_blank" rel="noopener noreferrer">
               <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
                 <path
@@ -426,6 +466,63 @@
     </div>
   </div>
 
+  <!-- ==========================================================================
+       PEDIDO GUIADO: BARRA FLOTANTE + DRAWER
+       Acumula fragancias y abre WhatsApp con la lista + promos aplicadas
+       ========================================================================== -->
+  <div class="order-bar" id="orderBar" aria-hidden="true">
+    <button type="button" class="order-bar-trigger" aria-label="Ver mi pedido">
+      <span class="order-bar-bag">
+        <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <path d="M16 10a4 4 0 0 1-8 0"></path>
+        </svg>
+        <span class="order-bar-count" id="orderItemCount">0</span>
+      </span>
+      <span class="order-bar-labels">
+        <strong>Tu Pedido</strong>
+        <small><span id="orderItemCountLabel">0 extractos</span> · <span id="orderBarTotal">$0 COP</span></small>
+      </span>
+    </button>
+    <a href="#" id="orderBarSendLink" class="order-bar-send" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true">
+        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+      </svg>
+      <span>Enviar Pedido</span>
+    </a>
+  </div>
+
+  <div class="order-drawer-overlay" id="orderDrawerOverlay" aria-hidden="true"></div>
+
+  <aside class="order-drawer" id="orderDrawer" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Tu pedido de extractos">
+    <div class="order-drawer-head">
+      <div>
+        <h3>Tu Pedido <span id="orderDrawerCount">(0)</span></h3>
+        <p>Arma tu selección y te la enviamos lista por WhatsApp.</p>
+      </div>
+      <button type="button" class="order-drawer-close" id="orderDrawerCloseBtn" aria-label="Cerrar pedido">&times;</button>
+    </div>
+
+    <div class="order-drawer-items" id="orderItemsList"></div>
+
+    <div class="order-drawer-promo" id="orderPromoSummary"></div>
+
+    <div class="order-drawer-total-row">
+      <span>Total estimado</span>
+      <strong id="orderDrawerTotal">$0 COP</strong>
+    </div>
+
+    <a href="#" id="orderSendBtn" class="order-drawer-send" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
+        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+      </svg>
+      <span>Enviar mi pedido por WhatsApp</span>
+    </a>
+
+    <p class="order-drawer-note">Tu asesor confirma disponibilidad y promos al recibir el mensaje.</p>
+  </aside>
+
   <!-- Botón Flotante WhatsApp Oficial -->
   <a href="https://wa.me/573126654386?text=Hola%20J.J%20Parfums,%20estoy%20interesado%20en%20sus%20extractos%20de%20perfumería%20fina.%20Me%20gustaría%20recibir%20más%20información."
     class="whatsapp-float" target="_blank" rel="noopener noreferrer" title="Contactar por WhatsApp">
@@ -447,17 +544,17 @@
     <h2>Ritual de Aplicación</h2>
     <div class="usage-grid">
       <div class="usage-item">
-        <div class="usage-icon">✨</div>
+        <div class="usage-icon"><svg class="lade" aria-hidden="true"><use href="#lc-sparkle"/></svg></div>
         <strong>Puntos de Pulso</strong>
         <p>Aplique en muñecas y cuello. El calor natural potencia la difusión del extracto.</p>
       </div>
       <div class="usage-item">
-        <div class="usage-icon">🌬️</div>
+        <div class="usage-icon"><svg class="lade" aria-hidden="true"><use href="#lc-wind"/></svg></div>
         <strong>No Frotar</strong>
         <p>Evite frotar la piel tras aplicar; esto preserva la pureza de las notas de salida.</p>
       </div>
       <div class="usage-item">
-        <div class="usage-icon">🎯</div>
+        <div class="usage-icon"><svg class="lade" aria-hidden="true"><use href="#lc-target"/></svg></div>
         <strong>Zonas Estratégicas</strong>
         <p>Nuca y pecho para crear una estela elegante y duradera al caminar.</p>
       </div>

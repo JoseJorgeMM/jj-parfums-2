@@ -4,6 +4,41 @@
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', function () {
+  // 0. Aparición suave al hacer scroll (IntersectionObserver)
+  (function initScrollReveal() {
+    var targets = document.querySelectorAll(
+      '.section-title-container, .visual-diff-left, .visual-diff-right, .best-seller-card, ' +
+      '.combos-promo-banner, .gallery-card, .universe-card, .ritual-step-card, ' +
+      '.faq-item, .testimonial-card, .final-cta-container'
+    );
+    if (!('IntersectionObserver' in window)) return;
+
+    var groups = new Map();
+    targets.forEach(function (el) {
+      el.classList.add('reveal-init');
+      var parent = el.parentElement;
+      if (!groups.has(parent)) groups.set(parent, []);
+      groups.get(parent).push(el);
+    });
+
+    groups.forEach(function (list) {
+      list.forEach(function (el, i) {
+        el.style.setProperty('--reveal-delay', Math.min(i * 80, 480) + 'ms');
+      });
+    });
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('reveal-show');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+
+    targets.forEach(function (el) { observer.observe(el); });
+  })();
+
   // 1. Manejo y Reproducción de Video Responsivo (PC vs Móvil)
   var heroVideo = document.getElementById('landingHeroVideo');
   if (heroVideo) {

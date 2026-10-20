@@ -210,6 +210,13 @@ function openPerfumeModal(perfume) {
         };
     }
 
+    var modalAddOrderBtn = document.getElementById("modalAddOrderBtn");
+    if (modalAddOrderBtn) {
+        modalAddOrderBtn.onclick = function() {
+            addToOrder(id);
+        };
+    }
+
     modal.classList.add("active");
     modal.setAttribute("aria-hidden", "false");
     document.body.classList.add("modal-open");
@@ -257,6 +264,11 @@ function createPerfumeCard(p) {
         '</div>' +
         '<div class="card-footer">' +
             '<button type="button" class="card-view-notes-btn">Ver Ficha</button>' +
+            '<button type="button" class="card-add-order-btn ' + (inOrder(id) ? 'added' : '') + '" data-id="' + id + '" title="Añadir al pedido" aria-label="Añadir ' + p.name + ' al pedido">' +
+                '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">' +
+                    (inOrder(id) ? '<polyline points="20 6 9 17 4 12"></polyline>' : '<line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>') +
+                '</svg>' +
+            '</button>' +
             '<a href="' + waUrl + '" class="card-whatsapp-quick" target="_blank" rel="noopener noreferrer" title="Pedir por WhatsApp">' +
                 '<svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">' +
                     '<path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>' +
@@ -267,7 +279,7 @@ function createPerfumeCard(p) {
 
     // Abrir modal al tocar la tarjeta o botón "Ver Ficha"
     card.onclick = function(e) {
-        if (e.target.closest(".favorite-btn") || e.target.closest(".card-whatsapp-quick")) {
+        if (e.target.closest(".favorite-btn") || e.target.closest(".card-whatsapp-quick") || e.target.closest(".card-add-order-btn")) {
             return;
         }
         openPerfumeModal(p);
@@ -285,6 +297,14 @@ function createPerfumeCard(p) {
     if (waBtn) {
         waBtn.onclick = function(e) {
             e.stopPropagation();
+        };
+    }
+
+    var addOrderBtn = card.querySelector(".card-add-order-btn");
+    if (addOrderBtn) {
+        addOrderBtn.onclick = function(e) {
+            e.stopPropagation();
+            addToOrder(id);
         };
     }
 
@@ -1160,3 +1180,219 @@ document.addEventListener("DOMContentLoaded", function() {
     initControls();
     filterAndRender(true);
 });
+
+// ==========================================================================
+// PEDIDO GUIADO (CARRITO) → UN SOLO MENSAJE DE WHATSAPP
+// Acumula fragancias y genera la conversión con las promos vigentes aplicadas.
+// ==========================================================================
+var ORDER_PHONE = "573126654386";
+var orderState = {
+    items: JSON.parse(localStorage.getItem("jj_order") || "[]")
+};
+
+function computeOrderTotal(n) {
+    var packs5 = Math.floor(n / 5);
+    var rest = n - packs5 * 5;
+    var packs3 = Math.floor(rest / 3);
+    var singles = rest - packs3 * 3;
+    return {
+        total: packs5 * 100000 + packs3 * 65000 + singles * 25000,
+        packs5: packs5,
+        packs3: packs3,
+        singles: singles
+    };
+}
+
+function formatCOP(v) {
+    return "$" + v.toLocaleString("es-CO");
+}
+
+function inOrder(id) {
+    return orderState.items.indexOf(id) !== -1;
+}
+
+function saveOrder() {
+    localStorage.setItem("jj_order", JSON.stringify(orderState.items));
+}
+
+function findPerfumeById(id) {
+    for (var i = 0; i < catalogData.length; i++) {
+        if (getPerfumeId(catalogData[i]) === id) return catalogData[i];
+    }
+    return null;
+}
+
+function showToast(msg) {
+    var toast = document.createElement("div");
+    toast.className = "jj-toast";
+    toast.setAttribute("role", "status");
+    toast.innerHTML = '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span>' + msg + "</span>";
+    document.body.appendChild(toast);
+    window.setTimeout(function() { toast.classList.add("visible"); }, 20);
+    window.setTimeout(function() {
+        toast.classList.remove("visible");
+        window.setTimeout(function() { toast.remove(); }, 350);
+    }, 2300);
+}
+
+function addToOrder(id) {
+    var p = findPerfumeById(id);
+    if (!p) return;
+    if (inOrder(id)) {
+        showToast("Ya está en tu pedido");
+        openOrderDrawer();
+        return;
+    }
+    orderState.items.push(id);
+    saveOrder();
+    updateOrderUI();
+    showToast(p.name + " añadido al pedido");
+    var cardAddBtns = document.querySelectorAll('.card-add-order-btn[data-id="' + id + '"]');
+    cardAddBtns.forEach(function(b) { b.classList.add("added"); });
+    window.setTimeout(openOrderDrawer, 450);
+}
+
+function removeFromOrder(id) {
+    var idx = orderState.items.indexOf(id);
+    if (idx === -1) return;
+    orderState.items.splice(idx, 1);
+    saveOrder();
+    updateOrderUI();
+    var cardAddBtns = document.querySelectorAll('.card-add-order-btn[data-id="' + id + '"]');
+    cardAddBtns.forEach(function(b) { b.classList.remove("added"); });
+}
+
+function buildOrderWhatsAppText() {
+    var perfumes = orderState.items.map(findPerfumeById).filter(Boolean);
+    if (perfumes.length === 0) return "";
+    var lines = perfumes.map(function(p, i) {
+        return (i + 1) + ". " + p.name + " (" + p.house + ")";
+    }).join("\n");
+
+    var t = computeOrderTotal(perfumes.length);
+    var promoNotes = [];
+    if (t.packs5 > 0) promoNotes.push(t.packs5 + " x Promo 5 por " + formatCOP(100000) + " (¡1 GRATIS!)");
+    if (t.packs3 > 0) promoNotes.push(t.packs3 + " x Promo 3 por " + formatCOP(65000));
+    if (t.singles > 0) promoNotes.push(t.singles + " individual(es)");
+
+    var text = "Hola J.J Parfums, quiero hacer mi pedido de extractos concentrados en roll-on:\n\n" +
+        lines +
+        "\n\n" + (promoNotes.length > 0 ? "Promos que deseo aplicar: " + promoNotes.join(" · ") + "\n" : "") +
+        "Total estimado: *" + formatCOP(t.total) + " COP*\n\n" +
+        "¿Me confirmas disponibilidad para coordinar el pago y el envío?";
+    return text;
+}
+
+function getOrderWhatsAppUrl() {
+    var text = buildOrderWhatsAppText();
+    if (!text) return "";
+    return "https://wa.me/" + ORDER_PHONE + "?text=" + encodeURIComponent(text);
+}
+
+function updateOrderUI() {
+    var bar = document.getElementById("orderBar");
+    var drawer = document.getElementById("orderDrawer");
+    if (!bar || !drawer) return;
+
+    var count = orderState.items.length;
+    var t = computeOrderTotal(count);
+
+    if (count === 0) {
+        bar.classList.remove("visible");
+        drawer.classList.remove("open");
+        document.getElementById("orderDrawerOverlay").classList.remove("visible");
+        drawer.setAttribute("aria-hidden", "true");
+        return;
+    }
+
+    bar.classList.add("visible");
+    document.getElementById("orderItemCount").textContent = count;
+    document.getElementById("orderItemCountLabel").textContent = count + (count === 1 ? " extracto" : " extractos");
+    document.getElementById("orderBarTotal").textContent = formatCOP(t.total) + " COP";
+
+    // Lista de artículos
+    var listEl = document.getElementById("orderItemsList");
+    listEl.innerHTML = "";
+    orderState.items.forEach(function(id) {
+        var p = findPerfumeById(id);
+        if (!p) return;
+        var row = document.createElement("div");
+        row.className = "order-item-row";
+        row.innerHTML =
+            '<div class="order-item-info">' +
+                '<strong>' + p.name + "</strong>" +
+                "<span>" + p.house + "</span>" +
+            '</div>' +
+            '<button type="button" class="order-item-remove" title="Quitar del pedido" aria-label="Quitar ' + p.name + ' del pedido">' +
+                '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>' +
+            "</button>";
+        row.querySelector(".order-item-remove").onclick = function() { removeFromOrder(id); };
+        listEl.appendChild(row);
+    });
+
+    // Resumen de promos
+    var promoEl = document.getElementById("orderPromoSummary");
+    var parts = [];
+    if (t.packs5 > 0) parts.push('<span class="order-promo-tag gold">👑 Promo 5 por $100.000 × ' + t.packs5 + "</span>");
+    if (t.packs3 > 0) parts.push('<span class="order-promo-tag">Promo 3 por $65.000 × ' + t.packs3 + "</span>");
+    if (t.singles > 0) parts.push('<span class="order-promo-tag">Individuales × ' + t.singles + "</span>");
+    promoEl.innerHTML = parts.length > 0
+        ? '<div class="order-promo-onsale">' + parts.join("") + '<span class="order-promo-hint">Las promociones se confirman por WhatsApp</span></div>'
+        : "";
+
+    document.getElementById("orderDrawerTotal").textContent = formatCOP(t.total) + " COP";
+    var waBtn = document.getElementById("orderSendBtn");
+    waBtn.href = getOrderWhatsAppUrl();
+    var barSend = document.getElementById("orderBarSendLink");
+    if (barSend) barSend.href = getOrderWhatsAppUrl();
+
+    var titleEl = document.getElementById("orderDrawerCount");
+    if (titleEl) titleEl.textContent = "(" + count + ")";
+}
+
+function openOrderDrawer() {
+    var drawer = document.getElementById("orderDrawer");
+    if (!drawer || orderState.items.length === 0) return;
+    drawer.classList.add("open");
+    drawer.setAttribute("aria-hidden", "false");
+    document.getElementById("orderDrawerOverlay").classList.add("visible");
+}
+
+function closeOrderDrawer() {
+    var drawer = document.getElementById("orderDrawer");
+    if (!drawer) return;
+    drawer.classList.remove("open");
+    drawer.setAttribute("aria-hidden", "true");
+    document.getElementById("orderDrawerOverlay").classList.remove("visible");
+}
+
+(function initOrder() {
+    document.addEventListener("DOMContentLoaded", function() {
+        var bar = document.getElementById("orderBar");
+        var drawer = document.getElementById("orderDrawer");
+
+        if (bar) {
+            bar.addEventListener("click", function(e) {
+                if (e.target.closest(".order-bar-send")) return;
+                openOrderDrawer();
+            });
+        }
+
+        var closeBtn = document.getElementById("orderDrawerCloseBtn");
+        if (closeBtn) closeBtn.addEventListener("click", closeOrderDrawer);
+        var overlay = document.getElementById("orderDrawerOverlay");
+        if (overlay) overlay.addEventListener("click", closeOrderDrawer);
+        document.addEventListener("keydown", function(e) {
+            if (e.key === "Escape") closeOrderDrawer();
+        });
+
+        updateOrderUI();
+
+        // Marcar tarjetas ya añadidas tras renderizado progresivo
+        var grid = document.getElementById("catalogContainer");
+        if (grid) {
+            grid.addEventListener("DOMNodeInserted", function() {}, false);
+        }
+    });
+})();
+
