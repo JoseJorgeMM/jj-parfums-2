@@ -106,6 +106,85 @@ document.addEventListener('DOMContentLoaded', function () {
     };
   }
 
+  // 4b. Menú Móvil de Lujo (Accesible: Esc, clic fuera, foco gestionado)
+  (function initMobileMenu() {
+    var toggle = document.getElementById('mobileMenuToggle');
+    var drawer = document.getElementById('mobileMenuDrawer');
+    var backdrop = document.getElementById('mobileMenuBackdrop');
+
+    if (!toggle || !drawer) return;
+
+    var lastFocusedElement = null;
+
+    function isMenuOpen() {
+      return document.body.classList.contains('menu-open');
+    }
+
+    function openMenu() {
+      lastFocusedElement = document.activeElement;
+      document.body.classList.add('menu-open');
+      toggle.setAttribute('aria-expanded', 'true');
+      toggle.setAttribute('aria-label', 'Cerrar menú de navegación');
+      drawer.setAttribute('aria-hidden', 'false');
+      if (backdrop) backdrop.setAttribute('aria-hidden', 'false');
+
+      // Mover el foco al primer enlace para navegar con teclado
+      var firstLink = drawer.querySelector('a');
+      if (firstLink) {
+        window.setTimeout(function () { firstLink.focus(); }, 300);
+      }
+    }
+
+    function closeMenu(returnFocus) {
+      document.body.classList.remove('menu-open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Abrir menú de navegación');
+      drawer.setAttribute('aria-hidden', 'true');
+      if (backdrop) backdrop.setAttribute('aria-hidden', 'true');
+
+      if (returnFocus) {
+        var target = (lastFocusedElement && lastFocusedElement !== document.body) ? lastFocusedElement : toggle;
+        target.focus();
+      }
+    }
+
+    toggle.addEventListener('click', function () {
+      if (isMenuOpen()) {
+        closeMenu(true);
+      } else {
+        openMenu();
+      }
+    });
+
+    // Cerrar al hacer clic sobre un enlace del menú
+    drawer.addEventListener('click', function (e) {
+      if (e.target.closest('a')) {
+        closeMenu(false);
+      }
+    });
+
+    // Cerrar al hacer clic en el fondo oscuro
+    if (backdrop) {
+      backdrop.addEventListener('click', function () {
+        closeMenu(true);
+      });
+    }
+
+    // Cerrar con la tecla Escape
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && isMenuOpen()) {
+        closeMenu(true);
+      }
+    });
+
+    // Si la pantalla crece a desktop, resetear el estado sin mover el foco
+    window.addEventListener('resize', debounce(function () {
+      if (window.innerWidth > 992 && isMenuOpen()) {
+        closeMenu(false);
+      }
+    }, 200));
+  })();
+
   // 5. Carrusel y Filtros de Los Más Pedidos (Hombre y Mujer)
   (function initBestSellersCarousel() {
     var track = document.getElementById('bestSellersTrack');
