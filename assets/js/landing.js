@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var targets = document.querySelectorAll(
       '.section-title-container, .visual-diff-left, .visual-diff-right, .best-seller-card, ' +
       '.combos-promo-banner, .gallery-card, .universe-card, .ritual-step-card, ' +
-      '.faq-item, .testimonial-card, .final-cta-container'
+      '.faq-item, .final-cta-container'
     );
     if (!('IntersectionObserver' in window)) return;
 
