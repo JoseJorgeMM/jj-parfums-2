@@ -28,7 +28,7 @@
     rel="stylesheet">
 
   <!-- Estilos Principales -->
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/style.css?v=2">
 </head>
 
 <body>
@@ -211,7 +211,7 @@
           </button>
           <button class="filter-btn fav-pill-btn" id="favoritesFilterBtn" data-filter="favorites"
             title="Ver fragancias guardadas">
-            <span class="heart-icon">❤️</span>
+            <span class="heart-icon" aria-hidden="true"><svg class="lade fav-heart heart-pill" aria-hidden="true"><use href="#lc-heart"/></svg></span>
             <span>Favoritos</span>
             <span class="gender-count fav-badge-count" id="countFavs">0</span>
           </button>
@@ -365,7 +365,7 @@
             <div class="modal-title-row">
               <h3 class="modal-title" id="modalPerfumeName">Nombre de la Fragancia</h3>
               <button type="button" class="modal-fav-btn" id="modalFavBtn" title="Guardar en favoritos"
-                aria-label="Guardar en favoritos">🤍</button>
+                aria-label="Guardar en favoritos"><svg class="lade fav-heart" aria-hidden="true"><use href="#lc-heart"/></svg></button>
             </div>
             <span class="gender-badge" id="modalGender">GÉNERO</span>
           </div>
@@ -584,7 +584,7 @@
 
   <!-- Scripts -->
   <script src="assets/js/data.js"></script>
-  <script src="assets/js/script.js"></script>
+  <script src="assets/js/script.js?v=2"></script>
 </body>
 
 </html>

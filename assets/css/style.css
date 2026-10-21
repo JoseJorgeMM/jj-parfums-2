@@ -1730,6 +1730,49 @@ body {
     100% { transform: scale(1); }
 }
 
+/* Corazón de favoritos — SVG de marca (gris sutil, rojo al activar) */
+:root {
+    --fav-red: #f04358;
+    --fav-red-glow: rgba(240, 67, 88, 0.45);
+}
+
+.fav-heart {
+    color: #8d94a3;
+    fill: rgba(141, 148, 163, 0.10);
+    stroke-width: 1.8;
+    transition: color 0.25s ease, fill 0.25s ease;
+}
+
+.fav-heart.active {
+    color: var(--fav-red);
+    fill: var(--fav-red);
+}
+
+.favorite-btn:hover .fav-heart:not(.active) {
+    color: var(--fav-red);
+    fill: rgba(240, 67, 88, 0.12);
+}
+
+/* Píldora del filtro de favoritos */
+.heart-icon {
+    display: inline-flex;
+    align-items: center;
+}
+
+.heart-icon .fav-heart {
+    color: var(--fav-red);
+    fill: var(--fav-red);
+}
+
+/* Corazón grande del estado vacío de favoritos */
+.fav-empty-heart .fav-heart {
+    width: 2.6rem;
+    height: 2.6rem;
+    color: var(--fav-red);
+    fill: rgba(240, 67, 88, 0.14);
+    filter: drop-shadow(0 4px 16px var(--fav-red-glow));
+}
+
 /* ==========================================================================
    Banner de Selección de Favoritos & Consulta por WhatsApp
    ========================================================================== */

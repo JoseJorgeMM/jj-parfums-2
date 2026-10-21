@@ -34,6 +34,11 @@ function getPerfumeId(p) {
     return ((p.house || "") + "___" + (p.name || "")).toLowerCase().trim();
 }
 
+// Corazón de favoritos como icono SVG (marca coherente; rojo al activar)
+function getFavHeartIcon(active) {
+    return '<svg class="lade fav-heart' + (active ? " active" : "") + '" aria-hidden="true"><use href="#lc-heart"/></svg>';
+}
+
 function getWhatsAppUrl(p) {
     var phone = "573126654386";
     var text = "Hola J.J Parfums, me interesa pedir el extracto en roll-on concentrado de *" + p.name + "* (" + p.house + ") de máxima fijación. ¿Me confirmas precio y disponibilidad?";
@@ -106,14 +111,14 @@ function toggleFavorite(perfumeId, triggerBtn) {
     // Actualizar botón en el modal de perfume si está abierto
     var modalFavBtn = document.getElementById("modalFavBtn");
     if (modalFavBtn && state.currentModalPerfume && getPerfumeId(state.currentModalPerfume) === perfumeId) {
-        modalFavBtn.innerHTML = isFav ? "❤️" : "🤍";
+        modalFavBtn.innerHTML = getFavHeartIcon(isFav);
         modalFavBtn.classList.toggle("active", isFav);
     }
 
     // Actualizar botones de tarjetas activas en pantalla
     var cardFavBtns = document.querySelectorAll('.favorite-btn[data-id="' + perfumeId + '"]');
     cardFavBtns.forEach(function(btn) {
-        btn.innerHTML = isFav ? "❤️" : "🤍";
+        btn.innerHTML = getFavHeartIcon(isFav);
         btn.classList.toggle("active", isFav);
         btn.classList.add("pulse");
         setTimeout(function() { btn.classList.remove("pulse"); }, 300);
@@ -203,7 +208,7 @@ function openPerfumeModal(perfume) {
     if (modalFavBtn) {
         var id = getPerfumeId(perfume);
         var isFav = (state.favorites.indexOf(id) !== -1);
-        modalFavBtn.innerHTML = isFav ? "❤️" : "🤍";
+        modalFavBtn.innerHTML = getFavHeartIcon(isFav);
         modalFavBtn.classList.toggle("active", isFav);
         modalFavBtn.onclick = function() {
             toggleFavorite(id);
@@ -249,7 +254,7 @@ function createPerfumeCard(p) {
         '<div class="card-top">' +
             '<span class="card-house-micro">' + p.house + '</span>' +
             '<button type="button" class="favorite-btn ' + (isFav ? 'active' : '') + '" data-id="' + id + '" title="' + (isFav ? 'Quitar de favoritos' : 'Añadir a favoritos') + '" aria-label="Favorito">' +
-                (isFav ? '❤️' : '🤍') +
+                getFavHeartIcon(isFav) +
             '</button>' +
         '</div>' +
         '<div class="card-image-box">' +
@@ -576,9 +581,9 @@ function filterAndRender(reset) {
             if (bannerSlot) bannerSlot.innerHTML = "";
             container.innerHTML =
                 '<div class="favorites-empty-box">' +
-                    '<div class="fav-empty-heart">🤍</div>' +
+                    '<div class="fav-empty-heart" aria-hidden="true"><svg class="lade fav-heart"><use href="#lc-heart"/></svg></div>' +
                     '<h3 class="fav-empty-title">Aún no has guardado fragancias favoritas</h3>' +
-                    '<p class="fav-empty-desc">Toca el corazón (❤️) en cualquier perfume del catálogo para crear tu selección y consultar precio o encargo por WhatsApp.</p>' +
+                    '<p class="fav-empty-desc">Toca el corazón en cualquier perfume del catálogo para crear tu selección y consultar precio o encargo por WhatsApp.</p>' +
                     '<button type="button" class="fav-empty-browse-btn" id="exitFavoritesBtn">Explorar Catálogo Completo</button>' +
                 '</div>';
 
@@ -1333,7 +1338,7 @@ function updateOrderUI() {
     // Resumen de promos
     var promoEl = document.getElementById("orderPromoSummary");
     var parts = [];
-    if (t.packs5 > 0) parts.push('<span class="order-promo-tag gold">👑 Promo 5 por $100.000 × ' + t.packs5 + "</span>");
+    if (t.packs5 > 0) parts.push('<span class="order-promo-tag gold"><svg class="lade" aria-hidden="true"><use href="#lc-crown"/></svg> Promo 5 por ' + formatCOP(100000) + " × " + t.packs5 + "</span>");
     if (t.packs3 > 0) parts.push('<span class="order-promo-tag">Promo 3 por $65.000 × ' + t.packs3 + "</span>");
     if (t.singles > 0) parts.push('<span class="order-promo-tag">Individuales × ' + t.singles + "</span>");
     promoEl.innerHTML = parts.length > 0
