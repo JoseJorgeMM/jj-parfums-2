@@ -246,6 +246,12 @@ function openPerfumeModal(perfume) {
     modal.classList.add("active");
     modal.setAttribute("aria-hidden", "false");
     document.body.classList.add("modal-open");
+
+    // Entrada de teclado directa al cierre (primera parada lógica de la ficha)
+    setTimeout(function() {
+        var closeBtn = document.getElementById("modalCloseBtn");
+        if (closeBtn) closeBtn.focus();
+    }, 80);
 }
 
 function closePerfumeModal() {
@@ -1247,6 +1253,26 @@ function initControls() {
         });
     }
 
+    // Focus-trap: Tab/Shift+Tab ciclan dentro del modal activo
+    function trapModalFocus(modal, e) {
+        var focusables = modal.querySelectorAll('button, a[href], select, input, [tabindex]:not([tabindex="-1"])');
+        var visible = [];
+        focusables.forEach(function(el) {
+            var r = el.getBoundingClientRect();
+            if (r.width > 0 && r.height > 0) visible.push(el);
+        });
+        if (!visible.length) return;
+        var first = visible[0];
+        var last = visible[visible.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+        } else if (!e.shiftKey && (document.activeElement === last || document.activeElement === document.body)) {
+            e.preventDefault();
+            first.focus();
+        }
+    }
+
     document.addEventListener("keydown", function(e) {
         if (e.key === "Escape") {
             closePerfumeModal();
@@ -1254,6 +1280,17 @@ function initControls() {
             var advDrawer = document.getElementById("advancedFiltersDrawer");
             if (advDrawer && advDrawer.classList.contains("open")) {
                 setFiltersSheet(false);
+            }
+        }
+        if (e.key === "Tab") {
+            var pm = document.getElementById("perfumeModal");
+            if (pm && pm.classList.contains("active")) {
+                trapModalFocus(pm, e);
+                return;
+            }
+            var hm = document.getElementById("housesModal");
+            if (hm && hm.classList.contains("active")) {
+                trapModalFocus(hm, e);
             }
         }
     });
