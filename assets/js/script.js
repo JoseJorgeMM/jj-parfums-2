@@ -1184,6 +1184,17 @@ function initControls() {
 document.addEventListener("DOMContentLoaded", function() {
     initControls();
     filterAndRender(true);
+
+    // Deep-link desde la landing: catalogo.html?genero=Hombre|Mujer|Unisex
+    window.setTimeout(function() {
+        var q = new URLSearchParams(window.location.search);
+        var g = q ? (q.get("genero") || "").toLowerCase() : "";
+        if (["hombre", "mujer", "unisex"].indexOf(g) !== -1) {
+            var target = g.charAt(0).toUpperCase() + g.slice(1);
+            var btn = document.querySelector('.gender-filters .filter-btn[data-gender="' + target + '"]');
+            if (btn && !btn.classList.contains("active")) btn.click();
+        }
+    }, 80);
 });
 
 // ==========================================================================

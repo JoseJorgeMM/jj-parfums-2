@@ -52,11 +52,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Montserrat:wght@300;400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@1,500;1,600;1,700&display=swap"
     rel="stylesheet">
 
   <!-- Estilos de la Landing Page -->
-  <link rel="stylesheet" href="assets/css/landing.css">
+  <link rel="stylesheet" href="assets/css/landing.css?v=2">
 </head>
 
 <body>
@@ -126,17 +126,25 @@
 
       <nav aria-label="Navegación principal">
         <ul class="nav-links-desktop">
-          <li><a href="#diferencia">¿Por Qué Roll-On?</a></li>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="catalogo.html?genero=Hombre">Hombre</a></li>
+          <li><a href="catalogo.html?genero=Mujer">Mujer</a></li>
+          <li><a href="catalogo.html?genero=Unisex">Unisex</a></li>
           <li><a href="#mas-pedidos">Los Más Pedidos</a></li>
-          <li><a href="#galeria">Galería Real</a></li>
-          <li><a href="#universos">Colecciones (953)</a></li>
-          <li><a href="#faq">Preguntas Frecuentes</a></li>
+          <li><a href="#combos">Combos</a></li>
         </ul>
       </nav>
 
       <div class="nav-cta-group">
+        <a href="https://wa.me/573126654386?text=Hola%20J.J%20Parfums%2C%20deseo%20asesor%C3%ADa%20para%20elegir%20mi%20extracto%20en%20roll-on."
+          target="_blank" rel="noopener noreferrer" class="nav-wa-icon" aria-label="Chatear por WhatsApp" title="Pedir por WhatsApp">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
+          </svg>
+        </a>
+
         <a href="catalogo.html" class="btn-gold-primary">
-          <span>Ver Catálogo (953)</span>
+          <span>Catálogo (953)</span>
           <span aria-hidden="true">➔</span>
         </a>
 
@@ -160,10 +168,12 @@
       <span class="mobile-menu-ornament" aria-hidden="true">✦</span>
 
       <ul class="mobile-menu-links">
-        <li><a href="#diferencia">¿Por Qué Roll-On?</a></li>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="catalogo.html?genero=Hombre">Hombre</a></li>
+        <li><a href="catalogo.html?genero=Mujer">Mujer</a></li>
+        <li><a href="catalogo.html?genero=Unisex">Unisex</a></li>
         <li><a href="#mas-pedidos">Los Más Pedidos</a></li>
-        <li><a href="#galeria">Galería Real</a></li>
-        <li><a href="#universos">Colecciones (953)</a></li>
+        <li><a href="#combos">Combos</a></li>
         <li><a href="#faq">Preguntas Frecuentes</a></li>
       </ul>
 
@@ -190,12 +200,14 @@
   </nav>
 
   <main>
-    <!-- ==========================================================================
-         SECCIÓN 1: HERO SENSORIAL (VIDEO DE FONDO VISIBLE Y ALTA CONVERSIÓN)
+        <!-- ==========================================================================
+         SECCIÓN 1: HERO CARRUSEL EDITORIAL (TIPO CASA DE MODA)
+         Slide 1 = video de marca en vivo | Slides 2-3 = fotografía real
          ========================================================================== -->
-    <section class="hero-landing" aria-label="Presentación principal de extractos concentrados">
-      <!-- Video de Fondo Responsivo -->
-      <div class="hero-video-bg">
+    <section class="hero-landing" id="heroLanding" aria-roledescription="carrusel" aria-label="Presentación principal de extractos concentrados">
+
+      <!-- Capa de Video de Marca (visible en el slide 1) -->
+      <div class="hero-media-layer" aria-hidden="true">
         <video autoplay muted loop playsinline class="hero-video-elem" id="landingHeroVideo"
           poster="imagenes_landing/Gemini_Generated_Image_t9kcvyt9kcvyt9kc.jpg">
           <source src="img/hero.mp4" type="video/mp4">
@@ -204,83 +216,99 @@
         <div class="hero-overlay-gradient"></div>
       </div>
 
-      <div class="hero-container">
-        <div class="hero-eyebrow">
-          <span aria-hidden="true"><svg class="lade" aria-hidden="true"><use href="#lc-crown"/></svg></span>
-          <span>Extractos Concentrados de Alta Gama</span>
+      <!-- Slide 1: Promesa de origen (video detrás) -->
+      <div class="hero-slide is-active" data-slide-index="0" aria-roledescription="slide" aria-label="1 de 3: Esencias 100% originales">
+        <div class="slide-inner">
+          <p class="slide-eyebrow">¡Nosotros sabemos lo que tu perfume dice de ti!</p>
+          <h1 class="slide-title">
+            <em class="slide-serif">Solo Esencias</em>&nbsp;<span class="slide-sans">100%</span>
+          </h1>
+          <p class="slide-massive">ORIGINALES</p>
+          <p class="slide-sub">
+            Misma firma olfativa de tus casas <strong>Árabes, de Diseñador y de Nicho</strong> —
+            en aceite puro, <em class="slide-serif">sin una gota de alcohol</em>.
+          </p>
         </div>
+      </div>
 
-        <h1 class="hero-main-heading">
-          Tus Perfumes Favoritos en <br>
-          <span class="gold-shine">Extracto Puro en Roll-On</span>
-        </h1>
-
-        <p class="hero-lead-text">
-          <strong>100% Aceite Concentrado &bull; 0% Alcohol &bull; +8h de Fijación en Piel</strong><br>
-          La misma fragancia de tus marcas Árabes, de Moda y Nicho sin desperdiciar en spray. Llévalo siempre contigo
-          por solo <strong>$25.000 COP</strong>.
-        </p>
-
-        <!-- Píldoras de Valor Rápido -->
-        <div class="hero-value-pills">
-          <div class="value-pill-card">
-            <span class="pill-icon" aria-hidden="true"><svg class="lade" aria-hidden="true"><use href="#lc-droplet"/></svg></span>
-            <div class="pill-text">
-              <span class="pill-title">100% Aceite Puro</span>
-              <span class="pill-sub">Cero alcohol volátil</span>
-            </div>
-          </div>
-
-          <div class="value-pill-card">
-            <span class="pill-icon" aria-hidden="true"><svg class="lade" aria-hidden="true"><use href="#lc-hourglass"/></svg></span>
-            <div class="pill-text">
-              <span class="pill-title">+8 a 12 Horas</span>
-              <span class="pill-sub">Fijación total en piel</span>
-            </div>
-          </div>
-
-          <div class="value-pill-card">
-            <span class="pill-icon" aria-hidden="true"><svg class="lade" aria-hidden="true"><use href="#lc-sparkle"/></svg></span>
-            <div class="pill-text">
-              <span class="pill-title">0% Desperdicio</span>
-              <span class="pill-sub">Esfera de acero precisa</span>
-            </div>
-          </div>
-
-          <div class="value-pill-card">
-            <span class="pill-icon" aria-hidden="true"><svg class="lade" aria-hidden="true"><use href="#lc-gem"/></svg></span>
-            <div class="pill-text">
-              <span class="pill-title">Solo $25.000 COP</span>
-              <span class="pill-sub">Lujo inteligente</span>
-            </div>
-          </div>
+      <!-- Slide 2: Beneficio del formato -->
+      <div class="hero-slide" data-slide-index="1" aria-roledescription="slide" aria-label="2 de 3: El lujo en tu bolsillo">
+        <div class="slide-bg" style="background-image:url('imagenes_landing/Dressing_man_in_black_t-shirt_2K_20260915202434.jpeg')" aria-hidden="true"></div>
+        <div class="slide-dim" aria-hidden="true"></div>
+        <div class="slide-inner">
+          <p class="slide-eyebrow">Para él y para ella</p>
+          <p class="slide-title">
+            <em class="slide-serif">El Lujo de las Grandes Casas</em>
+          </p>
+          <p class="slide-massive">EN TU BOLSILLO</p>
+          <p class="slide-sub">
+            Roll-on con esfera de acero, <strong>fijación de 8 a 12 horas</strong> y cero desperdicio en spray.
+          </p>
         </div>
+      </div>
 
-        <!-- Grupo de Botones de Acción (CTAs) -->
-        <div class="hero-cta-actions">
-          <a href="catalogo.html" class="btn-gold-primary">
-            <span>Explorar Catálogo Completo (953 Fragancias)</span>
-            <span aria-hidden="true">➔</span>
-          </a>
-
-          <a href="https://wa.me/573126654386?text=Hola%20J.J%20Parfums%2C%20deseo%20conocer%20m%C3%A1s%20sobre%20los%20extractos%20concentrados%20en%20roll-on%20de%20%2425.000%20COP.%20%C2%BFMe%20brindas%20asesor%C3%ADa%20personalizada%3F"
-            target="_blank" rel="noopener noreferrer" class="btn-whatsapp-primary">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
-              <path
-                d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
-            </svg>
-            <span>Pedir por WhatsApp</span>
-          </a>
+      <!-- Slide 3: Combo estrella (el más vendedor) -->
+      <div class="hero-slide" data-slide-index="2" aria-roledescription="slide" aria-label="3 de 3: Combo 5 por 100.000">
+        <div class="slide-bg" style="background-image:url('imagenes_landing/Woman_applying_roll-on_perfume.jpg')" aria-hidden="true"></div>
+        <div class="slide-dim" aria-hidden="true"></div>
+        <div class="slide-inner">
+          <p class="slide-eyebrow">Combos de volumen</p>
+          <p class="slide-title">
+            <em class="slide-serif">Paga 4 y llévate 5</em>
+          </p>
+          <p class="slide-massive">5 POR $100.000</p>
+          <p class="slide-sub">
+            Completa tu set con <strong>3 por $65.000</strong>. Arma tu lista y <em class="slide-serif">te la enviamos lista por WhatsApp</em>.
+          </p>
         </div>
+      </div>
 
-        <div class="hero-social-proof">
-          <span class="stars-rating" aria-label="5 estrellas">★★★★★</span>
-          <span>Catálogo de <strong>953 fragancias</strong> &bull; <strong>166 casas perfumistas</strong></span>
-        </div>
+      <!-- CTAs persistentes (conversión constante) -->
+      <div class="hero-cta-actions">
+        <a href="catalogo.html" class="btn-gold-primary">
+          <span>Explorar Catálogo (953)</span>
+          <span aria-hidden="true">➔</span>
+        </a>
+
+        <a href="https://wa.me/573126654386?text=Hola%20J.J%20Parfums%2C%20deseo%20conocer%20m%C3%A1s%20sobre%20los%20extractos%20concentrados%20en%20roll-on%20de%20%2425.000%20COP.%20%C2%BFMe%20brindas%20asesor%C3%ADa%20personalizada%3F"
+          target="_blank" rel="noopener noreferrer" class="btn-whatsapp-primary">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
+            <path
+              d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
+          </svg>
+          <span>Pedir por WhatsApp</span>
+        </a>
+      </div>
+
+      <!-- Flechas del carrusel -->
+      <button type="button" class="hero-arrow hero-arrow-prev" id="heroPrevBtn" aria-label="Slide anterior">
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="20" y1="12" x2="4" y2="12"></line>
+          <polyline points="10 18 4 12 10 6"></polyline>
+        </svg>
+      </button>
+      <button type="button" class="hero-arrow hero-arrow-next" id="heroNextBtn" aria-label="Slide siguiente">
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="4" y1="12" x2="20" y2="12"></line>
+          <polyline points="14 6 20 12 14 18"></polyline>
+        </svg>
+      </button>
+
+      <!-- Dots de progreso -->
+      <div class="hero-dots" id="heroDots" role="tablist" aria-label="Seleccionar slide">
+        <button type="button" class="hero-dot is-active" data-dot="0" role="tab" aria-selected="true" aria-label="Ir al slide 1"></button>
+        <button type="button" class="hero-dot" data-dot="1" role="tab" aria-selected="false" aria-label="Ir al slide 2"></button>
+        <button type="button" class="hero-dot" data-dot="2" role="tab" aria-selected="false" aria-label="Ir al slide 3"></button>
+      </div>
+
+      <!-- Prueba social -->
+      <div class="hero-social-proof">
+        <span class="stars-rating" aria-label="5 estrellas">★★★★★</span>
+        <span>Catálogo de <strong>953 fragancias</strong> &bull; <strong>166 casas perfumistas</strong></span>
       </div>
     </section>
 
-    <!-- ==========================================================================
+<!-- ==========================================================================
          SECCIÓN 2: LA DIFERENCIA VISUAL & TARJETA DE OFERTA INTEGRADA
          ========================================================================== -->
     <section id="diferencia" class="section-wrapper" aria-labelledby="diferencia-title">
@@ -731,7 +759,7 @@
       <!-- ======================================================================
            TARJETA ESTRATÉGICA DE COMBOS (VOLUMEN Y ALTA CONVERSIÓN)
            ====================================================================== -->
-      <div class="combos-promo-banner">
+      <div class="combos-promo-banner" id="combos">
         <div class="combos-header">
           <span class="combos-fire-badge"><svg class="lade" aria-hidden="true"><use href="#lc-flame"/></svg> Ofertas Especiales por Volumen</span>
           <h3 class="combos-title">Lleva Tus Extractos Favoritos con Descuento Exclusivo</h3>
@@ -1208,7 +1236,7 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="assets/js/landing.js"></script>
+  <script src="assets/js/landing.js?v=2"></script>
 </body>
 
 </html>

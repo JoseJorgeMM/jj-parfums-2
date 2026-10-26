@@ -416,3 +416,89 @@ document.addEventListener('DOMContentLoaded', function () {
     }, 250));
   })();
 });
+
+// ============================================================================
+// HERO CARRUSEL EDITORIAL — autoplay, flechas, dots y pausas inteligentes
+// ============================================================================
+document.addEventListener('DOMContentLoaded', function () {
+  (function initHeroCarousel() {
+    var hero = document.getElementById('heroLanding');
+    if (!hero) return;
+
+    var slides = Array.prototype.slice.call(hero.querySelectorAll('.hero-slide'));
+    var dots = Array.prototype.slice.call(hero.querySelectorAll('.hero-dot'));
+    var prevBtn = document.getElementById('heroPrevBtn');
+    var nextBtn = document.getElementById('heroNextBtn');
+    if (!slides.length) return;
+
+    var current = 0;
+    var timer = null;
+    var INTERVAL = 6500;
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // El hero completa el alto del primer pantallazo: mide el header real
+    function setHeroOffset() {
+      var announce = document.querySelector('.top-announcement-bar');
+      var navbar = document.querySelector('.landing-navbar');
+      var h = (announce ? announce.offsetHeight : 0) + (navbar ? navbar.offsetHeight : 0);
+      document.documentElement.style.setProperty('--hero-offset', (h || 0) + 'px');
+    }
+    setHeroOffset();
+    window.addEventListener('resize', setHeroOffset);
+    window.addEventListener('load', setHeroOffset);
+
+    function activate(index) {
+      current = (index + slides.length) % slides.length;
+      slides.forEach(function (slide, i) {
+        slide.classList.toggle('is-active', i === current);
+        slide.setAttribute('aria-hidden', i === current ? 'false' : 'true');
+      });
+      dots.forEach(function (dot, i) {
+        dot.classList.toggle('is-active', i === current);
+        dot.setAttribute('aria-selected', i === current ? 'true' : 'false');
+      });
+    }
+
+    function next() { activate(current + 1); }
+    function prev() { activate(current - 1); }
+
+    function stop() {
+      if (timer) { window.clearInterval(timer); timer = null; }
+    }
+
+    function start() {
+      if (reduced) return;
+      stop();
+      timer = window.setInterval(next, INTERVAL);
+    }
+
+    function restart() { stop(); start(); }
+
+    if (prevBtn) prevBtn.addEventListener('click', function () { prev(); restart(); });
+    if (nextBtn) nextBtn.addEventListener('click', function () { next(); restart(); });
+
+    dots.forEach(function (dot, i) {
+      dot.addEventListener('click', function () { activate(i); restart(); });
+    });
+
+    // Pausas: hover, foco visible y pestaña oculta
+    hero.addEventListener('mouseenter', stop);
+    hero.addEventListener('mouseleave', start);
+    hero.addEventListener('focusin', stop);
+    hero.addEventListener('focusout', start);
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) stop(); else start();
+    });
+
+    // Teclado cuando el foco está en el hero
+    hero.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') { next(); restart(); }
+      if (e.key === 'ArrowLeft') { prev(); restart(); }
+      if (e.key === 'Home') { activate(0); restart(); }
+      if (e.key === 'End') { activate(slides.length - 1); restart(); }
+    });
+
+    activate(0);
+    start();
+  })();
+});
