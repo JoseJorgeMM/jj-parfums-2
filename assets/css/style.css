@@ -2923,7 +2923,7 @@ mark.search-highlight {
 
 .footer-disclaimer {
     font-size: 0.75rem;
-    color: var(--text-dim);
+    color: #9aa2b1;
     line-height: 1.6;
     max-width: 680px;
     margin: 0 auto 24px;
@@ -2931,7 +2931,7 @@ mark.search-highlight {
 
 .footer-copy {
     font-size: 0.72rem;
-    color: var(--text-dim);
+    color: #9aa2b1;
     letter-spacing: 1px;
 }
 
@@ -3416,7 +3416,7 @@ mark.search-highlight {
     align-items: center;
     gap: 6px;
     background: #25d366;
-    color: #fff;
+    color: #073b1c;
     text-decoration: none;
     font-size: 0.78rem;
     font-weight: 700;
@@ -3426,9 +3426,9 @@ mark.search-highlight {
 }
 
 .nav-wa-quick-contact:hover {
-    background: #20bd5a;
+    background: #2ce573;
     box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
-    color: #fff;
+    color: #062e15;
 }
 
 @media (max-width: 600px) {
@@ -3884,5 +3884,221 @@ mark.search-highlight {
 @media (max-width: 480px) {
     .modal-footer {
         flex-direction: column;
+    }
+}
+
+/* ==========================================================================
+   MEJORAS DE CONVERSIÓN MÓVIL — Orden de resultados, hoja de filtros,
+   precio en tarjeta y targets táctiles (44px)
+   ========================================================================== */
+
+/* --- Tap mínimo configurable (40px escritorio / 44px móvil) --- */
+:root {
+    --tap-min: 40px;
+}
+
+@media (max-width: 768px) {
+    :root {
+        --tap-min: 44px;
+    }
+}
+
+/* --- Selector de Orden de Resultados --- */
+.sort-select-box {
+    flex: 0 1 auto;
+    min-width: 140px;
+    max-width: 190px;
+}
+
+.sort-select-box select {
+    font-size: 0.78rem;
+    padding: 8px 30px 8px 12px;
+    min-height: var(--tap-min);
+}
+
+/* --- Fila de Precio en la Tarjeta --- */
+.card-price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-top: 9px;
+    padding-top: 8px;
+    border-top: 1px dashed rgba(200, 164, 93, 0.22);
+    flex-wrap: wrap;
+}
+
+.card-price {
+    font-family: var(--font-sans);
+    font-size: 1.02rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    background: linear-gradient(120deg, #f5e2b3, #c8a45d 55%, #a8853f);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.card-price-hint {
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.catalog-container.list-mode .card-price-hint {
+    display: none;
+}
+
+.catalog-container.list-mode .card-price-row {
+    margin-top: 4px;
+    padding-top: 5px;
+}
+
+/* --- Acción final de la hoja de filtros (oculta en escritorio) --- */
+.sheet-actions {
+    display: none;
+}
+
+/* El velo solo existe en móvil; nunca debe interferir en escritorio */
+.filters-sheet-overlay {
+    display: none;
+}
+
+/* --- Targets táctiles cómodos en todos los controles --- */
+.favorite-btn {
+    width: 44px;
+    height: 44px;
+    top: 10px;
+    right: 10px;
+}
+
+.toggle-filters-btn,
+.filter-btn,
+.mood-btn,
+.chip-btn,
+.houses-directory-trigger,
+.house-pill-btn,
+.view-btn,
+.card-view-notes-btn,
+.card-whatsapp-quick,
+.reset-filters-btn,
+.apply-filters-btn {
+    min-height: var(--tap-min);
+}
+
+.card-add-order-btn {
+    width: 42px;
+    height: 42px;
+}
+
+.clear-search-btn {
+    width: 32px;
+    height: 32px;
+}
+
+.alphabet-index button {
+    min-height: 38px;
+    min-width: 34px;
+}
+
+@media (max-width: 768px) {
+    .card-add-order-btn {
+        width: 44px;
+        height: 44px;
+    }
+
+    .alphabet-index button {
+        min-height: 40px;
+        min-width: 36px;
+    }
+}
+
+/* --- Hoja inferior de Filtros Avanzados (solo móvil) --- */
+@media (max-width: 768px) {
+    .advanced-filters-drawer {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: auto;
+        z-index: 1500;
+        max-height: 80vh;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        border-radius: 16px 16px 0 0;
+        border-bottom: none;
+        padding: 18px 16px calc(20px + env(safe-area-inset-bottom));
+        transform: translateY(100%);
+        opacity: 1;
+        box-shadow: 0 -18px 50px rgba(0, 0, 0, 0.75);
+    }
+
+    .advanced-filters-drawer.open {
+        animation: sheetUp 0.3s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+    }
+
+    .filters-sheet-overlay {
+        display: block;
+        position: fixed;
+        inset: 0;
+        z-index: 1490;
+        background: rgba(4, 5, 8, 0.74);
+        backdrop-filter: blur(3px);
+        -webkit-backdrop-filter: blur(3px);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.25s ease;
+    }
+
+    .filters-sheet-overlay.visible {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    body.filters-sheet-open {
+        overflow: hidden;
+    }
+
+    .sheet-actions {
+        display: block;
+        position: sticky;
+        bottom: calc(-20px - env(safe-area-inset-bottom));
+        margin-top: 8px;
+        padding: 12px 0 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        background: linear-gradient(to top, rgba(14, 17, 23, 0.98) 70%, rgba(14, 17, 23, 0));
+        z-index: 2;
+    }
+
+    .apply-filters-btn {
+        width: 100%;
+        min-height: 52px;
+        border: none;
+        border-radius: 30px;
+        background: linear-gradient(135deg, #f5e2b3 0%, #d8b46f 45%, #b98f45 100%);
+        color: #14161a;
+        font-family: var(--font-sans);
+        font-size: 0.9rem;
+        font-weight: 700;
+        letter-spacing: 1.2px;
+        text-transform: uppercase;
+        cursor: pointer;
+        box-shadow: 0 10px 26px rgba(200, 164, 93, 0.28);
+        transition: var(--transition);
+    }
+
+    .apply-filters-btn:active {
+        transform: scale(0.98);
+    }
+}
+
+@keyframes sheetUp {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0);
     }
 }

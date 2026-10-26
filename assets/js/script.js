@@ -13,12 +13,33 @@ var state = {
     activeNote: "all",
     activeLetter: "all",
     searchTerm: "",
+    sortMode: localStorage.getItem("jj_sort_mode") || "default",
     viewMode: localStorage.getItem("jj_view_mode") || "grid",
     filteredList: [],
     renderedCount: 0,
     pageSize: 28,
     currentModalPerfume: null
 };
+
+// --- ORDENAMIENTO DE RESULTADOS ---
+function applyListSort(list) {
+    var coll = function(a, b) {
+        return String(a || "").localeCompare(String(b || ""), "es", { sensitivity: "base" });
+    };
+    if (state.sortMode === "az") {
+        return list.slice().sort(function(a, b) { return coll(a.name, b.name); });
+    }
+    if (state.sortMode === "za") {
+        return list.slice().sort(function(a, b) { return coll(b.name, a.name); });
+    }
+    if (state.sortMode === "house") {
+        return list.slice().sort(function(a, b) {
+            var h = coll(a.house, b.house);
+            return h !== 0 ? h : coll(a.name, b.name);
+        });
+    }
+    return list; // "default": relevancia = orden original del catálogo
+}
 
 // --- MAPAS DE FILTRO ---
 var MOOD_MAP = {
@@ -262,10 +283,14 @@ function createPerfumeCard(p) {
         '</div>' +
         '<div class="card-info">' +
             '<div class="card-header-left">' +
-                '<h3 class="perfume-name">' + p.name + '</h3>' +
+                '<h2 class="perfume-name">' + p.name + '</h2>' +
                 '<span class="gender-badge badge-' + p.gender + '">' + p.gender + '</span>' +
             '</div>' +
             '<p class="card-notes">' + (p.notes || 'Extracto puro concentrado en roll-on.') + '</p>' +
+            '<div class="card-price-row">' +
+                '<span class="card-price">' + formatCOP(25000) + '</span>' +
+                '<span class="card-price-hint" title="Combos disponibles: 3 extractos por $65.000 · Paga 4 y llévate 5 por $100.000">Combos 3×$65.000 · 5×$100.000</span>' +
+            '</div>' +
         '</div>' +
         '<div class="card-footer">' +
             '<button type="button" class="card-view-notes-btn">Ver Ficha</button>' +
@@ -570,6 +595,7 @@ function filterAndRender(reset) {
     if (!container) return;
 
     state.filteredList = filterData();
+    state.filteredList = applyListSort(state.filteredList);
     updateFilterCountsAndBadges();
 
     container.innerHTML = "";
@@ -971,11 +997,50 @@ function initControls() {
     // 2. Toggle de Gaveta de Filtros Avanzados (Mobile & Desktop)
     var toggleFiltersBtn = document.getElementById("toggleFiltersBtn");
     var advancedDrawer = document.getElementById("advancedFiltersDrawer");
+    var sheetOverlay = document.getElementById("filtersSheetOverlay");
+    var applyFiltersBtn = document.getElementById("applyFiltersBtn");
+
+    function setFiltersSheet(open) {
+        if (!advancedDrawer) return;
+        advancedDrawer.classList.toggle("open", open);
+        advancedDrawer.setAttribute("aria-hidden", open ? "false" : "true");
+        if (toggleFiltersBtn) {
+            toggleFiltersBtn.classList.toggle("active", open);
+            toggleFiltersBtn.setAttribute("aria-expanded", open ? "true" : "false");
+        }
+        // Hoja inferior en móvil: overlay + bloqueo de scroll solo bajo 768px
+        var isMobile = window.matchMedia("(max-width: 768px)").matches;
+        if (sheetOverlay) sheetOverlay.classList.toggle("visible", open && isMobile);
+        document.body.classList.toggle("filters-sheet-open", open && isMobile);
+    }
+
+    // Si la ventana pasa de móvil a escritorio con la hoja abierta, limpiar el estado
+    var mqMobile = window.matchMedia("(max-width: 768px)");
+    var onMqChange = function() {
+        if (!mqMobile.matches) {
+            document.body.classList.remove("filters-sheet-open");
+            if (sheetOverlay) sheetOverlay.classList.remove("visible");
+        }
+    };
+    if (mqMobile.addEventListener) mqMobile.addEventListener("change", onMqChange);
+    else if (mqMobile.addListener) mqMobile.addListener(onMqChange);
+
     if (toggleFiltersBtn && advancedDrawer) {
         toggleFiltersBtn.addEventListener("click", function() {
-            var isOpen = advancedDrawer.classList.toggle("open");
-            this.classList.toggle("active", isOpen);
-            this.setAttribute("aria-expanded", isOpen ? "true" : "false");
+            setFiltersSheet(!advancedDrawer.classList.contains("open"));
+        });
+    }
+    if (sheetOverlay) sheetOverlay.addEventListener("click", function() { setFiltersSheet(false); });
+    if (applyFiltersBtn) applyFiltersBtn.addEventListener("click", function() { setFiltersSheet(false); });
+
+    // 2.b Selector de Orden de Resultados (persistente)
+    var sortSelect = document.getElementById("sortSelect");
+    if (sortSelect) {
+        sortSelect.value = state.sortMode;
+        sortSelect.addEventListener("change", function() {
+            state.sortMode = this.value;
+            try { localStorage.setItem("jj_sort_mode", state.sortMode); } catch (e) {}
+            filterAndRender(true);
         });
     }
 
@@ -1186,6 +1251,10 @@ function initControls() {
         if (e.key === "Escape") {
             closePerfumeModal();
             closeHousesModal();
+            var advDrawer = document.getElementById("advancedFiltersDrawer");
+            if (advDrawer && advDrawer.classList.contains("open")) {
+                setFiltersSheet(false);
+            }
         }
     });
 

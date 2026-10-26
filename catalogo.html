@@ -28,7 +28,7 @@
     rel="stylesheet">
 
   <!-- Estilos Principales -->
-  <link rel="stylesheet" href="assets/css/style.css?v=3">
+  <link rel="stylesheet" href="assets/css/style.css?v=5">
 </head>
 
 <body>
@@ -219,6 +219,17 @@
         </div>
 
         <div class="quick-right-actions">
+          <!-- Selector de Orden -->
+          <div class="select-box sort-select-box">
+            <label for="sortSelect" class="sr-only">Ordenar resultados</label>
+            <select id="sortSelect" aria-label="Ordenar resultados">
+              <option value="default">Relevancia</option>
+              <option value="az">Nombre A-Z</option>
+              <option value="za">Nombre Z-A</option>
+              <option value="house">Casa A-Z</option>
+            </select>
+          </div>
+
           <button type="button" id="toggleFiltersBtn" class="toggle-filters-btn" aria-expanded="false"
             title="Mostrar más filtros">
             <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
@@ -266,8 +277,8 @@
         </div>
       </div>
 
-      <!-- Gaveta de Filtros Avanzados (Colapsable) -->
-      <div class="advanced-filters-drawer" id="advancedFiltersDrawer">
+      <!-- Gaveta de Filtros Avanzados (Colapsable / Hoja inferior en móvil) -->
+      <div class="advanced-filters-drawer" id="advancedFiltersDrawer" aria-hidden="true">
         <!-- Selector de Casas y Reset -->
         <div class="drawer-header-row">
           <div class="select-box">
@@ -317,7 +328,17 @@
           <span class="filter-block-label">Índice alfabético por casa:</span>
           <div class="alphabet-index" id="alphabetIndex" aria-label="Índice alfabético de casas"></div>
         </div>
+
+        <!-- Acción final de la hoja móvil: cerrar y ver resultados -->
+        <div class="sheet-actions">
+          <button type="button" id="applyFiltersBtn" class="apply-filters-btn">
+            Ver resultados
+          </button>
+        </div>
       </div>
+
+      <!-- Velo de la hoja de filtros (solo se muestra en móvil) -->
+      <div class="filters-sheet-overlay" id="filtersSheetOverlay" aria-hidden="true"></div>
 
       <!-- Fila de Estado y Resumen de Resultados -->
       <div class="results-bar">
@@ -585,7 +606,7 @@
 
   <!-- Scripts -->
   <script src="assets/js/data.js"></script>
-  <script src="assets/js/script.js?v=3"></script>
+  <script src="assets/js/script.js?v=5"></script>
 </body>
 
 </html>
