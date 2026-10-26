@@ -1795,6 +1795,50 @@ body {
     flex: 1;
 }
 
+/* Botón de vaciado de la lista de favoritos (confirmación de 2 pasos) */
+.fav-clear-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    padding: 9px 18px;
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    background: transparent;
+    color: #aab0bc;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: var(--transition-luxury);
+    width: max-content;
+    min-height: 40px;
+}
+
+.fav-clear-btn:hover,
+.fav-clear-btn:focus-visible {
+    color: var(--fav-red);
+    border-color: rgba(240, 67, 88, 0.45);
+    background: rgba(240, 67, 88, 0.06);
+}
+
+.fav-clear-btn.confirming {
+    color: var(--fav-red);
+    border-color: rgba(240, 67, 88, 0.55);
+    background: rgba(240, 67, 88, 0.12);
+    font-weight: 700;
+    animation: favClearAlert 0.4s ease;
+}
+
+@keyframes favClearAlert {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-3px); }
+    50% { transform: translateX(3px); }
+    75% { transform: translateX(-2px); }
+    100% { transform: translateX(0); }
+}
+
 .fav-banner-badge {
     display: inline-block;
     font-size: 0.7rem;

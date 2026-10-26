@@ -596,6 +596,9 @@ function filterAndRender(reset) {
                     filterAndRender(true);
                 };
             }
+            // Contador sincronizado con la lista vacía (esta rama salta el render normal)
+            var resultsCounter = document.getElementById("resultsCounter");
+            if (resultsCounter) resultsCounter.textContent = "0 fragancias favoritas guardadas";
             if (loadMoreContainer) loadMoreContainer.style.display = "none";
             return;
         } else {
@@ -608,6 +611,10 @@ function filterAndRender(reset) {
                             '<div class="fav-banner-badge">✨ Tu Selección Personal (' + favCount + ')</div>' +
                             '<h2 class="fav-banner-title">¿Listo para encargar tus extractos favoritos?</h2>' +
                             '<p class="fav-banner-desc">Envíanos tu lista guardada en un solo mensaje de WhatsApp para darte asesoría y precio preferencial.</p>' +
+                            '<button type="button" class="fav-clear-btn" id="favClearBtn" title="Vaciar la lista de favoritos" aria-label="Vaciar la lista de favoritos">' +
+                                '<svg class="lade" aria-hidden="true"><use href="#lc-trash"/></svg>' +
+                                '<span class="fav-clear-label">Vaciar Lista</span>' +
+                            '</button>' +
                         '</div>' +
                         '<a href="' + waFavUrl + '" target="_blank" rel="noopener noreferrer" class="fav-banner-wa-btn">' +
                             '<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">' +
@@ -616,6 +623,39 @@ function filterAndRender(reset) {
                             '<span>Consultar Selección (' + favCount + ') por WhatsApp</span>' +
                         '</a>' +
                     '</div>';
+
+                // Botón de vaciado con confirmación de dos pasos (anti-borrón accidental)
+                var clearBtn = document.getElementById("favClearBtn");
+                if (clearBtn) {
+                    var clearArmed = false;
+                    var clearTimer = null;
+                    var idleEl = '<svg class="lade" aria-hidden="true"><use href="#lc-trash"/></svg>' +
+                        '<span class="fav-clear-label">Vaciar Lista</span>';
+
+                    clearBtn.onclick = function() {
+                        var btnRef = this;
+                        if (!clearArmed) {
+                            clearArmed = true;
+                            btnRef.classList.add("confirming");
+                            btnRef.setAttribute("aria-label", "Confirmar: vaciar toda la lista de favoritos");
+                            btnRef.innerHTML = '<svg class="lade" aria-hidden="true"><use href="#lc-trash"/></svg>' +
+                                '<span class="fav-clear-label">¿Vaciar todos los favoritos?</span>';
+                            clearTimer = window.setTimeout(function() {
+                                clearArmed = false;
+                                btnRef.classList.remove("confirming");
+                                btnRef.setAttribute("aria-label", "Vaciar la lista de favoritos");
+                                btnRef.innerHTML = idleEl;
+                            }, 4000);
+                        } else {
+                            if (clearTimer) window.clearTimeout(clearTimer);
+                            state.favorites = [];
+                            localStorage.removeItem("jj_favorites");
+                            updateFavoritesBadge();
+                            filterAndRender(true);
+                            showToast("Lista de favoritos vaciada");
+                        }
+                    };
+                }
             }
         }
     }
