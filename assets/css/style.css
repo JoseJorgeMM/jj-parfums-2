@@ -4275,3 +4275,86 @@ body.modal-open {
         display: none;
     }
 }
+
+/* ==========================================================================
+   ENCABEZADOS DE GRUPO POR TIPO DE CASA
+   ========================================================================== */
+.house-tier-header {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 8px;
+}
+
+.house-tier-header .tier-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(200, 164, 93, 0.5), transparent);
+}
+
+.house-tier-header .tier-label {
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2.4px;
+    white-space: nowrap;
+    background: linear-gradient(120deg, #f5e2b3, #c8a45d 60%, #a8853f);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* Versión corta de la nota de combos: solo móvil */
+.card-price-hint.hint-short {
+    display: none;
+}
+
+/* ==========================================================================
+   TARJETAS MÓVILES MÁS ORDENADAS — acciones en una sola fila y notas cortas
+   ========================================================================== */
+@media (max-width: 768px) {
+    .card-footer {
+        flex-direction: row;
+        align-items: stretch;
+        gap: 6px;
+    }
+
+    .card-view-notes-btn {
+        width: auto;
+        flex: 1 1 auto;
+        padding: 9px 6px;
+        font-size: 0.68rem;
+    }
+
+    .card-whatsapp-quick {
+        width: auto;
+        flex: 1 1 42%;
+        padding: 9px 6px;
+    }
+
+    .card-add-order-btn {
+        flex: 0 0 44px;
+        width: 44px;
+        height: 44px;
+    }
+
+    .card-price-hint.hint-full {
+        display: none;
+    }
+
+    .card-price-hint.hint-short {
+        display: inline-block;
+    }
+
+    .house-tier-header {
+        gap: 10px;
+        margin-top: 2px;
+    }
+
+    .house-tier-header .tier-label {
+        font-size: 0.6rem;
+        letter-spacing: 1.6px;
+    }
+}

@@ -13,32 +13,38 @@ var state = {
     activeNote: "all",
     activeLetter: "all",
     searchTerm: "",
-    sortMode: localStorage.getItem("jj_sort_mode") || "default",
+    sortMode: (function() {
+        var stored = localStorage.getItem("jj_sort_mode") || "default";
+        // Migración: los viejos modos alfabéticos pasan al orden recomendado
+        return (stored === "az" || stored === "za") ? "default" : stored;
+    })(),
     viewMode: localStorage.getItem("jj_view_mode") || "grid",
     filteredList: [],
+    lastTierRendered: null,
     renderedCount: 0,
     pageSize: 28,
     currentModalPerfume: null
 };
 
 // --- ORDENAMIENTO DE RESULTADOS ---
+// Recomendado = agrupado por tipo de casa (Árabes → Moda → Premium → Clásicas → Populares),
+// cada grupo ordenado por casa para que los aromas de la misma marca queden juntos.
 function applyListSort(list) {
     var coll = function(a, b) {
         return String(a || "").localeCompare(String(b || ""), "es", { sensitivity: "base" });
     };
-    if (state.sortMode === "az") {
-        return list.slice().sort(function(a, b) { return coll(a.name, b.name); });
-    }
-    if (state.sortMode === "za") {
-        return list.slice().sort(function(a, b) { return coll(b.name, a.name); });
-    }
     if (state.sortMode === "house") {
-        return list.slice().sort(function(a, b) {
-            var h = coll(a.house, b.house);
-            return h !== 0 ? h : coll(a.name, b.name);
-        });
+        return list.slice().sort(function(a, b) { return coll(a.house, b.house); });
     }
-    return list; // "default": relevancia = orden original del catálogo
+    // "default" / "recomendado": tipos de casa en orden comercial
+    return list.slice().sort(function(a, b) {
+        var ta = HOUSE_TIER_ORDER.indexOf(getHouseTier(a.house));
+        if (ta === -1) ta = HOUSE_TIER_ORDER.length;
+        var tb = HOUSE_TIER_ORDER.indexOf(getHouseTier(b.house));
+        if (tb === -1) tb = HOUSE_TIER_ORDER.length;
+        if (ta !== tb) return ta - tb;
+        return coll(a.house, b.house);
+    });
 }
 
 // --- MAPAS DE FILTRO ---
@@ -295,7 +301,8 @@ function createPerfumeCard(p) {
             '<p class="card-notes">' + (p.notes || 'Extracto puro concentrado en roll-on.') + '</p>' +
             '<div class="card-price-row">' +
                 '<span class="card-price">' + formatCOP(25000) + '</span>' +
-                '<span class="card-price-hint" title="Combos disponibles: 3 extractos por $65.000 · Paga 4 y llévate 5 por $100.000">Combos 3×$65.000 · 5×$100.000</span>' +
+                '<span class="card-price-hint hint-full" title="Combos disponibles: 3 extractos por $65.000 · Paga 4 y llévate 5 por $100.000">Combos 3×$65.000 · 5×$100.000</span>' +
+                '<span class="card-price-hint hint-short" title="Combos disponibles: 3 extractos por $65.000 · Paga 4 y llévate 5 por $100.000">Combos desde $65.000</span>' +
             '</div>' +
         '</div>' +
         '<div class="card-footer">' +
@@ -558,7 +565,19 @@ function renderNextChunk() {
     }
 
     for (var i = start; i < end; i++) {
-        var card = createPerfumeCard(state.filteredList[i]);
+        var p = state.filteredList[i];
+        // Encabezado de grupo cuando cambia el tipo de casa (Árabes, Moda, Premium…)
+        // Solo en el orden recomendado; en "Casa A-Z" la lista es una secuencia continua
+        var tier = getHouseTier(p.house);
+        if (state.sortMode !== "house" && tier !== state.lastTierRendered) {
+            var head = document.createElement("div");
+            head.className = "house-tier-header";
+            head.setAttribute("role", "separator");
+            head.innerHTML = '<span class="tier-line"></span><span class="tier-label">' + HOUSE_TIER_LABELS[tier] + '</span><span class="tier-line"></span>';
+            grid.appendChild(head);
+            state.lastTierRendered = tier;
+        }
+        var card = createPerfumeCard(p);
         grid.appendChild(card);
     }
 
@@ -602,6 +621,7 @@ function filterAndRender(reset) {
 
     state.filteredList = filterData();
     state.filteredList = applyListSort(state.filteredList);
+    state.lastTierRendered = null;
     updateFilterCountsAndBadges();
 
     container.innerHTML = "";

@@ -902,3 +902,34 @@ var catalogData = [
 { house: "Moschino", name: "Toy 2 Yummy", gender: "Mujer", notes: "Floral frutal almizclado radiante, mandarina amarilla chispeante, bergamota fresca, jazmín sambac, toques de pimienta timut y vetiver limpio.", image: "assets/img/perfumes/moschino-toy-2-yummy.png" },
 { house: "Tubbees", name: "Berry Explosion", gender: "Unisex", notes: "Frutal gourmand chispeante y jugoso, frambuesa dulce, fresa silvestre, grosellas negras, sirope de arándanos, algodón de azúcar y vainilla.", image: "assets/img/perfumes/tubbees-berry-explosion.png" }
 ];
+// ==========================================================================
+// ORGANIZACIÓN DEL CATÁLOGO POR TIPOS DE CASA
+// Clasifica las casas para mostrarlas agrupadas: Árabes → Moda → Premium → Clásicas → Populares
+// ==========================================================================
+var HOUSE_TIER_ORDER = ["arabe", "moda", "premium", "clasicas", "populares"];
+
+var HOUSE_TIER_LABELS = {
+    arabe: "Casas Árabes",
+    moda: "Casas de Moda",
+    premium: "Casas Premium",
+    clasicas: "Casas Clásicas",
+    populares: "Populares y Estrellas"
+};
+
+var HOUSE_TIERS = {
+    arabe: ["Afnan Perfumes", "Ahli", "Ajmal", "Al Haramain", "Al Zaafaran", "Amouage", "Armaf", "Bharara", "Dumont", "French Avenue", "Ilmin", "Lattafa", "Maison Alhambra", "Orientica", "Rasasi", "Ritzy Perfumes", "Stéphane Humbert Lucas 777", "Tubbees"],
+    moda: ["Abercrombie & Fitch", "Adolfo Dominguez", "Agatha Ruiz de la Prada", "Benetton", "Burberry", "Bvlgari", "Cacharel", "Calvin Klein", "Carolina Herrera", "Cartier", "Chanel", "Chloe", "Christian Dior", "Coach", "Diesel Fragrances", "DKNY", "Dolce & Gabbana", "Emporio Armani", "Escada", "Façonnable", "Givenchy", "Gucci", "Guy Laroche Paris", "Issey Miyake", "Jean Paul Gaultier", "Jimmy Choo", "Kenzo", "Lanvin", "Loewe", "Louis Vuitton", "Lolita Lempicka", "Marc Jacobs", "Michael Kors", "Montblanc", "Montana", "Moschino", "Nina Ricci", "Oscar de la Renta", "Paco Rabanne", "Philipp Plein", "Prada", "Roberto Cavalli", "Salvatore Ferragamo", "Ted Lapidus", "Thierry Mugler", "Tommy Hilfiger", "Tous", "Victoria's Secret", "Viktor & Rolf", "Versace", "Yves Saint Laurent"],
+    premium: ["Alexandre.J", "Bond No. 9", "Borntostandout", "Creed", "Escentric Molecules", "Ex Nihilo", "Fugazzi", "Giardini di Toscana", "Initio", "Kayali", "Kilian", "Le Labo", "Lorenzo Pazzaglia", "Mancera", "Maison Crivelli", "Maison Francis Kurkdjian", "Memo Paris", "Montale", "Orto Parisi", "Parfums de Marly", "Penhaligon's", "Rosendo Mateu", "Tiziana Terenzi", "Tom Ford", "Xerjoff"],
+    clasicas: ["Clinique", "Davidoff", "Elizabeth Arden", "Estée Lauder", "Fred Hayman", "Giorgio Valenti", "Guerlain", "Joop!", "Lancôme", "Liz Claiborne", "Perry Ellis", "Pino Silvestre", "Roger & Gallet", "Rochas"]
+};
+
+function getHouseTier(house) {
+    var h = String(house || "").trim();
+    for (var t = 0; t < HOUSE_TIER_ORDER.length; t++) {
+        var list = HOUSE_TIERS[HOUSE_TIER_ORDER[t]] || [];
+        for (var i = 0; i < list.length; i++) {
+            if (String(list[i]).localeCompare(h, "es", { sensitivity: "base" }) === 0) return HOUSE_TIER_ORDER[t];
+        }
+    }
+    return "populares";
+}
