@@ -157,6 +157,55 @@ function toggleFavorite(perfumeId, triggerBtn) {
     }
 }
 
+// --- DETECTOR DE IMÁGENES FOTOGRÁFICAS (fondo opaco -> presentación editorial) ---
+// SCENE_IMAGES (precomputado en data.js) marca las fotos con fondo opaco: no hace
+// falta canvas. Para archivos fuera del mapa queda la sonda en canvas como respaldo.
+var IMG_SCENE_CACHE = {};
+
+function classifyBottleImage(container, url) {
+    if (!url || !container) return;
+    var cached = IMG_SCENE_CACHE[url];
+    if (cached !== undefined) {
+        container.classList.toggle("img-scene", cached);
+        return;
+    }
+    if (typeof SCENE_IMAGES !== "undefined" && Object.prototype.hasOwnProperty.call(SCENE_IMAGES, url)) {
+        IMG_SCENE_CACHE[url] = true;
+        container.classList.add("img-scene");
+        return;
+    }
+    var probe = new Image();
+    probe.onload = function() {
+        var result = false;
+        try {
+            var s = 24;
+            var c = document.createElement("canvas");
+            c.width = s;
+            c.height = s;
+            var cx = c.getContext("2d");
+            cx.drawImage(probe, 0, 0, s, s);
+            var d = cx.getImageData(0, 0, s, s).data;
+            var borderAlphaSeen = false;
+            var opaqueBorder = false;
+            for (var y = 0; y < s && !opaqueBorder; y++) {
+                for (var x = 0; x < s && !opaqueBorder; x++) {
+                    if (x > 1 && x < s - 2 && y > 1 && y < s - 2) continue; // solo anillo
+                    var i = (y * s + x) * 4;
+                    if (d[i + 3] > 200) opaqueBorder = true;
+                    if (d[i + 3] < 40) borderAlphaSeen = true;
+                }
+            }
+            // Sólo se considera foto si TODO el perímetro es opaco (sin recorte)
+            result = opaqueBorder && !borderAlphaSeen;
+        } catch (e) {
+            result = false;
+        }
+        IMG_SCENE_CACHE[url] = result;
+        container.classList.toggle("img-scene", result);
+    };
+    probe.src = url;
+}
+
 // --- MODAL / BOTTOM SHEET DE FICHA TÉCNICA ---
 function openPerfumeModal(perfume) {
     if (!perfume) return;
@@ -186,6 +235,7 @@ function openPerfumeModal(perfume) {
         img.src = perfume.image;
         img.style.display = "block";
         if (placeholder) placeholder.style.display = "none";
+        classifyBottleImage(document.getElementById("modalBottleStage"), perfume.image);
         img.onerror = function() {
             img.style.display = "none";
             if (placeholder) {
@@ -329,6 +379,7 @@ function createPerfumeCard(p) {
     };
 
     var favBtn = card.querySelector(".favorite-btn");
+
     if (favBtn) {
         favBtn.onclick = function(e) {
             e.stopPropagation();
@@ -350,6 +401,10 @@ function createPerfumeCard(p) {
             addToOrder(id);
         };
     }
+
+    // Presentación editorial para fotos de escena (fondo opaco)
+    var imgBox = card.querySelector(".card-image-box");
+    if (imgBox && p.image) classifyBottleImage(imgBox, p.image);
 
     return card;
 }
